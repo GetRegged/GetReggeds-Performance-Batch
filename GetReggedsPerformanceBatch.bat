@@ -71,32 +71,32 @@ set q=[0m
 echo.
 echo.
 echo.
-echo.
 echo                       %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%████████%y%%c%╗%y%    %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y% %w%██████%y%%c%╗%y%  %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%██████%y%%c%╗%y% 
 echo                      %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%c%╚══%y%%w%██%y%%c%╔══╝%y%    %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔════╝%y%%w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%  
 echo                      %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%     %w%██%y%%c%║%y%       %w%██████%y%%c%╔╝%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y% 
 echo                      %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%     %w%██%y%%c%║%y%       %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y%     
 echo                      %c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%   %w%██%y%%c%║%y%       %w%██%y%%c%║  %y%%w%██%y%%c%║%y%%w%███████%y%%c%╗%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%%w%██████%y%%c%╔╝%y%
 echo                       %c%╚═════╝%y% %c%╚══════╝%y%   %c%╚═╝%y%       %c%╚═╝  ╚═╝%y%%c%╚══════╝%y% %c%╚═════╝%y%  %c%╚═════╝%y% %c%╚══════╝%y%%c%╚═════╝%y%          
-echo                                                       %c%%u%Version: %Version%%q%%t%
+echo                                                     %c%%u%Version: %Version%%q%%t%
 echo.
 echo.
-echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
-echo.
-echo.
-echo.
-echo                           %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Windows Activation%t%                 		  %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Optimization%t%
-echo. 
-echo.
-echo                           %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Updates%t%					  %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Power Plan%t%
-echo.
-echo.
-echo                           %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Temp Cleaner%t%                           	  %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Option6%t%
-echo.
-echo.
-echo								%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Exit%t%
-echo.
-echo.
+echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
+echo %w%║%y%          WINDOWS TWEAKS                                                                                              %w%║%y%
+echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Windows Activation%t%                                                                                          %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Optimization%t%                                                                                        %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Power Plan%t%                                                                                          %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Temp Cleaner%t%                                                                                        %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Windows Dark Minimal Mode%t%                                                                                   %w%║%y%
+echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
+echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Exit%t%%w%║%y%                                                     %w%║%y%
+echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
 set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
@@ -2376,7 +2376,7 @@ cls
 :: INSERT OPTION 6 HERE
 :: INSERT OPTION 6 HERE
 :: INSERT OPTION 6 HERE
-echo Completed
+echo FULL BLACKMODE SOON AVAILABLE
 timeout /t 2 /nobreak > NUL
 goto menuorexit
 
