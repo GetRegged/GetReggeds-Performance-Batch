@@ -88,10 +88,10 @@ echo.
 echo                           %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Windows Activation%t%                 		  %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Optimization%t%
 echo. 
 echo.
-echo                           %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Updates%t%					  %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows PowerPlan%t%
+echo                           %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Updates%t%					  %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Power Plan%t%
 echo.
 echo.
-echo                           %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows TempCleaner%t%                           	  %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Option6%t%
+echo                           %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Temp Cleaner%t%                           	  %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Option6%t%
 echo.
 echo.
 echo								%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Exit%t%
