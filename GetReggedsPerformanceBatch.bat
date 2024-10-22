@@ -244,8 +244,6 @@ echo Restore point created
 timeout /t 2 /nobreak >nul 2>&1
 
 :StartWindowsOptimization
-cls
-echo Optimizing Windows Settings
 
 :: ██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗    ███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗
 :: ██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗██║    ██║██╔════╝    ██╔════╝██╔════╝╚══██╔══╝╚══██╔══╝██║████╗  ██║██╔════╝ ██╔════╝
@@ -253,6 +251,9 @@ echo Optimizing Windows Settings
 :: ██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║███╗██║╚════██║    ╚════██║██╔══╝     ██║      ██║   ██║██║╚██╗██║██║   ██║╚════██║
 :: ╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝╚███╔███╔╝███████║    ███████║███████╗   ██║      ██║   ██║██║ ╚████║╚██████╔╝███████║
 ::  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚══════╝    ╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
+
+cls
+echo Optimizing Windows Settings
 
 :: SYSTEM TAB
 
@@ -929,7 +930,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPre
 reg add "HKCU\SOFTWARE\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps" /v "AgentActivationLastUsed" /t REG_DWORD /d "0" /f >nul 2>&1
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-:: FOLLOWING TWEAKS AR ENOT IN WINDOWS SETTINGS APP INCLUDED                                                                       
+:: FOLLOWING TWEAKS ARE NOT IN WINDOWS SETTINGS APP INCLUDED                                                                       
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
 :: ██████╗ ██╗███████╗██╗  ██╗
@@ -1269,15 +1270,12 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "ShowFreque
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "ShowRecent" /t REG_DWORD /d "0" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "TelemetrySalt" /t REG_DWORD /d "0" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoRecentDocsHistory" /t REG_DWORD /d "1" /f >nul 2>&1
-timeout /t 1 /nobreak >nul 2>&1
 
 :: Enable Show Hidden Files and Folders in Explorer
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Hidden" /t REG_DWORD /d "1" /f >nul 2>&1
-timeout /t 1 /nobreak >nul 2>&1
 
 :: Enable Show File Extensions in Explorer
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "HideFileExt" /t REG_DWORD /d "0" /f >nul 2>&1
-timeout /t 1 /nobreak >nul 2>&1
 
 :: Enable Show Toolbar in Explorer
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Ribbon" /v "MinimizedStateTabletModeOff" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -2301,7 +2299,7 @@ goto menuorexit
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 :WindowsTempCleaner
 cls
-echo Cleaning Temporary Files & Folders
+echo Cleaning Temporary Files and Folders
 
 :: Reset & Delete IP-Cache
 ipconfig /flushdns >nul 2>&1
@@ -2354,10 +2352,12 @@ for /F "tokens=*" %%G in ('wevtutil.exe el') DO (call :do_clear "%%G")
 
 :do_clear
 wevtutil.exe cl %1
-goto :end
+cls
+echo Completed
+timeout /t 2 /nobreak > NUL
+goto :menu
 
 :noAdmin
-
 cls
 echo Completed
 timeout /t 2 /nobreak > NUL
