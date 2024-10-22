@@ -1663,10 +1663,10 @@ if '%choice%'=='2' goto printsvc
 :: Disable Remote Services & Tasks
 :disableremote
 echo Disable Remote Services & Tasks
-sc config RemoteRegistry start= disabled
-sc config RemoteAccess start= disabled
-sc config WinRM start= disabled
-sc config RmSvc start= disabled
+sc config RemoteRegistry start= disabled >nul 2>&1
+sc config RemoteAccess start= disabled >nul 2>&1
+sc config WinRM start= disabled >nul 2>&1
+sc config RmSvc start= disabled >nul 2>&1
 timeout /t 1 /nobreak >nul 2>&1
 
 :printsvc
@@ -1716,10 +1716,10 @@ if '%choice%'=='2' goto bluetoothsvc
 :: Disable Printer Services & Tasks
 :disableprint
 echo Disable Printer Services & Tasks
-sc config PrintNotify start= disabled
-sc config Spooler start= disabled
-schtasks /Change /TN "Microsoft\Windows\Printing\EduPrintProv" /Disable
-schtasks /Change /TN "Microsoft\Windows\Printing\PrinterCleanupTask" /Disable
+sc config PrintNotify start= disabled >nul 2>&1
+sc config Spooler start= disabled >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\Printing\EduPrintProv" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\Printing\PrinterCleanupTask" /Disable >nul 2>&1
 timeout /t 1 /nobreak >nul 2>&1
 
 :bluetoothsvc
@@ -1769,8 +1769,8 @@ if '%choice%'=='2' goto GraphicsOptimization
 :: Disable Bluetooth Services & Tasks
 :disablebluetooth
 echo Disable Bluetooth Services & Tasks
-sc config BTAGService start= disabled
-sc config bthserv start= disabled
+sc config BTAGService start= disabled >nul 2>&1
+sc config bthserv start= disabled >nul 2>&1
 timeout /t 1 /nobreak >nul 2>&1
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
@@ -2133,48 +2133,47 @@ reg add "HKLM\SOFTWARE\Microsoft\MdmCommon\SettingValues" /v "ILocationSyncEnabl
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "AutoInstallMinorUpdates" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Disable Windows Update And Store Services And Tasks (not in Windows Settings App Included)
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /t REG_DWORD /d "1" /f
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /t REG_DWORD /d "1" /f
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /t REG_DWORD /d "1" /f
-reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DisableWindowsUpdateAccess" /t REG_DWORD /d "1" /f
-sc stop BITS
-sc stop ClipSVC
-sc stop InstallService
-sc stop LanmanServer
-sc stop PushToInstall
-sc stop UsoSvc
-sc stop uhssvc
-sc stop uhssvc
-sc stop upfc
-sc stop wuauserv
-sc config BITS start= disabled
-sc config ClipSVC start= disabled
-sc config InstallService start= disabled
-sc config LanmanServer start= disabled
-sc config UsoSvc start= disabled
-sc config uhssvc start= disabled
-sc config wuauserv start= disabled
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BITS" /v Start /t reg_dword /d 4 /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v Start /t reg_dword /d 4 /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\InstallService" /v Start /t reg_dword /d 4 /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UsoSvc" /v Start /t reg_dword /d 4 /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v Start /t reg_dword /d 4 /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ossrs" /v Start /t reg_dword /d 4 /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\uhssvc" /v Start /t reg_dword /d 4 /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\upfc" /v Start /t reg_dword /d 4 /f
-reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v Start /t reg_dword /d 4 /f
-schtasks /Change /TN "Microsoft\Windows\InstallService\ScanForUpdates" /Disable
-schtasks /Change /TN "Microsoft\Windows\InstallService\ScanForUpdatesAsUser" /Disable
-schtasks /Change /TN "Microsoft\Windows\InstallService\SmartRetry" /Disable
-schtasks /Change /TN "Microsoft\Windows\InstallService\WakeUpAndContinueUpdates" /Disable
-schtasks /Change /TN "Microsoft\Windows\InstallService\WakeUpAndScanForUpdates" /Disable
-schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Report policies" /Disable
-schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task" /Disable
-schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Schedule Scan" /Disable
-schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\USO_UxBroker" /Disable
-schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\UpdateModelTask" /Disable
-schtasks /Change /TN "Microsoft\Windows\WaaSMedic\PerformRemediation" /Disable
-schtasks /Change /TN "Microsoft\Windows\WindowsUpdate\Scheduled Start" /Disable
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /t REG_DWORD /d "1" /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /t REG_DWORD /d "1" /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /t REG_DWORD /d "1" /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DisableWindowsUpdateAccess" /t REG_DWORD /d "1" /f >nul 2>&1
+sc stop BITS >nul 2>&1
+sc stop ClipSVC >nul 2>&1
+sc stop InstallService >nul 2>&1
+sc stop LanmanServer >nul 2>&1
+sc stop PushToInstall >nul 2>&1
+sc stop UsoSvc >nul 2>&1
+sc stop uhssvc >nul 2>&1
+sc stop upfc >nul 2>&1
+sc stop wuauserv >nul 2>&1
+sc config BITS start= disabled >nul 2>&1
+sc config ClipSVC start= disabled >nul 2>&1
+sc config InstallService start= disabled >nul 2>&1
+sc config LanmanServer start= disabled >nul 2>&1
+sc config UsoSvc start= disabled >nul 2>&1
+sc config uhssvc start= disabled >nul 2>&1
+sc config wuauserv start= disabled >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BITS" /v Start /t reg_dword /d 4 /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\InstallService" /v Start /t reg_dword /d 4 /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UsoSvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ossrs" /v Start /t reg_dword /d 4 /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\uhssvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\upfc" /v Start /t reg_dword /d 4 /f >nul 2>&1
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v Start /t reg_dword /d 4 /f >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\ScanForUpdates" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\ScanForUpdatesAsUser" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\SmartRetry" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\WakeUpAndContinueUpdates" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\WakeUpAndScanForUpdates" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Report policies" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Schedule Scan" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\USO_UxBroker" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\UpdateModelTask" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\WaaSMedic\PerformRemediation" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\WindowsUpdate\Scheduled Start" /Disable >nul 2>&1
 timeout /t 1 /nobreak > NUL
 
 cls
