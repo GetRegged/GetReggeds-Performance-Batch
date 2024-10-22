@@ -12,23 +12,23 @@ GetRegged's Performance Batch is an open source tweaking tool designed to signif
 </p>
 
 ## 🔑 Features
-- **Activate/Deactivate**
+- **Windows Activation**
 
   Say goodbye to spending money and typing in Windows license keys! Whether you want to activate your Windows operating system to unlock all its features or deactivate it for whatever reason, this tool makes the process a breeze. Just one click, and you’re done!
 
-- **Performance Tweaks**
+- **Windows Optimization**
 
   Gain maximum performance from your hardware by modifying your windows operating system, disabling unnecessary background processes, preventing unwanted data tracking, prioritizing tasks, stabilizing your network connection, reducing latency and frame drops and much more.
   
-- **Feature 3**
+- **Windows Updates**
 
-  Text
+  No more unexpected restarts, forced updates, or disruptions while you're in the middle of important tasks. Fully deactivate all Windows updates with just one click and enjoy a stable, uninterrupted system and take updates only when you're ready, ensuring you remain in charge of your Windows experience!
 
-- **Power Plan**
+- **Windows Power Plan**
   
   Experience peak performance, higher frame rates, smoother multitasking, and enhanced responsiveness with the Bitsum Highest Performance Power Plan, a tailored power management profile designed specifically for gamers and users engaged in resource-intensive tasks. This powerful plan ensures your system operates at its absolute maximum capacity, eliminating CPU throttling and reducing input lag during the most demanding scenarios.
 
-- **Temp Tamer**
+- **Windows Temp Cleaner**
   
   Free up valuable storage space and enhance system efficiency with Temp Tamer, a powerful cleaning tool that removes unnecessary temporary files, cache data, and log files that accumulate over time. By optimizing your storage, Temp Tamer ensures a faster and more responsive computing experience.
 
