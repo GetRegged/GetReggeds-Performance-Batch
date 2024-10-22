@@ -402,7 +402,7 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects\L
 reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "EnableAeroPeek" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Start > Settings > System > About > Advanced system settings > Advanced > Performance (Settings) > Advanced > Virtual memory > Off (Disables Pagingfile)
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "PagingFiles" /t REG_MULTI_SZ /d 00,00,00,00 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "PagingFiles" /t REG_MULTI_SZ /d 00,00,00,00 /f >nul 2>&1
 
 :: Start > Settings > System > About > Advanced system settings > Advanced > Startup and Recovery (Settings) > Automatically restart > Off
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\CrashControl" /v "AutoReboot" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -470,7 +470,7 @@ reg add "HKCU\SOFTWARE\Microsoft\TabletTip\1.7" /v "EnableShiftLock" /t REG_DWOR
 reg add "HKCU\SOFTWARE\Microsoft\Input\Settings" /v "InsightsEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Start > Settings > Devices > Typing > Advanced keyboard settings > Input language hot keys > (None)
-reg delete "HKCU\Control Panel\Input Method\Hot Keys\00000104" /f
+reg delete "HKCU\Control Panel\Input Method\Hot Keys\00000104" /f >nul 2>&1
 
 :: Start > Settings > Devices > Typing > Advanced keyboard settings > Input language hot keys > (None)
 reg add "HKCU\Keyboard Layout\Toggle" /v "Hotkey" /t REG_DWORD /d "3" /f >nul 2>&1
@@ -510,8 +510,8 @@ reg add "HKCU\SOFTWARE\Microsoft\Shell\USB" /v "NotifyOnWeakCharger" /t REG_DWOR
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings" /v "AutoDetect" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Disable Active Probing (not in Windows Settings App Included)
-reg add "HKLM\Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator" /v "NoActiveProbe" /t REG_DWORD /d "1" /f
-reg add "HKLM\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet" /v "EnableActiveProbing" /t REG_DWORD /d "0" /f
+reg add "HKLM\Software\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator" /v "NoActiveProbe" /t REG_DWORD /d "1" /f >nul 2>&1
+reg add "HKLM\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet" /v "EnableActiveProbing" /t REG_DWORD /d "0" /f >nul 2>&1
 
 ::  APPS TAB
 
