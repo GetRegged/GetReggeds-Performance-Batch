@@ -2309,9 +2309,9 @@ netsh branchcache reset >nul 2>&1
 netsh http flush logbuffer >nul 2>&1
 
 :: Delete Temporary Cache & Files
-del /s /f /q "%AppData%\Discord\Cache" >nul 2>&1
-del /s /f /q "%AppData%\Discord\Code Cache" >nul 2>&1
-del /s /f /q "%LocalAppData%\Google\Chrome\User Data\Default\Cache" >nul 2>&1
+:: del /s /f /q "%AppData%\Discord\Cache" >nul 2>&1
+:: del /s /f /q "%AppData%\Discord\Code Cache" >nul 2>&1
+:: del /s /f /q "%LocalAppData%\Google\Chrome\User Data\Default\Cache" >nul 2>&1
 del /s /f /q "%LocalAppData%\Microsoft\Windows\Explorer\*.db" >nul 2>&1
 del /s /f /q "%LocalAppData%\Microsoft\Windows\Explorer\thumbcache_*.db" >nul 2>&1
 del /s /f /q "%LocalAppData%\Microsoft\Windows\INetCache" >nul 2>&1
