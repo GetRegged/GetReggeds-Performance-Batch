@@ -34,7 +34,7 @@ GetRegged's Performance Batch is an open source tweaking tool designed to signif
 
 - **Windows Dark Minimal Mode**
 
- Applie a pure dark theme across your entire system and simplify the interface by hiding unnecessary elements and reducing visual clutter. Enjoy a low-distraction workspace, perfect for late-night work or focused productivity sessions, while also benefiting from improved performance with reduced resource usage.
+  Applie a pure dark theme across your entire system and simplify the interface by hiding unnecessary elements and reducing visual clutter. Enjoy a low-distraction workspace, perfect for late-night work or focused productivity sessions, while also benefiting from improved performance with reduced resource usage.
 
 # 💻 Requirements
 - Windows
