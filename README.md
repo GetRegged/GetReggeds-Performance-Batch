@@ -32,9 +32,9 @@ GetRegged's Performance Batch is an open source tweaking tool designed to signif
   
   Free up valuable storage space and enhance system efficiency with Temp Tamer, a powerful cleaning tool that removes unnecessary temporary files, cache data, and log files that accumulate over time. By optimizing your storage, Temp Tamer ensures a faster and more responsive computing experience.
 
-- **Feature 6**
+- **Windows Dark Minimal Mode**
 
-  Text
+ Applie a pure dark theme across your entire system and simplify the interface by hiding unnecessary elements and reducing visual clutter. Enjoy a low-distraction workspace, perfect for late-night work or focused productivity sessions, while also benefiting from improved performance with reduced resource usage.
 
 # 💻 Requirements
 - Windows
