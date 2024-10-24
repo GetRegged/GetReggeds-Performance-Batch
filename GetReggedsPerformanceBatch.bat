@@ -2316,16 +2316,16 @@ echo %w%╔═══════════════════════
 echo %w%║%y%          CLEANER OPTIONS                                                                                             %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Clean Temporary Files and Folders%t%                                                                           %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Clean Empty Folders%t%                                                                                         %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
-echo %w%║%y%                                                                                                                   %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
 echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Menu%t%%w%║%y%                                                     %w%║%y%
 echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
