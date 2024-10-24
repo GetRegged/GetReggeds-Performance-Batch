@@ -140,14 +140,14 @@ echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
 echo %w%║%y%          LICENSING OPTIONS                                                                                           %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Activate%t%                                                                           %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Activate%t%                                                                           			%w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Deactivate%t%                                                                         %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Deactivate%t%                                                                         			%w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%							      System: Windows 10/11						%w%║%y%
-echo %w%║%y%							     Edition: %editionID%						%w%║%y%
-echo %w%║%y%							     Version: %versionID%						%w%║%y%
-echo %w%║%y%							       Build: %buildID%							%w%║%y%
+echo %w%║%y%							      System: Windows 10/11					%w%║%y%
+echo %w%║%y%							     Edition: %editionID%					%w%║%y%
+echo %w%║%y%							     Version: %versionID%					%w%║%y%
+echo %w%║%y%							       Build: %buildID%						%w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
