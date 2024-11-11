@@ -3406,11 +3406,11 @@ echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Discord%t%			                
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Steam%t%			                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Valorant%t%			                                                                           %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%VLC%t%			                                                                                   %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Option6%t%			                                                                                   %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
 echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Menu%t%%w%║%y%                                                     %w%║%y%
 echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
@@ -3421,7 +3421,8 @@ if '%choice%'=='0' goto Menu
 if '%choice%'=='1' goto ChromeInstall
 if '%choice%'=='2' goto DiscordInstall
 if '%choice%'=='3' goto SteamInstall
-if '%choice%'=='4' goto VLCInstall
+if '%choice%'=='4' goto ValorantInstall
+if '%choice%'=='5' goto VLCInstall
 
 :ChromeInstall
 cls
@@ -3450,6 +3451,17 @@ cls
 echo Installing Steam
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://cdn.fastly.steamstatic.com/client/installer/SteamSetup.exe" --out=SteamSetup.exe --console-log-level=error >nul 2>&1
 %temp%\SteamSetup.exe >nul 2>&1
+
+cls
+echo Compleated
+timeout /t 1 /nobreak > NUL
+goto DownloadOptions
+
+:ValorantInstall
+cls
+echo Installing Steam
+%temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.eu.exe" --out=valorant.exe --console-log-level=error >nul 2>&1
+%temp%\valorant.exe >nul 2>&1
 
 cls
 echo Compleated
