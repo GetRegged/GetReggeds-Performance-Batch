@@ -77,7 +77,7 @@ echo %w%║%y%             WINDOWS TOOLS             %w%│%y%            ESSENT
 echo %w%╟───────────────────────────────────────┴───────────────────────────────────────┴──────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Windows Activation%t%                %w%[%y% %c%%u%7%q%%t% %w%]%y% %c%Program Downloader%t%                                                  %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Optimization%t%                                                                                        %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Optimization%t%              %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                  %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -100,6 +100,7 @@ if '%choice%'=='4' goto WindowsPowerPlan
 if '%choice%'=='5' goto WindowsCleaner
 if '%choice%'=='6' goto WindowsDarkMinimalMode
 if '%choice%'=='7' goto ProgramDownloader
+if '%choice%'=='8' goto ProgramUpdater
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 :: ██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗     █████╗  ██████╗████████╗██╗██╗   ██╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗
@@ -3410,7 +3411,7 @@ echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Valorant%t%			               
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%VLC%t%			                                                                                   %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Option6%t%			                                                                                   %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Option6%t%			                                                                               %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
 echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Menu%t%%w%║%y%                                                     %w%║%y%
 echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
@@ -3478,6 +3479,56 @@ cls
 echo Compleated
 timeout /t 1 /nobreak > NUL
 goto DownloadOptions
+
+:ProgramUpdater
+cls
+set c=[94m
+set t=[0m
+set w=[31m
+set y=[0m
+set u=[4m
+set q=[0m
+echo.
+echo.
+echo.
+echo                       %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%████████%y%%c%╗%y%    %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y% %w%██████%y%%c%╗%y%  %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%██████%y%%c%╗%y% 
+echo                      %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%c%╚══%y%%w%██%y%%c%╔══╝%y%    %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔════╝%y%%w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%  
+echo                      %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%     %w%██%y%%c%║%y%       %w%██████%y%%c%╔╝%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y% 
+echo                      %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%     %w%██%y%%c%║%y%       %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y%     
+echo                      %c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%   %w%██%y%%c%║%y%       %w%██%y%%c%║  %y%%w%██%y%%c%║%y%%w%███████%y%%c%╗%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%%w%██████%y%%c%╔╝%y%
+echo                       %c%╚═════╝%y% %c%╚══════╝%y%   %c%╚═╝%y%       %c%╚═╝  ╚═╝%y%%c%╚══════╝%y% %c%╚═════╝%y%  %c%╚═════╝%y% %c%╚══════╝%y%%c%╚═════╝%y%          
+echo                                                     %c%%u%Version: %Version%%q%%t%
+echo.
+echo.
+echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
+echo %w%║%y%          UPDATER OPTIONS                                                                                            %w%║%y%
+echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Update Programs%t%			                                                                           %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
+echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Menu%t%%w%║%y%                                                     %w%║%y%
+echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
+set choice=
+set /p choice=
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%choice%'=='0' goto Menu
+if '%choice%'=='1' goto UpdatePrograms
+
+:UpdatePrograms
+
+cls
+echo Completed
+timeout /t 1 /nobreak > NUL
+goto menuorexit
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 :: ███╗   ███╗███████╗███╗   ██╗██╗   ██╗     ██████╗ ██████╗     ███████╗██╗  ██╗██╗████████╗
