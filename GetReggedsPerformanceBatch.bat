@@ -3407,11 +3407,11 @@ echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Discord%t%			                
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Steam%t%			                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Valorant%t%			                                                                           %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Valorant%t%			                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%VLC%t%			                                                                                   %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%VLC%t%			                                                                                       %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Option6%t%			                                                                               %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Option6%t%			                                                                               %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
 echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Menu%t%%w%║%y%                                                     %w%║%y%
 echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
