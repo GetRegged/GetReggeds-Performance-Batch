@@ -77,7 +77,7 @@ echo %w%║%y%             WINDOWS TOOLS             %w%│%y%            ESSENT
 echo %w%╟───────────────────────────────────────┴───────────────────────────────────────┴──────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Windows Activation%t%                %w%[%y% %c%%u%7%q%%t% %w%]%y% %c%Program Downloader%t%                                                  %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Optimization%t%              %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                  %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Optimization%t%              %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                     %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -3481,6 +3481,7 @@ timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
 :ProgramUpdater
+cls
 echo Program Updater is getting ready... this might take a while, please wait.
 :: Download necessary Winget dependencies to temp folder
 powershell -Command "New-Item -Path \"$env:TEMP\wget\" -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile \"$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861\"" >nul 2>nul
@@ -3496,7 +3497,6 @@ powershell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
 
-:ScanPrograms
 cls
 set c=[94m
 set t=[0m
