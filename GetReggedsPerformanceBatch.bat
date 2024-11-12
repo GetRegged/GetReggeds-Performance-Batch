@@ -3482,6 +3482,29 @@ goto DownloadOptions
 
 :ProgramUpdater
 cls
+echo Updater is getting ready... please wait.
+:: Download wget.exe to temp folder
+curl -g -k -L -# -o "%temp%\wget\wget.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/wget.exe" >nul 2>&1
+
+:: Download necessary Winget dependencies to temp folder
+powershell -Command "New-Item -Path \"$env:TEMP\wget\" -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile \"$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861\"" >nul 2>nul
+powershell -Command "Invoke-WebRequest -Uri 'https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx' -OutFile \"$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx\"" >nul 2>nul
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.7.3/Microsoft.UI.Xaml.2.7.x64.appx' -OutFile \"$env:TEMP\wget\Microsoft.UI.Xaml.2.7.x64.appx\"" >nul 2>nul
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx' -OutFile \"$env:TEMP\wget\Microsoft.UI.Xaml.2.8.x64.appx\"" >nul 2>nul
+powershell -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/30fe89a9836a4cfbbd3fedce72a58680_License1.xml' -OutFile \"$env:TEMP\wget\License1.xml\"" >nul 2>nul
+
+:: Install dependencies using PowerShell
+powershell -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx'" >nul 2>nul
+powershell -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.UI.Xaml.2.7.x64.appx'" >nul 2>nul
+powershell -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.UI.Xaml.2.8.x64.appx'" >nul 2>nul
+
+:: Install Winget
+powershell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\wget\License1.xml'" >nul 2>nul
+
+:: Test winget installation
+winget install -e -s msstore --accept-source-agreements >nul 2>nul
+
+cls
 set c=[94m
 set t=[0m
 set w=[31m
@@ -3503,7 +3526,7 @@ echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
 echo %w%║%y%          UPDATER OPTIONS                                                                                            %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Update Programs%t%			                                                                           %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Check for Updates%t%			                                                                           %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -3521,11 +3544,54 @@ set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='0' goto Menu
-if '%choice%'=='1' goto UpdatePrograms
+if '%choice%'=='1' goto ScanPrograms
 
-:UpdatePrograms
-
+:ScanPrograms
 cls
+set c=[94m
+set t=[0m
+set w=[31m
+set y=[0m
+set u=[4m
+set q=[0m
+echo.
+echo.
+echo.
+echo                       %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%████████%y%%c%╗%y%    %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y% %w%██████%y%%c%╗%y%  %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%██████%y%%c%╗%y% 
+echo                      %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%c%╚══%y%%w%██%y%%c%╔══╝%y%    %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔════╝%y%%w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%  
+echo                      %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%     %w%██%y%%c%║%y%       %w%██████%y%%c%╔╝%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y% 
+echo                      %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%     %w%██%y%%c%║%y%       %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y%     
+echo                      %c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%   %w%██%y%%c%║%y%       %w%██%y%%c%║  %y%%w%██%y%%c%║%y%%w%███████%y%%c%╗%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%%w%██████%y%%c%╔╝%y%
+echo                       %c%╚═════╝%y% %c%╚══════╝%y%   %c%╚═╝%y%       %c%╚═╝  ╚═╝%y%%c%╚══════╝%y% %c%╚═════╝%y%  %c%╚═════╝%y% %c%╚══════╝%y%%c%╚═════╝%y%          
+echo                                                     %c%%u%Version: %Version%%q%%t%
+echo.
+echo.
+echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
+echo %w%║%y%          DO YOU WANT TO UPGRADE ALL OUTDATED PROGAMS?                                                                                            %w%║%y%
+echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
+winget upgrade
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%                                                                                                         %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%No%t%                                                                                                          %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%	                                                                                                               %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
+echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Menu%t%%w%║%y%                                                     %w%║%y%
+echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
+echo Do you want to upgrade all programs?
+set choice=
+set /p choice=
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%choice%'=='0' goto Menu
+if '%choice%'=='1' goto UpgradePrograms
+if '%choice%'=='2' goto menuorexit
+
+:UpgradePrograms
+cls
+echo Outdated Programs are being Updated
+winget upgrade --all
 echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
