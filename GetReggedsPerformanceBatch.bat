@@ -3484,15 +3484,15 @@ goto DownloadOptions
 cls
 echo Program Updater is getting ready... this might take a while, please wait.
 :: Download necessary Winget dependencies to temp folder
-powershell -Command "New-Item -Path \"$env:TEMP\wget\" -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile \"$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861\"" >nul 2>nul
-powershell -Command "Invoke-WebRequest -Uri 'https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx' -OutFile \"$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx\"" >nul 2>nul
-powershell -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/30fe89a9836a4cfbbd3fedce72a58680_License1.xml' -OutFile \"$env:TEMP\wget\License1.xml\"" >nul 2>nul
+powershell -WindowStyle Hidden -Command "New-Item -Path \"$env:TEMP\wget\" -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile \"$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861\"" >nul 2>nul
+powershell -WindowStyle Hidden -Command "Invoke-WebRequest -Uri 'https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx' -OutFile \"$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx\"" >nul 2>nul
+powershell -WindowStyle Hidden -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/30fe89a9836a4cfbbd3fedce72a58680_License1.xml' -OutFile \"$env:TEMP\wget\License1.xml\"" >nul 2>nul
 
 :: Install dependencies using PowerShell
-powershell -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx'" >nul 2>nul
+powershell -WindowStyle Hidden -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx'" >nul 2>nul
 
 :: Install Winget
-powershell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\wget\License1.xml'" >nul 2>nul
+powershell -WindowStyle Hidden -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\wget\License1.xml'" >nul 2>nul
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
