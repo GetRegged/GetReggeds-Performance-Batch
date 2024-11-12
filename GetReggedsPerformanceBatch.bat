@@ -3485,18 +3485,18 @@ cls
 echo Program Updater is getting ready... this might take a while, please wait.
 
 :: Download necessary Winget dependencies to temp folder if not exist
-if not exist "%TEMP%\wget\Microsoft.Windows.Package.Manager_v1.7.10861" PowerShell -Command "New-Item -Path \"$env:TEMP\wget\" -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile \"$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861\""
-if not exist "%TEMP%\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx" PowerShell -Command "Invoke-WebRequest -Uri 'https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx' -OutFile \"$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx\""
-if not exist "%TEMP%\wget\License1.xml" PowerShell -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/30fe89a9836a4cfbbd3fedce72a58680_License1.xml' -OutFile \"$env:TEMP\wget\License1.xml\""
+:: if not exist "%TEMP%\wget\Microsoft.Windows.Package.Manager_v1.7.10861" PowerShell -Command "New-Item -Path \"$env:TEMP\wget\" -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile \"$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861\""
+:: if not exist "%TEMP%\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx" PowerShell -Command "Invoke-WebRequest -Uri 'https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx' -OutFile \"$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx\""
+:: if not exist "%TEMP%\wget\License1.xml" PowerShell -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/30fe89a9836a4cfbbd3fedce72a58680_License1.xml' -OutFile \"$env:TEMP\wget\License1.xml\""
 
 :: Install dependencies using PowerShell
-PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
+:: PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
 
 :: Install Winget
-PowerShell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\wget\License1.xml'"
+:: PowerShell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\wget\License1.xml'"
 
 :: Install msstore with winget
-winget install -e -s msstore --accept-source-agreements >nul 2>nul
+:: winget install -e -s msstore --accept-source-agreements >nul 2>nul
 
 cls
 set c=[94m
@@ -3509,7 +3509,7 @@ echo.
 echo.
 echo.
 echo.
-winget upgrade
+:: winget upgrade
 echo.
 echo.
 echo.
