@@ -7,8 +7,8 @@ Set Version=1.0-beta
 :: Enable Delayed Expansion
 setlocal enabledelayedexpansion >nul 2>&1
 
-:: Set Powershell Execution Policy to Unrestricted
-powershell "Set-ExecutionPolicy Unrestricted" >nul 2>&1
+:: Set PowerShell Execution Policy to Unrestricted
+PowerShell "Set-ExecutionPolicy Unrestricted" >nul 2>&1
 
 :: Enable ANSI Escape Sequences
 reg add "HKCU\CONSOLE" /v "VirtualTerminalLevel" /t REG_DWORD /d "1" /f >nul 2>&1
@@ -229,7 +229,7 @@ if '%choice%'=='2' goto StartWindowsOptimization
 cls
 echo Creating restore point
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "SystemRestorePointCreationFrequency" /t REG_DWORD /d "0" /f
-powershell -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'GetReggeds Performance Batch' -RestorePointType 'MODIFY_SETTINGS'"
+PowerShell -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'GetReggeds Performance Batch' -RestorePointType 'MODIFY_SETTINGS'"
 
 cls
 echo Restore point created
@@ -1366,8 +1366,8 @@ bcdedit /set x2apicpolicy Enable >nul 2>&1
 
 :: Disable Mitigations
 :: echo Disable Mitigations
-:: powershell "ForEach($v in (Get-Command -Name \"Set-ProcessMitigation\").Parameters[\"Disable\"].Attributes.ValidValues){Set-ProcessMitigation -System -Disable $v.ToString() -ErrorAction SilentlyContinue}" >nul 2>&1
-:: powershell "Remove-Item -Path \"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\" -Recurse -ErrorAction SilentlyContinue" >nul 2>&1
+:: PowerShell "ForEach($v in (Get-Command -Name \"Set-ProcessMitigation\").Parameters[\"Disable\"].Attributes.ValidValues){Set-ProcessMitigation -System -Disable $v.ToString() -ErrorAction SilentlyContinue}" >nul 2>&1
+:: PowerShell "Remove-Item -Path \"HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\" -Recurse -ErrorAction SilentlyContinue" >nul 2>&1
 :: reg add "HKLM\SOFTWARE\Policies\Microsoft\FVE" /v "DisableExternalDMAUnderLock" /t REG_DWORD /d "0" /f >nul 2>&1
 :: reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /t REG_DWORD /d "0" /f >nul 2>&1
 :: reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard" /v "HVCIMATRequired" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -1743,7 +1743,7 @@ reg add "HKLM\SOFTWARE\Microsoft\SQMClient\Reliability" /v "SqmLoggerRunning" /t
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d 4 /f >nul 2>&1
 
 :: Opt Out of PowerShell Telemetry
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "POWERSHELL_TELEMETRY_OPTOUT" /t REG_SZ /d 1 /f >nul 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "PowerShell_TELEMETRY_OPTOUT" /t REG_SZ /d 1 /f >nul 2>&1
 
 :: Disable Telemetry for MSDeploy
 reg add "HKLM\SOFTWARE\Policies\Microsoft\MSDeploy\3" /v "EnableTelemetry" /t REG_DWORD /d 0 /f >nul 2>&1
@@ -2496,7 +2496,7 @@ echo Applying NVIDIA Optimizations
 
 :: NVIDIA Inspector Profile
 :: curl -g -k -L -# -o "%temp%\nvidiaProfileInspector.zip" "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip" >nul 2>&1 &:: Importiere Profile Inspector
-:: powershell -NoProfile Expand-Archive '%temp%\nvidiaProfileInspector.zip' -DestinationPath '%temp%\NvidiaProfileInspector\' >nul 2>&1
+:: PowerShell -NoProfile Expand-Archive '%temp%\nvidiaProfileInspector.zip' -DestinationPath '%temp%\NvidiaProfileInspector\' >nul 2>&1
 :: curl -g -k -L -# -o "%temp%\NvidiaProfileInspector\Getreggeds-Nvidia-Profile.nip" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/Getreggeds-Nvidia-Profile.nip" >nul 2>&1
 :: start "" /wait "%temp%\NvidiaProfileInspector\nvidiaProfileInspector.exe" -silentImport "%temp%\NvidiaProfileInspector\Getreggeds-Nvidia-Profile.nip" >nul 2>&1
 
@@ -3484,15 +3484,15 @@ goto DownloadOptions
 cls
 echo Program Updater is getting ready... this might take a while, please wait.
 :: Download necessary Winget dependencies to temp folder
-powershell -NoProfile -Command "New-Item -Path \"$env:TEMP\wget\" -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile \"$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861\"" >nul 2>nul
-powershell -NoProfile -Command "Invoke-WebRequest -Uri 'https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx' -OutFile \"$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx\"" >nul 2>nul
-powershell -NoProfile -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/30fe89a9836a4cfbbd3fedce72a58680_License1.xml' -OutFile \"$env:TEMP\wget\License1.xml\"" >nul 2>nul
+PowerShell -NoProfile -Command "New-Item -Path \"$env:TEMP\wget\" -ItemType Directory -Force; Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle' -OutFile \"$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861\""
+PowerShell -NoProfile -Command "Invoke-WebRequest -Uri 'https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx' -OutFile \"$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx\""
+PowerShell -NoProfile -Command "Invoke-WebRequest -Uri 'https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/30fe89a9836a4cfbbd3fedce72a58680_License1.xml' -OutFile \"$env:TEMP\wget\License1.xml\""
 
 :: Install dependencies using PowerShell
-powershell -NoProfile -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx'" >nul 2>nul
+PowerShell -NoProfile -Command "Add-AppxPackage -Path '$env:TEMP\wget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
 
 :: Install Winget
-powershell -NoProfile -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\wget\License1.xml'" >nul 2>nul
+PowerShell -NoProfile -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\wget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\wget\License1.xml'"
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
