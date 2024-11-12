@@ -3515,15 +3515,18 @@ echo.
 echo.
 echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
-echo %w%║%y%          DO YOU WANT TO UPGRADE ALL OUTDATED PROGAMS?                                                                                            %w%║%y%
+echo %w%║%y%          DO YOU WANT TO UPGRADE ALL OUTDATED PROGAMS?                                                                %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%                                                                                                         %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%No%t%                                                                                                          %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%	                                                                                                               %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
