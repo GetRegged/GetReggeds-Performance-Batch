@@ -3557,8 +3557,6 @@ if '%choice%'=='2' goto menuorexit
 
 :ScanPrograms
 cls
-chcp 65001 >nul 2>nul
-cls
 set c=[94m
 set t=[0m
 set w=[31m
