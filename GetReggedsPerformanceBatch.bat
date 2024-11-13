@@ -3572,6 +3572,7 @@ if %errorlevel%==0 (
 ) else (
     echo.
     echo type "%temp%\winget_output.txt"
+    echo.
     echo Do you want to upgrade all outdated programs?
     echo.
     echo %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%
