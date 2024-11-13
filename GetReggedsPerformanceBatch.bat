@@ -1305,6 +1305,7 @@ bcdedit /set vm No >nul 2>&1
 bcdedit /set vsmlaunchtype Off >nul 2>&1
 bcdedit /set x2apicpolicy Enable >nul 2>&1
 
+chcp 437 >nul 2>nul
 :: Disable Memory Compression
 :: PowerShell -Command "Disable-MMAgent -MemoryCompression" >nul 2>&1
 
@@ -2192,6 +2193,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWOR
 
 :: Optimize Service Host Split Threshold
 :SvcHostOptimization
+cls
+chcp 65001 >nul 2>nul
 cls
 set c=[94m
 set t=[0m
@@ -3501,9 +3504,9 @@ if not exist "%temp%\winget\Microsoft.UI.Xaml.2.8.x64.appx" (
 
 :: Install dependencies using PowerShell
 chcp 437 >nul 2>nul
-start /b powershell -NoProfile -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx'"
-start /b powershell -NoProfile -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
-start /b powershell -NoProfile -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\winget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\winget\License1.xml'"
+powershell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx'" >nul 2>nul
+powershell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx'" >nul 2>nul
+powershell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\winget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\winget\License1.xml'" >nul 2>nul
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
@@ -3520,10 +3523,13 @@ set q=[0m
 echo.
 echo.
 echo.
-echo.
-winget upgrade
-echo.
-echo.
+echo                       %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%████████%y%%c%╗%y%    %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y% %w%██████%y%%c%╗%y%  %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%██████%y%%c%╗%y% 
+echo                      %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%c%╚══%y%%w%██%y%%c%╔══╝%y%    %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔════╝%y%%w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%  
+echo                      %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%     %w%██%y%%c%║%y%       %w%██████%y%%c%╔╝%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y% 
+echo                      %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%     %w%██%y%%c%║%y%       %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y%     
+echo                      %c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%   %w%██%y%%c%║%y%       %w%██%y%%c%║  %y%%w%██%y%%c%║%y%%w%███████%y%%c%╗%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%%w%██████%y%%c%╔╝%y%
+echo                       %c%╚═════╝%y% %c%╚══════╝%y%   %c%╚═╝%y%       %c%╚═╝  ╚═╝%y%%c%╚══════╝%y% %c%╚═════╝%y%  %c%╚═════╝%y% %c%╚══════╝%y%%c%╚═════╝%y%          
+echo                                                     %c%%u%Version: %Version%%q%%t%
 echo.
 echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
@@ -3532,8 +3538,8 @@ echo %w%╟───────────────────────
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%                                                                                                         %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%No%t%                                                                                                          %w%║%y%
+echo %w%║%y%    &                                                                                                                  %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%	                                                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -3566,6 +3572,8 @@ goto menuorexit
 :: ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝      ╚═════╝ ╚═╝  ╚═╝    ╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝   
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 :menuorexit
+cls
+chcp 65001 >nul 2>nul
 cls
 set c=[94m
 set t=[0m
