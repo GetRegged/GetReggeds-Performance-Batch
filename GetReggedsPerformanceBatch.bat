@@ -3507,7 +3507,7 @@ PowerShell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
-
+chcp 65001 >nul 2>&1
 cls
 set c=[94m
 set t=[0m
