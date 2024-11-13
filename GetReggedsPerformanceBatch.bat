@@ -3556,8 +3556,28 @@ if '%choice%'=='1' goto ScanPrograms
 if '%choice%'=='2' goto menuorexit
 
 :ScanPrograms
-cls
+set c=[94m
+set t=[0m
+set w=[31m
+set y=[0m
+set u=[4m
+set q=[0m
 winget upgrade >nul 2>nul
+echo.
+echo Do you want to upgrade all outdated programs?
+echo.
+echo %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%
+echo. 
+echo %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%No%t%
+set choice=
+set /p choice=
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%choice%'=='1' goto UpgradePrograms
+if '%choice%'=='2' goto menuorexit
+
+:UpgradePrograms
+cls
+winget upgrade --all >nul 2>nul
 echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
