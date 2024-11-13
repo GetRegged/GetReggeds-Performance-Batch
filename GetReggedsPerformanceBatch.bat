@@ -3499,10 +3499,11 @@ if not exist "%temp%\winget\Microsoft.UI.Xaml.2.8.x64.appx" (
     %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx" --out=Microsoft.UI.Xaml.2.8.x64.appx --console-log-level=error
 )
 
+chcp 437 > nul
 :: Install dependencies using PowerShell
-:: PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx'"
-:: PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
-:: PowerShell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\winget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\winget\License1.xml'"
+PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx'"
+PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
+PowerShell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\winget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\winget\License1.xml'"
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
