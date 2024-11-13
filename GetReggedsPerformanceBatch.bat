@@ -3563,18 +3563,26 @@ set w=[31m
 set y=[0m
 set u=[4m
 set q=[0m
-winget upgrade
-echo.
-echo Do you want to upgrade all outdated programs?
-echo.
-echo %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%
-echo. 
-echo %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%No%t%
-set choice=
-set /p choice=
-if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='1' goto UpgradePrograms
-if '%choice%'=='2' goto menuorexit
+
+winget upgrade > "%temp%\winget_output.txt" >nul 2>nul
+
+findstr /c:"No installed package found matching input criteria." "%temp%\winget_output.txt" >nul 2>nul
+if %errorlevel%==0 (
+    echo No updates available.
+) else (
+    echo.
+    echo type "%temp%\winget_output.txt"
+    echo Do you want to upgrade all outdated programs?
+    echo.
+    echo %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%
+    echo. 
+    echo %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%No%t%
+    set choice=
+    set /p choice=
+    if not '%choice%'=='' set choice=%choice:~0,1%
+    if '%choice%'=='1' goto UpgradePrograms
+    if '%choice%'=='2' goto menuorexit
+)
 
 :UpgradePrograms
 cls
