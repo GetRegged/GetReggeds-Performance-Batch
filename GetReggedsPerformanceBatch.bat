@@ -3504,12 +3504,12 @@ chcp 437 >nul 2>nul
 start /b powershell -NoProfile -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx'"
 start /b powershell -NoProfile -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
 start /b powershell -NoProfile -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\winget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\winget\License1.xml'"
-mode con: cols=122 lines=30
-chcp 65001 >nul 2>nul
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
 
+cls
+chcp 65001 >nul 2>nul
 cls
 set c=[94m
 set t=[0m
