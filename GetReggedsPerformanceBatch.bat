@@ -3499,7 +3499,7 @@ if not exist "%temp%\winget\Microsoft.UI.Xaml.2.8.x64.appx" (
     %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx" --out=Microsoft.UI.Xaml.2.8.x64.appx --console-log-level=error
 )
 
-chcp 437 > nul
+chcp 850 > nul
 :: Install dependencies using PowerShell
 PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx'"
 PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
@@ -3507,7 +3507,6 @@ PowerShell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
-chcp 65001 >nul 2>&1
 cls
 set c=[94m
 set t=[0m
