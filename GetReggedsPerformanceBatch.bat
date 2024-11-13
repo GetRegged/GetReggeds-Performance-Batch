@@ -3501,9 +3501,9 @@ if not exist "%temp%\winget\Microsoft.UI.Xaml.2.8.x64.appx" (
 
 chcp 850 > nul
 :: Install dependencies using PowerShell
-PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx'"
-PowerShell -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
-PowerShell -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\winget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\winget\License1.xml'"
+start /b powershell -NoProfile -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx'"
+start /b powershell -NoProfile -Command "Add-AppxPackage -Path '$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx'"
+start /b powershell -NoProfile -Command "Add-AppxProvisionedPackage -Online -PackagePath '$env:TEMP\winget\Microsoft.Windows.Package.Manager_v1.7.10861' -LicensePath '$env:TEMP\winget\License1.xml'"
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
