@@ -3538,7 +3538,7 @@ echo %w%╟───────────────────────
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%                                                                                                         %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%No%t%                                                                                                          %w%║%y%
-echo %w%║%y%    & winget upgrade                                                                                 %w%║%y%
+echo %w%║%y%    & winget upgrade & echo                                                                                %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
