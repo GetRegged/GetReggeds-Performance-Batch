@@ -3533,7 +3533,7 @@ echo                                                     %c%%u%Version: %Version
 echo.
 echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
-echo %w%║%y%          DO YOU WANT TO UPGRADE ALL OUTDATED PROGAMS?                                                                %w%║%y%
+echo %w%║%y%          DO YOU WANT TO SCAN FOR OUTDATED PROGAMS?                                                                   %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%                                                                                                         %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -3552,13 +3552,12 @@ echo %w%╚═══════════════════════
 set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='1' goto UpgradePrograms
+if '%choice%'=='1' goto ScanPrograms
 if '%choice%'=='2' goto menuorexit
 
-:UpgradePrograms
+:ScanPrograms
 cls
-echo Outdated Programs are being Updated
-winget upgrade --all >nul 2>nul
+winget upgrade >nul 2>nul
 echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
