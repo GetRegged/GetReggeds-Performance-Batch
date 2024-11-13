@@ -3569,6 +3569,8 @@ winget upgrade > "%temp%\winget_output.txt" >nul 2>nul
 findstr /c:"No installed package found matching input criteria." "%temp%\winget_output.txt" >nul 2>nul
 if %errorlevel%==0 (
     echo No updates available.
+    timeout /t 3 /nobreak > NUL
+    goto menuorexit
 ) else (
     echo.
     echo type "%temp%\winget_output.txt"
