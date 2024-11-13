@@ -3592,8 +3592,7 @@ if %errorlevel%==0 (
     timeout /t 3 /nobreak > NUL
     goto menuorexit
 ) else (
-    echo.
-    echo type "%temp%\winget_output.txt"
+    type "%temp%\winget_output.txt"
     echo.
     echo Do you want to upgrade all outdated programs?
     echo.
