@@ -3503,6 +3503,17 @@ timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
 :ProgramUpdater
+:: Test if Aria2 can be downloaded
+curl -g -k -L -# -o "%temp%\aria2c.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/aria2c.exe" >nul 2>&1
+
+IF %ERRORLEVEL% NEQ 0 (
+    echo No network connection available. Please connect to a network and try again...
+    timeout /t 3 /nobreak >nul 2>&1
+    goto menuorexit
+) ELSE (
+    goto DownloadOptions
+)
+
 cls
 echo Program Updater is getting ready... this might take a while, please wait.
 
