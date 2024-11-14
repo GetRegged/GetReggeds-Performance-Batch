@@ -3526,7 +3526,7 @@ powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.DesktopApp
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
 winget upgrade > "%temp%\winget_output.txt"
 
-findstr /c:"No installed package found matching input criteria." "%temp%\winget_output.txt" >nul 2>nul
+findstr /c:"No installed package found matching input criteria." /c:"Es wurde kein installiertes Paket gefunden, das den Eingabekriterien entspricht." "%temp%\winget_output.txt" >nul 2>nul
 if %errorlevel%==0 (
     echo No updates available.
     timeout /t 3 /nobreak > NUL
