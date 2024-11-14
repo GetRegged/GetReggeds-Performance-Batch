@@ -3530,6 +3530,7 @@ findstr /c:"No installed package found matching input criteria." /c:"Es wurde ke
 if %errorlevel%==0 (
     cls
     echo No updates available.
+    del "%temp%\winget_output.txt"
     timeout /t 3 /nobreak > NUL
     goto menuorexit
 ) else (
