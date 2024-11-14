@@ -3528,6 +3528,7 @@ winget upgrade > "%temp%\winget_output.txt"
 
 findstr /c:"No installed package found matching input criteria." /c:"Es wurde kein installiertes Paket gefunden, das den Eingabekriterien entspricht." "%temp%\winget_output.txt" >nul 2>nul
 if %errorlevel%==0 (
+    cls
     echo No updates available.
     timeout /t 3 /nobreak > NUL
     goto menuorexit
