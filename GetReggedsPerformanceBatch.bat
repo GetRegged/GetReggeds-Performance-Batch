@@ -3508,8 +3508,8 @@ echo Program Updater is getting ready... this might take a while, please wait.
 
 :: Download necessary Winget dependencies to temp folder if not exist
 mkdir "%temp%\winget" >nul 2>&1
-if not exist "%temp%\winget\Microsoft.Windows.Package.Manager_v1.7.10861" (
-    %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://github.com/microsoft/winget-cli/releases/download/v1.7.10861/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" --out=Microsoft.Windows.Package.Manager_v1.7.10861 --console-log-level=error
+if not exist "%temp%\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" (
+    %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" --out=Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle --console-log-level=error
 )
 if not exist "%temp%\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" (
     %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx" --out=Microsoft.VCLibs.x64.14.00.Desktop.appx --console-log-level=error
@@ -3523,10 +3523,10 @@ if not exist "%temp%\winget\Microsoft.UI.Xaml.2.8.x64.appx" (
 
 :: Install dependencies using PowerShell
 chcp 437 >nul 2>nul
-powershell -Command "Add-AppxPackage -Path \"$env:TEMP\winget\Microsoft.UI.Xaml.2.7.x64.appx\"" >nul 2>nul
-powershell -Command "Add-AppxPackage -Path \"$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx\"" >nul 2>nul
-powershell -Command "Add-AppxPackage -Path \"$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx\"" >nul 2>nul
-powershell -Command "Add-AppxPackage -Path \"$env:TEMP\winget\Microsoft.Windows.Package.Manager_v1.7.10861\"" >nul 2>nul
+powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.UI.Xaml.2.7.x64.appx" >nul 2>nul
+powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx" >nul 2>nul
+powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" >nul 2>nul
+powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" >nul 2>nul
 
 :: Install msstore with winget
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
