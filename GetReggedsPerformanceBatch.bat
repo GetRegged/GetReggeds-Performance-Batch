@@ -3511,13 +3511,13 @@ IF %ERRORLEVEL% NEQ 0 (
     timeout /t 3 /nobreak >nul 2>&1
     goto menuorexit
 ) ELSE (
-    goto DownloadOptions
+    goto GetWinget
 )
 
+:: Download necessary Winget dependencies to temp folder if not exist
+:GetWinget
 cls
 echo Program Updater is getting ready... this might take a while, please wait.
-
-:: Download necessary Winget dependencies to temp folder if not exist
 chcp 437 >nul 2>nul
 mkdir "%temp%\winget" >nul 2>&1
 if not exist "%temp%\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" (
