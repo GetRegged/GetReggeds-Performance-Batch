@@ -524,7 +524,7 @@ dism /online /disable-feature /featurename:WCF-TCP-PortSharing45 /norestart >nul
 dism /online /disable-feature /featurename:Windows-Defender-ApplicationGuard /norestart >nul 2>&1
 dism /online /disable-feature /featurename:Windows-Defender-Default-Definitions /norestart >nul 2>&1
 dism /online /disable-feature /featurename:Windows-Identity-Foundation /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WindowsMediaPlayer /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WindowsMediaPlayer /norestart >nul 2>&1
 dism /online /disable-feature /featurename:WorkFolders-Client /norestart >nul 2>&1
 
 :: Start > Settings > System > About > Advanced system settings > Hardware > Device Installation Settings > Do you want to automatically download... > No
