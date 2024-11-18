@@ -3503,6 +3503,7 @@ timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
 :ProgramUpdater
+cls
 :: Test if Aria2 can be downloaded
 curl -g -k -L -# -o "%temp%\aria2c.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/aria2c.exe" >nul 2>&1
 
