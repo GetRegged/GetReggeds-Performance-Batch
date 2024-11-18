@@ -3530,13 +3530,22 @@ if not exist "%temp%\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbund
     %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" --out=Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle --console-log-level=error
 )
 
+:: Install dependencies
 chcp 437 >nul 2>nul
-powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" >nul 2>nul
-powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx" >nul 2>nul
-powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" >nul 2>nul
+if exist "%temp%\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" (
+    powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" >nul 2>nul
+)
+if exist "%temp%\winget\Microsoft.UI.Xaml.2.8.x64.appx" (
+    powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx" >nul 2>nul
+)
+if exist "%temp%\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" (
+    powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" >nul 2>nul
+)
 
-:: Install msstore with winget
+:: Set msstore as source
 winget install -e -s msstore --accept-source-agreements >nul 2>nul
+
+:: Run Winget
 winget upgrade > "%temp%\winget_output.txt"
 
 findstr /c:"No installed package found matching input criteria." /c:"Es wurde kein installiertes Paket gefunden, das den Eingabekriterien entspricht." "%temp%\winget_output.txt" >nul 2>nul
