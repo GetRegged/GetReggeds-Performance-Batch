@@ -3482,7 +3482,7 @@ goto DownloadOptions
 
 :ValorantInstall
 cls
-echo Installing Steam
+echo Installing Valorant
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.eu.exe" --out=valorant.exe --console-log-level=error >nul 2>&1
 %temp%\valorant.exe >nul 2>&1
 
@@ -3545,6 +3545,7 @@ if %errorlevel%==0 (
     timeout /t 3 /nobreak > NUL
     goto menuorexit
 ) else (
+    cls
     type "%temp%\winget_output.txt"
     echo.
     echo Do you want to upgrade all outdated programs?
