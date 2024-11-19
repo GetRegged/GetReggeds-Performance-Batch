@@ -3568,7 +3568,7 @@ if %errorlevel%==0 (
     set /p choice=
     if not '%choice%'=='' set choice=%choice:~0,1%
     if '%choice%'=='1' goto UpgradePrograms
-    if '%choice%'=='2' goto menuorexit
+    if '%choice%'=='2' goto menu
 )
 
 :UpgradePrograms
