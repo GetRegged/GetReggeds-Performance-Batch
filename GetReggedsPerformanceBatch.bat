@@ -3534,12 +3534,15 @@ if not exist "%temp%\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbund
 chcp 437 >nul 2>nul
 if exist "%temp%\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" (
     powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" >nul 2>nul
+    del /s /f /q "%temp%\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" >nul 2>nul
 )
 if exist "%temp%\winget\Microsoft.UI.Xaml.2.8.x64.appx" (
     powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.UI.Xaml.2.8.x64.appx" >nul 2>nul
+    del /s /f /q "%temp%\winget\Microsoft.UI.Xaml.2.8.x64.appx" >nul 2>nul
 )
 if exist "%temp%\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" (
     powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" >nul 2>nul
+    del /s /f /q "%temp%\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" >nul 2>nul
 )
 
 :: Set msstore as source
@@ -3576,7 +3579,6 @@ cls
 winget upgrade --all >nul 2>nul
 echo Completed
 del /s /f /q "%temp%\winget_output.txt" >nul 2>&1
-rd /s /q "%temp%\winget" >nul 2>&1
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
