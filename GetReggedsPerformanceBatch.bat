@@ -3575,7 +3575,8 @@ if %errorlevel%==0 (
 cls
 winget upgrade --all >nul 2>nul
 echo Completed
-del "%temp%\winget_output.txt"
+del /s /f /q "%temp%\winget_output.txt" >nul 2>&1
+rd /s /q "%temp%\winget" >nul 2>&1
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
