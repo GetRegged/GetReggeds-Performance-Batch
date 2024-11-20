@@ -393,140 +393,140 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Param
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules" /v "RemoteDesktop-Shadow-In-TCP" /t REG_SZ /d "v2.30|Action=Allow|Active=FALSE|Dir=In|Protocol=6|App=%SystemRoot%\\system32\\RdpSa.exe|Name=@FirewallAPI.dll,-28778|Desc=@FirewallAPI.dll,-28779|EmbedCtxt=@FirewallAPI.dll,-28752|Edge=TRUE|Defer=App|" /f >nul 2>&1
 
 :: Start > Settings > System > Optional features > Added features > Disable all
-dism /online /disable-feature /featurename:AppServerClient /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Client-DeviceLockdown /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Client-EmbeddedBootExp /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Client-EmbeddedLogon /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Client-EmbeddedShellLauncher /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Client-KeyboardFilter /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Client-ProjFS /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Client-UnifiedWriteFilter /norestart >nul 2>&1
-dism /online /disable-feature /featurename:ClientForNFS-Infrastructure /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Containers /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Containers-DisposableClientVM /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Containers-HNS /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Containers-SDN /norestart >nul 2>&1
-dism /online /disable-feature /featurename:DataCenterBridging /norestart >nul 2>&1
-dism /online /disable-feature /featurename:DirectPlay /norestart >nul 2>&1
-dism /online /disable-feature /featurename:DirectoryServices-ADAM-Client /norestart >nul 2>&1
-dism /online /disable-feature /featurename:HostGuardian /norestart >nul 2>&1
-dism /online /disable-feature /featurename:HypervisorPlatform /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ASP /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ASPNET /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ASPNET45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ApplicationDevelopment /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ApplicationInit /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-BasicAuthentication /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-CGI /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-CertProvider /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ClientCertificateMappingAuthentication /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-CommonHttpFeatures /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-CustomLogging /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-DefaultDocument /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-DigestAuthentication /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-DirectoryBrowsing /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-FTPExtensibility /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-FTPServer /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-FTPSvc /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-HealthAndDiagnostics /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-HostableWebCore /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-HttpCompressionDynamic /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-HttpCompressionStatic /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-HttpErrors /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-HttpLogging /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-HttpRedirect /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-HttpTracing /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-IIS6ManagementCompatibility /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-IISCertificateMappingAuthentication /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-IPSecurity /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ISAPIExtensions /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ISAPIFilter /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-LegacyScripts /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-LegacySnapIn /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-LoggingLibraries /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ManagementConsole /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ManagementScriptingTools /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ManagementService /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-Metabase /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-NetFxExtensibility /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-NetFxExtensibility45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ODBCLogging /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-Performance /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-RequestFiltering /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-RequestMonitor /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-Security /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-ServerSideIncludes /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-StaticContent /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-URLAuthorization /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-WMICompatibility /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-WebDAV /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-WebServer /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-WebServerManagementTools /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-WebServerRole /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-WebSockets /norestart >nul 2>&1
-dism /online /disable-feature /featurename:IIS-WindowsAuthentication /norestart >nul 2>&1
-dism /online /disable-feature /featurename:LegacyComponents /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MSMQ-ADIntegration /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MSMQ-Container /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MSMQ-DCOMProxy /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MSMQ-HTTP /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MSMQ-Multicast /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MSMQ-Server /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MSMQ-Triggers /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MSRDC-Infrastructure /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MediaPlayback /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Microsoft-Hyper-V /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Microsoft-Hyper-V-All /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Microsoft-Hyper-V-Hypervisor /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Microsoft-Hyper-V-Management-Clients /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Microsoft-Hyper-V-Management-PowerShell /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Microsoft-Hyper-V-Services /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Microsoft-Hyper-V-Tools-All /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Microsoft-Windows-Subsystem-Linux /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MicrosoftWindowsPowerShellV2 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MicrosoftWindowsPowerShellV2Root /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MultiPoint-Connector /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MultiPoint-Connector-Services /norestart >nul 2>&1
-dism /online /disable-feature /featurename:MultiPoint-Tools /norestart >nul 2>&1
-dism /online /disable-feature /featurename:NFS-Administration /norestart >nul 2>&1
-dism /online /disable-feature /featurename:NetFx3 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:NetFx4-AdvSrvs /norestart >nul 2>&1
-dism /online /disable-feature /featurename:NetFx4Extended-ASPNET45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Printing-Foundation-Features /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Printing-Foundation-InternetPrinting-Client /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Printing-Foundation-LPDPrintService /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Printing-Foundation-LPRPortMonitor /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Printing-PrintToPDFServices-Features /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Printing-XPSServices-Features /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SMB1Protocol /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SMB1Protocol-Client /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SMB1Protocol-Deprecation /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SMB1Protocol-Server /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SearchEngine-Client-Package /norestart >nul 2>&1
-dism /online /disable-feature /featurename:ServicesForNFS-ClientOnly /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SimpleTCP /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SmbDirect /norestart >nul 2>&1
-dism /online /disable-feature /featurename:TFTP /norestart >nul 2>&1
-dism /online /disable-feature /featurename:TIFFIFilter /norestart >nul 2>&1
-dism /online /disable-feature /featurename:TelnetClient /norestart >nul 2>&1
-dism /online /disable-feature /featurename:VirtualMachinePlatform /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WAS-ConfigurationAPI /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WAS-NetFxEnvironment /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WAS-ProcessModel /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WAS-WindowsActivationService /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WCF-HTTP-Activation /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WCF-HTTP-Activation45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WCF-MSMQ-Activation45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WCF-NonHTTP-Activation /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WCF-Pipe-Activation45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WCF-Services45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WCF-TCP-Activation45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WCF-TCP-PortSharing45 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Windows-Defender-ApplicationGuard /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Windows-Defender-Default-Definitions /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Windows-Identity-Foundation /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:AppServerClient /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Client-DeviceLockdown /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Client-EmbeddedBootExp /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Client-EmbeddedLogon /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Client-EmbeddedShellLauncher /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Client-KeyboardFilter /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Client-ProjFS /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Client-UnifiedWriteFilter /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:ClientForNFS-Infrastructure /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Containers /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Containers-DisposableClientVM /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Containers-HNS /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Containers-SDN /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:DataCenterBridging /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:DirectPlay /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:DirectoryServices-ADAM-Client /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:HostGuardian /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:HypervisorPlatform /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ASP /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ASPNET /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ASPNET45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ApplicationDevelopment /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ApplicationInit /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-BasicAuthentication /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-CGI /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-CertProvider /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ClientCertificateMappingAuthentication /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-CommonHttpFeatures /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-CustomLogging /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-DefaultDocument /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-DigestAuthentication /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-DirectoryBrowsing /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-FTPExtensibility /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-FTPServer /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-FTPSvc /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-HealthAndDiagnostics /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-HostableWebCore /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-HttpCompressionDynamic /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-HttpCompressionStatic /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-HttpErrors /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-HttpLogging /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-HttpRedirect /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-HttpTracing /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-IIS6ManagementCompatibility /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-IISCertificateMappingAuthentication /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-IPSecurity /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ISAPIExtensions /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ISAPIFilter /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-LegacyScripts /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-LegacySnapIn /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-LoggingLibraries /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ManagementConsole /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ManagementScriptingTools /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ManagementService /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-Metabase /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-NetFxExtensibility /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-NetFxExtensibility45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ODBCLogging /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-Performance /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-RequestFiltering /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-RequestMonitor /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-Security /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-ServerSideIncludes /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-StaticContent /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-URLAuthorization /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-WMICompatibility /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-WebDAV /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-WebServer /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-WebServerManagementTools /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-WebServerRole /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-WebSockets /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:IIS-WindowsAuthentication /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:LegacyComponents /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MSMQ-ADIntegration /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MSMQ-Container /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MSMQ-DCOMProxy /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MSMQ-HTTP /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MSMQ-Multicast /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MSMQ-Server /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MSMQ-Triggers /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MSRDC-Infrastructure /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MediaPlayback /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Microsoft-Hyper-V /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Microsoft-Hyper-V-All /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Microsoft-Hyper-V-Hypervisor /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Microsoft-Hyper-V-Management-Clients /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Microsoft-Hyper-V-Management-PowerShell /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Microsoft-Hyper-V-Services /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Microsoft-Hyper-V-Tools-All /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Microsoft-Windows-Subsystem-Linux /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MicrosoftWindowsPowerShellV2 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MicrosoftWindowsPowerShellV2Root /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MultiPoint-Connector /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MultiPoint-Connector-Services /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:MultiPoint-Tools /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:NFS-Administration /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:NetFx3 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:NetFx4-AdvSrvs /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:NetFx4Extended-ASPNET45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Printing-Foundation-Features /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Printing-Foundation-InternetPrinting-Client /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Printing-Foundation-LPDPrintService /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Printing-Foundation-LPRPortMonitor /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Printing-PrintToPDFServices-Features /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Printing-XPSServices-Features /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:SMB1Protocol /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:SMB1Protocol-Client /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:SMB1Protocol-Deprecation /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:SMB1Protocol-Server /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:SearchEngine-Client-Package /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:ServicesForNFS-ClientOnly /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:SimpleTCP /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:SmbDirect /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:TFTP /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:TIFFIFilter /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:TelnetClient /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:VirtualMachinePlatform /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WAS-ConfigurationAPI /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WAS-NetFxEnvironment /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WAS-ProcessModel /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WAS-WindowsActivationService /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WCF-HTTP-Activation /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WCF-HTTP-Activation45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WCF-MSMQ-Activation45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WCF-NonHTTP-Activation /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WCF-Pipe-Activation45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WCF-Services45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WCF-TCP-Activation45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WCF-TCP-PortSharing45 /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Windows-Defender-ApplicationGuard /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Windows-Defender-Default-Definitions /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:Windows-Identity-Foundation /norestart >nul 2>&1
 :: dism /online /disable-feature /featurename:WindowsMediaPlayer /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WorkFolders-Client /norestart >nul 2>&1
+:: dism /online /disable-feature /featurename:WorkFolders-Client /norestart >nul 2>&1
 
 :: Start > Settings > System > About > Advanced system settings > Hardware > Device Installation Settings > Do you want to automatically download... > No
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "1" /f >nul 2>&1
