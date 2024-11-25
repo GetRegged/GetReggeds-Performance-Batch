@@ -260,17 +260,24 @@ reg add "HKCU\Control Panel\Desktop" /v "EnablePerProcessSystemDPI" /t REG_DWORD
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t REG_DWORD /d "2" /f >nul 2>&1
 
 :: Start > Settings > System > Display > Graphic settings > Graphics performance settings > Highest Performance (for following executables)
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\Steam.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Apex Legends\r5apex.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\PUBG\TslGame\Binaries\Win64\TslGame.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Tom Clancy's Rainbow Six Siege\RainbowSix.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Tom Clancy's Rainbow Six Siege\RainbowSix.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\League of Legends\Game\League of Legends.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\League of Legends\LeagueClient.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\Riot Client\RiotClientServices.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\VALORANT\live\ShooterGame\Binaries\Win64\VALORANT-Win64-Shipping.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\VALORANT\live\VALORANT.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\Steam.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Aim Lab\AimLab_tb.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Apex Legends\r5apex.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\PUBG\TslGame\Binaries\Win64\TslGame.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Tom Clancy's Rainbow Six Siege\RainbowSix.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Tom Clancy's Rainbow Six Siege\RainbowSix.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\rocketleague\Binaries\Win64\RocketLeague.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\rocketleague\Binaries\Win64\RocketLeagueLauncher.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files\Epic Games\Fortnite\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files\Epic Games\Fortnite\FortniteGame\Binaries\Win64\FortniteClient-Win64.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files\Epic Games\rocketleague\Binaries\Win64\RocketLeague.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files\Epic Games\rocketleague\Binaries\Win64\RocketLeagueLauncher.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\League of Legends\Game\League of Legends.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\League of Legends\LeagueClient.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\Riot Client\RiotClientServices.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\VALORANT\live\ShooterGame\Binaries\Win64\VALORANT-Win64-Shipping.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\VALORANT\live\VALORANT.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 
 :: Start > Settings > System > Notifications & actions > Get notifications from apps and other senders > Off
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\PushNotifications" /v "ToastEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -294,13 +301,13 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" 
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\UserProfileEngagement" /v "ScoobeSystemSettingEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Start > Settings > System > Notifications & actions > Notification of these senders > Settings > Off
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\windows.immersivecontrolpanel_cw5n1h2txyewy!microsoft.windows.immersivecontrolpanel" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Start > Settings > System > Notifications & actions > Notification of these senders > Bluetooth > Off
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.BthQuickPair" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.BthQuickPair" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Start > Settings > System > Notifications & actions > Notification of these senders > Security and Maintenance > Off
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Start > Settings > System > Notifications & actions > Get tips, tricks, and suggestions as you use Windows > Off
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338389Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
