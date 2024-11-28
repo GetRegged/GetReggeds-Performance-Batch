@@ -2333,32 +2333,47 @@ schtasks /Change /TN "Microsoft\Windows\Workplace Join\Automatic-Device-Join" /D
 schtasks /Change /TN "Microsoft\Windows\WwanSvc\NotificationTask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WwanSvc\OobeDiscovery" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\XblGameSave\XblGameSaveTask" /Disable >nul 2>&1
-schtasks /Change /TN "\Microsoft\Windows\AppID\EDP Policy Manager" /Disable
-schtasks /Change /TN "\Microsoft\Windows\AppListBackup\Backup" /Disable
-schtasks /Change /TN "\Microsoft\Windows\AppListBackup\BackupNonMaintenance" /Disable
-schtasks /Change /TN "\Microsoft\Windows\AppxDeploymentClient\Pre-staged app cleanup" /Disable
-schtasks /Change /TN "\Microsoft\Windows\AppxDeploymentClient\UCPD velocity" /Disable
-schtasks /Change /TN "\Microsoft\Windows\Bluetooth\UninstallDeviceTask" /Disable
-schtasks /Change /TN "\Microsoft\Windows\ConsentUX\UnifiedConsent\UnifiedConsentSyncTask" /Disable
-schtasks /Change /TN "\Microsoft\Windows\DirectX\DXGIAdapterCache" /Disable
-schtasks /Change /TN "\Microsoft\Windows\DirectX\DirectXDatabaseUpdater" /Disable
-schtasks /Change /TN "\Microsoft\Windows\ExploitGuard\ExploitGuard MDM policy Refresh" /Disable
-schtasks /Change /TN "\Microsoft\Windows\HelloFace\FODCleanupTask" /Disable
-schtasks /Change /TN "\Microsoft\Windows\PI\Secure-Boot-Update" /Disable
-schtasks /Change /TN "\Microsoft\Windows\PI\SecureBootEncodeUEFI" /Disable
-schtasks /Change /TN "\Microsoft\Windows\PushToInstall\LoginCheck" /Disable
-schtasks /Change /TN "\Microsoft\Windows\Shell\CreateObjectTask" /Disable
-schtasks /Change /TN "\Microsoft\Windows\Shell\ThemesSyncedImageDownload" /Disable
-schtasks /Change /TN "\Microsoft\Windows\USB\Usb-Notifications" /Disable
-schtasks /Change /TN "\Microsoft\Windows\Windows Media Sharing\UpdateLibrary" /Disable
-schtasks /DELETE /TN "AMDInstallLauncher" /f >nul 2>&1
-schtasks /DELETE /TN "AMDLinkUpdate" /f >nul 2>&1
-schtasks /DELETE /TN "AMDRyzenMasterSDKTask" /f >nul 2>&1
-schtasks /DELETE /TN "Driver Easy Scheduled Scan" /f >nul 2>&1
-schtasks /DELETE /TN "ModifyLinkUpdate" /f >nul 2>&1
-schtasks /DELETE /TN "SoftMakerUpdater" /f >nul 2>&1
-schtasks /DELETE /TN "StartCN" /f >nul 2>&1
-schtasks /DELETE /TN "StartDVR" /f >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\AppID\EDP Policy Manager" /Disable
+schtasks /Change /TN "Microsoft\Windows\AppListBackup\Backup" /Disable
+schtasks /Change /TN "Microsoft\Windows\AppListBackup\BackupNonMaintenance" /Disable
+schtasks /Change /TN "Microsoft\Windows\Application Experience\PcaWallpaperAppDetect" /Disable
+schtasks /Change /TN "Microsoft\Windows\AppxDeploymentClient\Pre-staged app cleanup" /Disable
+schtasks /Change /TN "Microsoft\Windows\AppxDeploymentClient\UCPD velocity" /Disable
+schtasks /Change /TN "Microsoft\Windows\Bluetooth\UninstallDeviceTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\CertificateServicesClient\AikCertEnrollTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\CertificateServicesClient\CryptoPolicyTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\CertificateServicesClient\KeyPreGenTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\CertificateServicesClient\UserTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\CertificateServicesClient\UserTask-Roam" /Disable
+schtasks /Change /TN "Microsoft\Windows\Chkdsk\ProactiveScan" /Disable
+schtasks /Change /TN "Microsoft\Windows\Clip\ClipESU" /Disable
+schtasks /Change /TN "Microsoft\Windows\ConsentUX\UnifiedConsent\UnifiedConsentSyncTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\Data Integrity Scan\Data Integrity Check And Scan" /Disable
+schtasks /Change /TN "Microsoft\Windows\Data Integrity Scan\Data Integrity Scan for Crash" /Disable
+schtasks /Change /TN "Microsoft\Windows\Data Integrity Scan\Data Integrity Scan" /Disable
+schtasks /Change /TN "Microsoft\Windows\DirectX\DXGIAdapterCache" /Disable
+schtasks /Change /TN "Microsoft\Windows\DirectX\DirectXDatabaseUpdater" /Disable
+schtasks /Change /TN "Microsoft\Windows\ExploitGuard\ExploitGuard MDM policy Refresh" /Disable
+schtasks /Change /TN "Microsoft\Windows\HelloFace\FODCleanupTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\Location\Notifications" /Disable
+schtasks /Change /TN "Microsoft\Windows\Location\WindowsActionDialog" /Disable
+schtasks /Change /TN "Microsoft\Windows\PI\Secure-Boot-Update" /Disable
+schtasks /Change /TN "Microsoft\Windows\PI\SecureBootEncodeUEFI" /Disable
+schtasks /Change /TN "Microsoft\Windows\PushToInstall\LoginCheck" /Disable
+schtasks /Change /TN "Microsoft\Windows\Shell\CreateObjectTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\Shell\FamilySafetyRefreshTask" /Disable
+schtasks /Change /TN "Microsoft\Windows\Shell\ThemesSyncedImageDownload" /Disable
+schtasks /Change /TN "Microsoft\Windows\Subscription\EnableLicenseAcquisition" /Disable
+schtasks /Change /TN "Microsoft\Windows\USB\Usb-Notifications" /Disable
+schtasks /Change /TN "Microsoft\Windows\Windows Media Sharing\UpdateLibrary" /Disable
+schtasks /Delete /TN "AMDInstallLauncher" /f >nul 2>&1
+schtasks /Delete /TN "AMDLinkUpdate" /f >nul 2>&1
+schtasks /Delete /TN "AMDRyzenMasterSDKTask" /f >nul 2>&1
+schtasks /Delete /TN "Driver Easy Scheduled Scan" /f >nul 2>&1
+schtasks /Delete /TN "ModifyLinkUpdate" /f >nul 2>&1
+schtasks /Delete /TN "SoftMakerUpdater" /f >nul 2>&1
+schtasks /Delete /TN "StartCN" /f >nul 2>&1
+schtasks /Delete /TN "StartDVR" /f >nul 2>&1
 
 :: Optimize Service Host Split Threshold
 :SvcHostOptimization
