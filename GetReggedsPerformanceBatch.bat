@@ -2253,6 +2253,10 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\wlidsvc" /v "Start" /t REG_DWORD
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "4" /f >nul 2>nul
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "4" /f >nul 2>nul
 
+for /f "tokens=*" %A in ('schtasks /Query /FO LIST /V ^| findstr /i "GoogleUpdaterTaskSystem"') do (
+    for /f "tokens=2 delims=: " %B in ("%A") do schtasks /Change /TN "%B" /Disable
+)
+
 schtasks /DELETE /TN "AMDInstallLauncher" /f >nul 2>&1
 schtasks /DELETE /TN "AMDLinkUpdate" /f >nul 2>&1
 schtasks /DELETE /TN "AMDRyzenMasterSDKTask" /f >nul 2>&1
