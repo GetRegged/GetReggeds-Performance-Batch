@@ -2257,14 +2257,6 @@ for /f "tokens=*" %A in ('schtasks /Query /FO LIST /V ^| findstr /i "GoogleUpdat
     for /f "tokens=2 delims=: " %B in ("%A") do schtasks /Change /TN "%B" /Disable
 )
 
-schtasks /DELETE /TN "AMDInstallLauncher" /f >nul 2>&1
-schtasks /DELETE /TN "AMDLinkUpdate" /f >nul 2>&1
-schtasks /DELETE /TN "AMDRyzenMasterSDKTask" /f >nul 2>&1
-schtasks /DELETE /TN "Driver Easy Scheduled Scan" /f >nul 2>&1
-schtasks /DELETE /TN "ModifyLinkUpdate" /f >nul 2>&1
-schtasks /DELETE /TN "SoftMakerUpdater" /f >nul 2>&1
-schtasks /DELETE /TN "StartCN" /f >nul 2>&1
-schtasks /DELETE /TN "StartDVR" /f >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Application Experience\PcaPatchDbTask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Application Experience\ProgramDataUpdater" /Disable >nul 2>&1
@@ -2272,16 +2264,16 @@ schtasks /Change /TN "Microsoft\Windows\Application Experience\StartupAppTask" /
 schtasks /Change /TN "Microsoft\Windows\Autochk\Proxy" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\Consolidator" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Customer Experience Improvement Program\UsbCeip" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\DUSM\dusmtask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Defrag\ScheduledDefrag" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\Device Information\Device" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Device Information\Device User" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\Device Information\Device" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Diagnosis\RecommendedTroubleshootingScanner" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Diagnosis\Scheduled" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\DiskCleanup\SilentCleanup" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\DiskFootprint\Diagnostics" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\DiskFootprint\StorageSense" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\DUSM\dusmtask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClient" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\FileHistory\File History (maintenance mode)" /Disable >nul 2>&1
@@ -2298,13 +2290,13 @@ schtasks /Change /TN "Microsoft\Windows\LanguageComponentsInstaller\Installation
 schtasks /Change /TN "Microsoft\Windows\LanguageComponentsInstaller\ReconcileLanguageResources" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\LanguageComponentsInstaller\Uninstallation" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\License Manager\TempSignedLicenseExchange" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\MUI\LPRemove" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\Maintenance\WinSAT" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Management\Provisioning\Cellular" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Management\Provisioning\Logon" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\Maintenance\WinSAT" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Maps\MapsToastTask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Maps\MapsUpdateTask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Mobile Broadband Accounts\MNO Metadata Parser" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\MUI\LPRemove" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\NetTrace\GatherNetworkInfo" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\PI\Sqm-Tasks" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem" /Disable >nul 2>&1
@@ -2323,24 +2315,50 @@ schtasks /Change /TN "Microsoft\Windows\Speech\SpeechModelDownloadTask" /Disable
 schtasks /Change /TN "Microsoft\Windows\Storage Tiers Management\Storage Tiers Management Initialization" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Sysmain\ResPriStaticDbSync" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Sysmain\WsSwapAssessmentTask" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\TPM\Tpm-HASCertRetr" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\TPM\Tpm-Maintenance" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Task Manager\Interactive" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Time Synchronization\ForceSynchronizeTime" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Time Synchronization\SynchronizeTime" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Time Zone\SynchronizeTimeZone" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\TPM\Tpm-HASCertRetr" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\TPM\Tpm-Maintenance" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\UPnP\UPnPHostConfig" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\User Profile Service\HiveUploadTask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WDI\ResolutionHost" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\Windows Filtering Platform\BfeOnServiceStartTypeChange" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WOF\WIM-Hash-Management" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WOF\WIM-Hash-Validation" /Disable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\Windows Filtering Platform\BfeOnServiceStartTypeChange" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Work Folders\Work Folders Logon Synchronization" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Work Folders\Work Folders Maintenance Work" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Workplace Join\Automatic-Device-Join" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WwanSvc\NotificationTask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WwanSvc\OobeDiscovery" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\XblGameSave\XblGameSaveTask" /Disable >nul 2>&1
+schtasks /Change /TN "\Microsoft\Windows\AppID\EDP Policy Manager" /Disable
+schtasks /Change /TN "\Microsoft\Windows\AppListBackup\Backup" /Disable
+schtasks /Change /TN "\Microsoft\Windows\AppListBackup\BackupNonMaintenance" /Disable
+schtasks /Change /TN "\Microsoft\Windows\AppxDeploymentClient\Pre-staged app cleanup" /Disable
+schtasks /Change /TN "\Microsoft\Windows\AppxDeploymentClient\UCPD velocity" /Disable
+schtasks /Change /TN "\Microsoft\Windows\Bluetooth\UninstallDeviceTask" /Disable
+schtasks /Change /TN "\Microsoft\Windows\ConsentUX\UnifiedConsent\UnifiedConsentSyncTask" /Disable
+schtasks /Change /TN "\Microsoft\Windows\DirectX\DXGIAdapterCache" /Disable
+schtasks /Change /TN "\Microsoft\Windows\DirectX\DirectXDatabaseUpdater" /Disable
+schtasks /Change /TN "\Microsoft\Windows\ExploitGuard\ExploitGuard MDM policy Refresh" /Disable
+schtasks /Change /TN "\Microsoft\Windows\HelloFace\FODCleanupTask" /Disable
+schtasks /Change /TN "\Microsoft\Windows\PI\Secure-Boot-Update" /Disable
+schtasks /Change /TN "\Microsoft\Windows\PI\SecureBootEncodeUEFI" /Disable
+schtasks /Change /TN "\Microsoft\Windows\PushToInstall\LoginCheck" /Disable
+schtasks /Change /TN "\Microsoft\Windows\Shell\CreateObjectTask" /Disable
+schtasks /Change /TN "\Microsoft\Windows\Shell\ThemesSyncedImageDownload" /Disable
+schtasks /Change /TN "\Microsoft\Windows\USB\Usb-Notifications" /Disable
+schtasks /Change /TN "\Microsoft\Windows\Windows Media Sharing\UpdateLibrary" /Disable
+schtasks /DELETE /TN "AMDInstallLauncher" /f >nul 2>&1
+schtasks /DELETE /TN "AMDLinkUpdate" /f >nul 2>&1
+schtasks /DELETE /TN "AMDRyzenMasterSDKTask" /f >nul 2>&1
+schtasks /DELETE /TN "Driver Easy Scheduled Scan" /f >nul 2>&1
+schtasks /DELETE /TN "ModifyLinkUpdate" /f >nul 2>&1
+schtasks /DELETE /TN "SoftMakerUpdater" /f >nul 2>&1
+schtasks /DELETE /TN "StartCN" /f >nul 2>&1
+schtasks /DELETE /TN "StartDVR" /f >nul 2>&1
 
 :: Optimize Service Host Split Threshold
 :SvcHostOptimization
