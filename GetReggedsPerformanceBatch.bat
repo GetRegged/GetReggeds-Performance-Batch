@@ -3022,8 +3022,10 @@ sc config BITS start= disabled >nul 2>&1
 sc config ClipSVC start= disabled >nul 2>&1
 sc config InstallService start= disabled >nul 2>&1
 sc config LanmanServer start= disabled >nul 2>&1
+sc config PushToInstall start= disabled >nul 2>&1
 sc config UsoSvc start= disabled >nul 2>&1
 sc config uhssvc start= disabled >nul 2>&1
+sc config upfc start= disabled >nul 2>&1
 sc config wuauserv start= disabled >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\BITS" /v Start /t reg_dword /d 4 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\DoSvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
