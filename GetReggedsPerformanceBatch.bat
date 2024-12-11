@@ -1,4 +1,6 @@
 @echo off
+
+:: Set Window Title
 title GetRegged's Performance Batch
 
 :: Set Release Version #
