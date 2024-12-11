@@ -265,17 +265,17 @@ reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program File
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Apex Legends\r5apex.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\csgo.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\PUBG\TslGame\Binaries\Win64\TslGame.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Tom Clancy's Rainbow Six Siege\RainbowSix.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Tom Clancy's Rainbow Six Siege\RainbowSix.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\rocketleague\Binaries\Win64\RocketLeague.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\rocketleague\Binaries\Win64\RocketLeagueLauncher.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Tom Clancy's Rainbow Six Siege\RainbowSix.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files (x86)\Steam\steamapps\common\Tom Clancy's Rainbow Six Siege\RainbowSix.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files\Epic Games\Fortnite\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files\Epic Games\Fortnite\FortniteGame\Binaries\Win64\FortniteClient-Win64.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files\Epic Games\rocketleague\Binaries\Win64\RocketLeague.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Program Files\Epic Games\rocketleague\Binaries\Win64\RocketLeagueLauncher.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\Riot Client\RiotClientServices.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\League of Legends\Game\League of Legends.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\League of Legends\LeagueClient.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\Riot Client\RiotClientServices.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\VALORANT\live\ShooterGame\Binaries\Win64\VALORANT-Win64-Shipping.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\DirectX\UserGpuPreferences" /v "C:\Riot Games\VALORANT\live\VALORANT.exe" /t REG_SZ /d "GpuPreference=2;" /f >nul 2>&1
 
