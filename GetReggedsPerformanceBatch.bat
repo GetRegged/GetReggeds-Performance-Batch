@@ -402,17 +402,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\Firewall
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules" /v "RemoteDesktop-Shadow-In-TCP" /t REG_SZ /d "v2.30|Action=Allow|Active=FALSE|Dir=In|Protocol=6|App=%SystemRoot%\\system32\\RdpSa.exe|Name=@FirewallAPI.dll,-28778|Desc=@FirewallAPI.dll,-28779|EmbedCtxt=@FirewallAPI.dll,-28752|Edge=TRUE|Defer=App|" /f >nul 2>&1
 
 :: Start > Settings > System > Optional features > Added features > Disable all
-dism /online /disable-feature /featurename:AppServerClient /norestart >nul 2>&1
-dism /online /disable-feature /featurename:DirectPlay /norestart >nul 2>&1
-dism /online /disable-feature /featurename:HypervisorPlatform /norestart >nul 2>&1
-dism /online /disable-feature /featurename:LegacyComponents /norestart >nul 2>&1
-dism /online /disable-feature /featurename:NetFx3 /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Printing-Foundation-Features /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SMB1Protocol /norestart >nul 2>&1
-dism /online /disable-feature /featurename:SearchEngine-Client-Package /norestart >nul 2>&1
-dism /online /disable-feature /featurename:TelnetClient /norestart >nul 2>&1
-dism /online /disable-feature /featurename:WAS-ConfigurationAPI /norestart >nul 2>&1
-dism /online /disable-feature /featurename:Windows-Defender-Default-Definitions /norestart >nul 2>&1
+:: Not included yet
 
 :: Start > Settings > System > About > Advanced system settings > Hardware > Device Installation Settings > Do you want to automatically download... > No
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "1" /f >nul 2>&1
