@@ -80,11 +80,11 @@ echo %w%║%y%             WINDOWS TOOLS             %w%│%y%            ESSENT
 echo %w%╟───────────────────────────────────────┴───────────────────────────────────────┴──────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Windows Activation%t%                %w%[%y% %c%%u%7%q%%t% %w%]%y% %c%Program Downloader%t%                                                  %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Optimization%t%              %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                     %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Power Plan%t%                %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                     %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Optimization%t%                                                                                        %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Power Plan%t%                                                                                          %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Cleaner%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -97,9 +97,9 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='0' goto Exit
 if '%choice%'=='1' goto WindowsActivation
-if '%choice%'=='2' goto WindowsOptimization
-if '%choice%'=='3' goto WindowsUpdates
-if '%choice%'=='4' goto WindowsPowerPlan
+if '%choice%'=='2' goto WindowsPowerPlan
+if '%choice%'=='3' goto WindowsOptimization
+if '%choice%'=='4' goto WindowsUpdates
 if '%choice%'=='5' goto WindowsCleaner
 if '%choice%'=='6' goto WindowsDarkMinimalMode
 if '%choice%'=='7' goto ProgramDownloader
@@ -176,6 +176,113 @@ reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtection
 reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" /v "KeyManagementServiceName" /f>nul
 echo Windows deactivated
 timeout /t 2 /nobreak >nul 2>&1
+goto menuorexit
+
+::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+:: ██████╗  ██████╗ ██╗    ██╗███████╗██████╗     ██████╗ ██╗      █████╗ ███╗   ██╗
+:: ██╔══██╗██╔═══██╗██║    ██║██╔════╝██╔══██╗    ██╔══██╗██║     ██╔══██╗████╗  ██║
+:: ██████╔╝██║   ██║██║ █╗ ██║█████╗  ██████╔╝    ██████╔╝██║     ███████║██╔██╗ ██║
+:: ██╔═══╝ ██║   ██║██║███╗██║██╔══╝  ██╔══██╗    ██╔═══╝ ██║     ██╔══██║██║╚██╗██║
+:: ██║     ╚██████╔╝╚███╔███╔╝███████╗██║  ██║    ██║     ███████╗██║  ██║██║ ╚████║
+:: ╚═╝      ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝    ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝
+::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+::Power Plan Optimizatons
+:WindowsPowerPlan
+cls
+echo Activating Bitsum Highest Performance Power Plan
+
+:: Import GetReggeds Power Plan
+curl -g -k -L -# -o "%temp%\Bitsum-Highest-Performance.pow" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/Bitsum-Highest-Performance.pow" >nul 2>&1
+powercfg -import "%temp%\Bitsum-Highest-Performance.pow" 11111111-1111-1111-1111-111111111111 >nul 2>&1
+powercfg -setactive 11111111-1111-1111-1111-111111111111 >nul 2>&1
+
+:: Disable Hibernation
+powercfg /h off >nul 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabledDefault" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "SleepReliabilityDetailedDiagnostics" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Disable Sleep Study
+echo Disable Sleep Study
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "SleepStudyDisabled" /t REG_DWORD /d "1" /f >nul 2>&1
+
+cls
+echo Completed
+timeout /t 1 /nobreak > NUL
+
+cls
+chcp 65001 >nul 2>nul
+cls
+set c=[94m
+set t=[0m
+set w=[31m
+set y=[0m
+set u=[4m
+set q=[0m
+echo.
+echo.
+echo.
+echo                       %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%████████%y%%c%╗%y%    %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y% %w%██████%y%%c%╗%y%  %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%██████%y%%c%╗%y% 
+echo                      %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%c%╚══%y%%w%██%y%%c%╔══╝%y%    %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔════╝%y%%w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%  
+echo                      %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%     %w%██%y%%c%║%y%       %w%██████%y%%c%╔╝%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y% 
+echo                      %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%     %w%██%y%%c%║%y%       %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y%     
+echo                      %c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%   %w%██%y%%c%║%y%       %w%██%y%%c%║  %y%%w%██%y%%c%║%y%%w%███████%y%%c%╗%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%%w%██████%y%%c%╔╝%y%
+echo                       %c%╚═════╝%y% %c%╚══════╝%y%   %c%╚═╝%y%       %c%╚═╝  ╚═╝%y%%c%╚══════╝%y% %c%╚═════╝%y%  %c%╚═════╝%y% %c%╚══════╝%y%%c%╚═════╝%y%          
+echo                                                     %c%%u%Version: %Version%%q%%t%
+echo.
+echo.
+echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
+echo %w%║%y%          DO YOU WANT TO DELETE ALL OTHER POWERPLANS?                                                		       %w%║%y%
+echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%                                                                                                         %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%No%t%                                                                                                          %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%	                                                                                                               %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝%y%
+set choice=
+set /p choice=
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%choice%'=='1' goto DeletePlans
+if '%choice%'=='2' goto menuorexit
+
+:DeletePlans
+cls
+echo Deleting other power plans
+timeout /t 2 /nobreak > NUL
+
+:: Delete Balanced Power Plan
+powercfg -delete 381b4222-f694-41f0-9685-ff5bb260df2e >nul 2>&1
+
+:: Delete Power Saver Power Plan
+powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a >nul 2>&1
+
+:: Delete High Performance Power Plan
+powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul 2>&1
+
+:: Delete Ultimate Performance Power Plan
+powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
+
+:: Delete AMD Ryzen Balanced Power Plan
+powercfg -delete 9897998c-92de-4669-853f-b7cd3ecb2790 >nul 2>&1
+
+:: Delete Dynamic Boost Performance
+powercfg -delete 10728b17-d7bd-4ca1-990c-b4f7c030f8cd >nul 2>&1
+
+:: Delete GameTurbo
+powercfg -delete ce9fa8b3-8e9e-42db-b4e1-e6297f6cdd7e >nul 2>&1
+
+cls
+echo Completed 
+timeout /t 1 /nobreak > NUL
 goto menuorexit
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
@@ -2664,113 +2771,6 @@ timeout /t 1 /nobreak > NUL
 cls
 echo Completed
 timeout /t 2 /nobreak > NUL
-goto menuorexit
-
-::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-:: ██████╗  ██████╗ ██╗    ██╗███████╗██████╗     ██████╗ ██╗      █████╗ ███╗   ██╗
-:: ██╔══██╗██╔═══██╗██║    ██║██╔════╝██╔══██╗    ██╔══██╗██║     ██╔══██╗████╗  ██║
-:: ██████╔╝██║   ██║██║ █╗ ██║█████╗  ██████╔╝    ██████╔╝██║     ███████║██╔██╗ ██║
-:: ██╔═══╝ ██║   ██║██║███╗██║██╔══╝  ██╔══██╗    ██╔═══╝ ██║     ██╔══██║██║╚██╗██║
-:: ██║     ╚██████╔╝╚███╔███╔╝███████╗██║  ██║    ██║     ███████╗██║  ██║██║ ╚████║
-:: ╚═╝      ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝    ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝
-::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-::Power Plan Optimizatons
-:WindowsPowerPlan
-cls
-echo Activating Bitsum Highest Performance Power Plan
-
-:: Import GetReggeds Power Plan
-curl -g -k -L -# -o "%temp%\Bitsum-Highest-Performance.pow" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/Bitsum-Highest-Performance.pow" >nul 2>&1
-powercfg -import "%temp%\Bitsum-Highest-Performance.pow" 11111111-1111-1111-1111-111111111111 >nul 2>&1
-powercfg -setactive 11111111-1111-1111-1111-111111111111 >nul 2>&1
-
-:: Disable Hibernation
-powercfg /h off >nul 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabledDefault" /t REG_DWORD /d "0" /f >nul 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "SleepReliabilityDetailedDiagnostics" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Disable Sleep Study
-echo Disable Sleep Study
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "SleepStudyDisabled" /t REG_DWORD /d "1" /f >nul 2>&1
-
-cls
-echo Completed
-timeout /t 1 /nobreak > NUL
-
-cls
-chcp 65001 >nul 2>nul
-cls
-set c=[94m
-set t=[0m
-set w=[31m
-set y=[0m
-set u=[4m
-set q=[0m
-echo.
-echo.
-echo.
-echo                       %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%████████%y%%c%╗%y%    %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y% %w%██████%y%%c%╗%y%  %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%██████%y%%c%╗%y% 
-echo                      %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%c%╚══%y%%w%██%y%%c%╔══╝%y%    %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔════╝%y%%w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%  
-echo                      %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%     %w%██%y%%c%║%y%       %w%██████%y%%c%╔╝%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y% 
-echo                      %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%     %w%██%y%%c%║%y%       %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y%     
-echo                      %c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%   %w%██%y%%c%║%y%       %w%██%y%%c%║  %y%%w%██%y%%c%║%y%%w%███████%y%%c%╗%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%%w%██████%y%%c%╔╝%y%
-echo                       %c%╚═════╝%y% %c%╚══════╝%y%   %c%╚═╝%y%       %c%╚═╝  ╚═╝%y%%c%╚══════╝%y% %c%╚═════╝%y%  %c%╚═════╝%y% %c%╚══════╝%y%%c%╚═════╝%y%          
-echo                                                     %c%%u%Version: %Version%%q%%t%
-echo.
-echo.
-echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
-echo %w%║%y%          DO YOU WANT TO DELETE ALL OTHER POWERPLANS?                                                		       %w%║%y%
-echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%                                                                                                         %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%No%t%                                                                                                          %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%	                                                                                                               %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝%y%
-set choice=
-set /p choice=
-if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='1' goto DeletePlans
-if '%choice%'=='2' goto menuorexit
-
-:DeletePlans
-cls
-echo Deleting other power plans
-timeout /t 2 /nobreak > NUL
-
-:: Delete Balanced Power Plan
-powercfg -delete 381b4222-f694-41f0-9685-ff5bb260df2e >nul 2>&1
-
-:: Delete Power Saver Power Plan
-powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a >nul 2>&1
-
-:: Delete High Performance Power Plan
-powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >nul 2>&1
-
-:: Delete Ultimate Performance Power Plan
-powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61 >nul 2>&1
-
-:: Delete AMD Ryzen Balanced Power Plan
-powercfg -delete 9897998c-92de-4669-853f-b7cd3ecb2790 >nul 2>&1
-
-:: Delete Dynamic Boost Performance
-powercfg -delete 10728b17-d7bd-4ca1-990c-b4f7c030f8cd >nul 2>&1
-
-:: Delete GameTurbo
-powercfg -delete ce9fa8b3-8e9e-42db-b4e1-e6297f6cdd7e >nul 2>&1
-
-cls
-echo Completed 
-timeout /t 1 /nobreak > NUL
 goto menuorexit
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
