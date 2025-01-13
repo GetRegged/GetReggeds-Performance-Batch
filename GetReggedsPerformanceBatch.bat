@@ -2998,6 +2998,9 @@ reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DWM" /f >nul 2>&1
 :: Disbale First Logon Animation
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "EnableFirstLogonAnimation" /t REG_DWORD /d "0" /f >nul 2>&1
 
+:: Small Desktop Icons
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage\TrayButtonClicked" /v "ShowDesktopButton" /t REG_DWORD /d "0000005e" /f >nul 2>&1
+
 :: Start > Settings > Personalization > Background > Choose a fit > Center
 reg add "HKCU\Control Panel\Desktop" /v "WallpaperStyle" /t REG_SZ /d "10" /f >nul 2>&1
 
