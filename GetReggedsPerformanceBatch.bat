@@ -1152,7 +1152,6 @@ echo Optimizing Device Manager
 curl -g -k -L -# -o "%temp%\DevManView.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/DevManView.exe" >nul 2>&1
 
 :: Disable Devices through DevManView
-%temp%\DevManView.exe /disable "High Precision Event Timer"
 %temp%\DevManView.exe /disable "Microsoft GS Wavetable Synth"
 %temp%\DevManView.exe /disable "Microsoft RRAS Root Enumerator"
 %temp%\DevManView.exe /disable "Intel Management Engine"
@@ -1267,7 +1266,7 @@ bcdedit /set allowedinmemorysettings 0x0 >nul 2>&1
 bcdedit /set avoidlowmemory 0x8000000 >nul 2>&1
 bcdedit /set configaccesspolicy Default >nul 2>&1
 bcdedit /set debug No >nul 2>&1
-bcdedit /set disabledynamictick Yes >nul 2>&1
+
 bcdedit /set disableelamdrivers Yes >nul 2>&1
 bcdedit /set ems No >nul 2>&1
 bcdedit /set extendedinput Yes >nul 2>&1
@@ -1285,7 +1284,6 @@ bcdedit /set tscsyncpolicy Enhanced >nul 2>&1
 bcdedit /set usefirmwarepcisettings No >nul 2>&1
 bcdedit /set uselegacyapicmode No >nul 2>&1
 bcdedit /set usephysicaldestination No >nul 2>&1
-bcdedit /set useplatformclock No >nul 2>&1
 bcdedit /set vm No >nul 2>&1
 bcdedit /set vsmlaunchtype Off >nul 2>&1
 bcdedit /set x2apicpolicy Enable >nul 2>&1
