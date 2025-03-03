@@ -1279,29 +1279,11 @@ bcdedit /set disabledynamictick Yes >nul 2>&1
 bcdedit /set platformtick No >nul 2>&1
 bcdedit /set useplatformclock No >nul 2>&1
 
-:: Memory and CPU Optimizations
-:: Optimize memory allocation method (May improve performance on modern systems, especially with large memory pools)
-bcdedit /set firstmegabytepolicy optimal >nul 2>&1
-
-:: System Performance Tweaks
-:: Disable Kernel Debugging (May improve system performance)
-bcdedit /set debug off >nul 2>&1
-:: Disable FIPS cryptographic policies (May improve performance by allowing faster cryptographic operations)
-bcdedit /set forcefipscrypto off >nul 2>&1
-
-:: Miscellaneous Tweaks
+:: Hardware Abstraction Layer (HAL) & KERNEL
 :: Disables Data Execution Prevention (May improve performance and latency)
 bcdedit /set nx AlwaysOff >nul 2>&1
 :: Enable enhanced TSC synchronization (May improve latency on multi-core systems, better timekeeping)
 bcdedit /set tscsyncpolicy Enhanced >nul 2>&1
-
-:: Disable isolated context (May affect security, slight improvement in execution speed)
-bcdedit /deletevalue isolatedcontext >nul 2>&1
-:: Remove No-UMEX setting (May improve latency by allowing UMEX-related optimizations)
-bcdedit /deletevalue noumex >nul 2>&1
-:: Disable Virtualization-based Security and Hyper-V (May reduce overhead and improve latency-sensitive tasks)
-bcdedit /set vm No >nul 2>&1
-bcdedit /set vsmlaunchtype Off >nul 2>&1
 
 :: Boot Settings
 :: Disables Windows graphical boot menu (May improve boot speed)
