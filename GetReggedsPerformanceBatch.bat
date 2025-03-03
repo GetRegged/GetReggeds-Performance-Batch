@@ -1262,33 +1262,53 @@ cls
 echo Optimizing Latency
 
 :: BCD Tweaks
+:: Enables Default MSI mode
 bcdedit /set MSI Default >nul 2>&1
-bcdedit /set allowedinmemorysettings 0x0 >nul 2>&1
-bcdedit /set avoidlowmemory 0x8000000 >nul 2>&1
-bcdedit /set configaccesspolicy Default >nul 2>&1
+
+:: Disables debugging
 bcdedit /set debug No >nul 2>&1
+
+:: Disable HPET (Better latency and higher FPS)
 bcdedit /set disabledynamictick Yes >nul 2>&1
-bcdedit /set disableelamdrivers Yes >nul 2>&1
-bcdedit /set ems No >nul 2>&1
-bcdedit /set extendedinput Yes >nul 2>&1
-bcdedit /set firstmegabytepolicy UseAll >nul 2>&1
-bcdedit /set forcefipscrypto No >nul 2>&1
-bcdedit /set highestmode Yes >nul 2>&1
-bcdedit /set hypervisorlaunchtype Off >nul 2>&1
-bcdedit /set isolatedcontext No >nul 2>&1
-bcdedit /set nolowmem Yes >nul 2>&1
-bcdedit /set noumex Yes >nul 2>&1
-bcdedit /set nx optout >nul 2>&1
-bcdedit /set pae ForceEnable >nul 2>&1
 bcdedit /set platformtick No >nul 2>&1
-bcdedit /set tscsyncpolicy Enhanced >nul 2>&1
-bcdedit /set usefirmwarepcisettings No >nul 2>&1
-bcdedit /set uselegacyapicmode No >nul 2>&1
-bcdedit /set usephysicaldestination No >nul 2>&1
 bcdedit /set useplatformclock No >nul 2>&1
+
+:: Disabling ELAM drivers
+bcdedit /set disableelamdrivers Yes >nul 2>&1
+
+:: Disables advanced input devices during boot or recovery modes (Better Performance)
+bcdedit /set extendedinput No >nul 2>&1
+
+:: Enables Windows to use the most efficient memory allocation method (Better Performance on modern Systems)
+bcdedit /set firstmegabytepolicy optimal >nul 2>&1
+
+:: Disable set of security standards for cryptographic modules (Better Performance)
+bcdedit /set forcefipscrypto off >nul 2>&1
+
+:: Enable Windows launch in the highest mode based on hardware (Better Performance)
+bcdedit /set highestmode Yes >nul 2>&1
+
+:: Disables hypervisor launch during system startup (Better latency)
+bcdedit /set hypervisorlaunchtype off >nul 2>&1
+
+:: Disbales isolatedcontext (Better latency)
+bcdedit /deletevalue isolatedcontext >nul 2>&1
+
+:: Disables lowmem (Better latency)
+bcdedit /deletevalue nolowmem >nul 2>&1
+
+:: Disables noumex (Better latency)
+bcdedit /deletevalue noumex >nul 2>&1
+
+:: Enables enhanced TSC-Synchronisation (Better latency)
+bcdedit /set tscsyncpolicy Enhanced >nul 2>&1
+
+:: Enables x2APIC-Modus (Better Performance on modern Systems)
+bcdedit /set x2apicpolicy Enable >nul 2>&1
+
+:: Disable Virtualization
 bcdedit /set vm No >nul 2>&1
 bcdedit /set vsmlaunchtype Off >nul 2>&1
-bcdedit /set x2apicpolicy Enable >nul 2>&1
 
 chcp 437 >nul 2>nul
 :: Disable Memory Compression
