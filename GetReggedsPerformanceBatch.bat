@@ -1263,23 +1263,25 @@ echo Optimizing Latency
 
 :: BCD Tweaks
 
-:: Interrupt Handling and Latency
+:: VESA, PCI, VGA, and TPM
 :: Enable Default MSI mode (May improve interrupt handling and reduce DPC latency)
 bcdedit /set MSI Default >nul 2>&1
-:: Enable x2APIC mode (Improves interrupt handling on modern CPUs, may improve multi-threaded performance)
-bcdedit /set x2apicpolicy Enable >nul 2>&1
 
-HPET and Platform Timer Settings
+::Processors and APICs
+:: Enable x2APIC mode (Improves interrupt handling on modern CPUs, may improve multi-threaded performance)
+bcdedit /set x2apicpolicy enable >nul 2>&1
+:: Disable legacy APIC mode (Improve performance and latency)
+bcdedit /set uselegacyapicmode no >nul 2>&1
+
+:: HPET and Platform Timer Settings
 :: Disable HPET (May improve latency and FPS)
 bcdedit /set disabledynamictick Yes >nul 2>&1
 bcdedit /set platformtick No >nul 2>&1
 bcdedit /set useplatformclock No >nul 2>&1
 
-Memory and CPU Optimizations
+:: Memory and CPU Optimizations
 :: Optimize memory allocation method (May improve performance on modern systems, especially with large memory pools)
 bcdedit /set firstmegabytepolicy optimal >nul 2>&1
-:: Allow Windows to use the highest CPU mode supported by hardware (May improve CPU performance in some workloads)
-bcdedit /set highestmode Yes >nul 2>&1
 
 :: System Performance Tweaks
 :: Disable Kernel Debugging (May improve system performance)
@@ -1288,33 +1290,46 @@ bcdedit /set debug off >nul 2>&1
 bcdedit /set forcefipscrypto off >nul 2>&1
 
 :: Miscellaneous Tweaks
-:: Disable isolated context (May affect security, slight improvement in execution speed)
-bcdedit /deletevalue isolatedcontext >nul 2>&1
-:: Remove low memory exclusion (May affect stability, allows system to use more low memory)
-bcdedit /deletevalue nolowmem >nul 2>&1
-:: Remove No-UMEX setting (May improve latency by allowing UMEX-related optimizations)
-bcdedit /deletevalue noumex >nul 2>&1
+:: Disables Data Execution Prevention (May improve performance and latency)
+bcdedit /set nx AlwaysOff >nul 2>&1
 :: Enable enhanced TSC synchronization (May improve latency on multi-core systems, better timekeeping)
 bcdedit /set tscsyncpolicy Enhanced >nul 2>&1
+
+:: Disable isolated context (May affect security, slight improvement in execution speed)
+bcdedit /deletevalue isolatedcontext >nul 2>&1
+:: Remove No-UMEX setting (May improve latency by allowing UMEX-related optimizations)
+bcdedit /deletevalue noumex >nul 2>&1
 :: Disable Virtualization-based Security and Hyper-V (May reduce overhead and improve latency-sensitive tasks)
 bcdedit /set vm No >nul 2>&1
 bcdedit /set vsmlaunchtype Off >nul 2>&1
 
-:: Boot speed tweaks
-:: Disable advanced input devices during boot (May improve boot speed)
-bcdedit /set extendedinput No >nul 2>&1
-:: Disables Early Launch Anti-Malware during boot (May improve boot speed)
-bcdedit /set disableelamdrivers Yes >nul 2>&1
+:: Boot Settings
 :: Disables Windows graphical boot menu (May improve boot speed)
-bcdedit /set bootmenupolicy legacy >nul 2>&1
+bcdedit /set bootmenupolicy standard >nul 2>&1
+:: Disables display of boot error messages (May improve boot speed)
+bcdedit /set bootstatuspolicy ignoreallfailures >nul 2>&1
+:: Disables display of the boot progress (May improve boot speed)
+bcdedit /set quietboot off >nul 2>&1
+:: Disable display names of drivers as they load (May improve boot speed)
+bcdedit /set sos off >nul 2>&1
 :: Disable debugging during boot (May improve boot speed)
 bcdedit /set bootdebug off >nul 2>&1
 :: Disables logging during boot (May improve boot speed)
 bcdedit /set bootlog No >nul 2>&1
+:: Disables boot graphics like Logo, Image, Animation (May improve boot speed)
+bcdedit /set bootuxdisabled On >nul 2>&1
+:: Disables graphics mode and forces text (May improve boot speed)
+bcdedit /set graphicsmodedisabled On >nul 2>&1
+:: Disable boot applications using highest graphical mode (May improve boot speed)
+bcdedit /set highestmode off >nul 2>&1
 :: Disables integrity checks for drivers during boot (May improve boot speed)
 bcdedit /set nointegritychecks Yes >nul 2>&1
+:: Disables Early Launch Anti-Malware during boot (May improve boot speed)
+bcdedit /set disableelamdrivers Yes >nul 2>&1
 :: Disable hypervisor launch during boot (May improve boot speed)
 bcdedit /set hypervisorlaunchtype off >nul 2>&1
+:: Disable advanced input devices during boot (May improve boot speed)
+bcdedit /set extendedinput No >nul 2>&1
 
 chcp 437 >nul 2>nul
 :: Disable Memory Compression
