@@ -1313,7 +1313,7 @@ bcdedit /set bootdebug off >nul 2>&1
 bcdedit /set bootlog No >nul 2>&1
 :: Disables integrity checks for drivers during boot (May improve boot speed)
 bcdedit /set nointegritychecks Yes >nul 2>&1
-:: Disable hypervisor launch during boot(May improve boot speed)
+:: Disable hypervisor launch during boot (May improve boot speed)
 bcdedit /set hypervisorlaunchtype off >nul 2>&1
 
 chcp 437 >nul 2>nul
