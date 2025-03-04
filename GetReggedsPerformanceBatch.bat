@@ -1276,10 +1276,12 @@ bcdedit /set x2apicpolicy enable >nul 2>&1
 bcdedit /set uselegacyapicmode no >nul 2>&1
 
 :: HPET and Platform Timer Settings
-:: Disable HPET (May improve latency and FPS)
+:: Disables dynamic timer tick adjustments, which may reduce latency but can slightly increase power usage
 bcdedit /set disabledynamictick yes >nul 2>&1
-:: Disable use of HPET and force CPU's internal Time Stamp Counter
+:: Prevents Windows from forcing HPET, allowing it to use the faster, lower-latency TSC
 bcdedit /set useplatformclock no >nul 2>&1
+:: Prevents Windows from forcing fixed hardware timer ticks, allowing more efficient dynamic scaling
+bcdedit /set useplatformtick no >nul 2>&1
 
 :: Hardware Abstraction Layer (HAL) & KERNEL
 :: Disables Data Execution Prevention (May improve performance and latency)
