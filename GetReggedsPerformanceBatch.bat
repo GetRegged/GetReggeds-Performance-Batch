@@ -1301,7 +1301,7 @@ bcdedit /set bootmenupolicy standard >nul 2>&1
 :: Disables display of boot error messages (May improve boot speed)
 bcdedit /set bootstatuspolicy ignoreallfailures >nul 2>&1
 :: Disables display of the boot progress (May improve boot speed)
-bcdedit /set quietboot off >nul 2>&1
+bcdedit /set quietboot on >nul 2>&1
 :: Disable display names of drivers as they load (May improve boot speed)
 bcdedit /set sos off >nul 2>&1
 :: Disable debugging during boot (May improve boot speed)
