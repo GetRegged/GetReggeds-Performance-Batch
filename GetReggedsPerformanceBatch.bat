@@ -1315,7 +1315,7 @@ bcdedit /set graphicsmodedisabled On >nul 2>&1
 :: Disable boot applications using highest graphical mode (May improve boot speed)
 bcdedit /set highestmode off >nul 2>&1
 :: Disables integrity checks for drivers during boot (May improve boot speed)
-bcdedit /set nointegritychecks Yes >nul 2>&1
+bcdedit /set nointegritychecks on >nul 2>&1
 :: Disables Early Launch Anti-Malware during boot (May improve boot speed)
 bcdedit /set disableelamdrivers Yes >nul 2>&1
 :: Disable hypervisor launch during boot (May improve boot speed)
