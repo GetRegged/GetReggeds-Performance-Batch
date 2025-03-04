@@ -1278,7 +1278,7 @@ bcdedit /set uselegacyapicmode no >nul 2>&1
 :: HPET and Platform Timer Settings
 :: Disables dynamic timer tick adjustments, which may reduce latency but can slightly increase power usage
 bcdedit /set disabledynamictick yes >nul 2>&1
-:: Prevents Windows from forcing HPET, allowing it to use the faster, lower-latency TSC
+:: Prevents Windows from forcing HPET, allowing it to use the faster, lower-latency TSC (HUGE FPS BOOST)
 bcdedit /set useplatformclock no >nul 2>&1
 :: Prevents Windows from forcing fixed hardware timer ticks, allowing more efficient dynamic scaling
 bcdedit /set useplatformtick no >nul 2>&1
