@@ -1277,9 +1277,9 @@ bcdedit /set uselegacyapicmode no >nul 2>&1
 
 :: HPET and Platform Timer Settings
 :: Disable HPET (May improve latency and FPS)
-bcdedit /set disabledynamictick Yes >nul 2>&1
-bcdedit /set platformtick No >nul 2>&1
-bcdedit /set useplatformclock No >nul 2>&1
+bcdedit /set disabledynamictick yes >nul 2>&1
+:: Disable use of HPET and force CPU's internal Time Stamp Counter
+bcdedit /set useplatformclock no >nul 2>&1
 
 :: Hardware Abstraction Layer (HAL) & KERNEL
 :: Disables Data Execution Prevention (May improve performance and latency)
