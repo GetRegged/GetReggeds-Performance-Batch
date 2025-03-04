@@ -1261,13 +1261,15 @@ timeout /t 1 /nobreak >nul 2>&1
 cls
 echo Optimizing Latency
 
-:: BCD Tweaks
+:: Debugging
+:: Disable kernel debugging
+bcdedit /set debug off >nul 2>&1
 
 :: VESA, PCI, VGA, and TPM
 :: Enable Default MSI mode (May improve interrupt handling and reduce DPC latency)
 bcdedit /set MSI Default >nul 2>&1
 
-::Processors and APICs
+:: Processors and APICs
 :: Enable x2APIC mode (Improves interrupt handling on modern CPUs, may improve multi-threaded performance)
 bcdedit /set x2apicpolicy enable >nul 2>&1
 :: Disable legacy APIC mode (Improve performance and latency)
@@ -1284,6 +1286,14 @@ bcdedit /set useplatformclock No >nul 2>&1
 bcdedit /set nx AlwaysOff >nul 2>&1
 :: Enable enhanced TSC synchronization (May improve latency on multi-core systems, better timekeeping)
 bcdedit /set tscsyncpolicy Enhanced >nul 2>&1
+
+:: Hypervisor Settings
+:: Disable Hypervisor debugging
+bcdedit /set hypervisordebug off >nul 2>&1
+
+:: Drivers and System Root
+:: Disable kernel Emergency Management Services
+bcdedit /set ems Off >nul 2>&1
 
 :: Boot Settings
 :: Disables Windows graphical boot menu (May improve boot speed)
@@ -1312,6 +1322,8 @@ bcdedit /set disableelamdrivers Yes >nul 2>&1
 bcdedit /set hypervisorlaunchtype off >nul 2>&1
 :: Disable advanced input devices during boot (May improve boot speed)
 bcdedit /set extendedinput No >nul 2>&1
+:: Disable Virtual Secure Mode launch (May improve boot speed)
+bcdedit /set vsmlaunchtype off >nul 2>&1
 
 chcp 437 >nul 2>nul
 :: Disable Memory Compression
