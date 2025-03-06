@@ -1261,71 +1261,13 @@ timeout /t 1 /nobreak >nul 2>&1
 cls
 echo Optimizing Latency
 
-:: Debugging
-:: Disable kernel debugging
-bcdedit /set debug off >nul 2>&1
-
-:: VESA, PCI, VGA, and TPM
-:: Enable Default MSI mode (May improve interrupt handling and reduce DPC latency)
-bcdedit /set MSI Default >nul 2>&1
-
-:: Processors and APICs
-:: Enable x2APIC mode (Improves interrupt handling on modern CPUs, may improve multi-threaded performance)
-bcdedit /set x2apicpolicy enable >nul 2>&1
-:: Disable legacy APIC mode (Improve performance and latency)
-bcdedit /set uselegacyapicmode no >nul 2>&1
-
-:: HPET and Platform Timer Settings
+:: Disable HPET and enforce TSC
 :: Disable dynamictick for more consistent and frequent timer interrupts, which enhances responsiveness and latency
 bcdedit /set disabledynamictick yes >nul 2>&1
 :: Disables use of HPET forcing the system to use TSC (HUGE FPS BOOST)
 bcdedit /set useplatformclock no >nul 2>&1
 :: Disables use of HPET forcing the system to use TSC
 bcdedit /set useplatformtick no >nul 2>&1
-
-:: Hardware Abstraction Layer (HAL) & KERNEL
-:: Disables Data Execution Prevention (May improve performance and latency)
-bcdedit /set nx AlwaysOff >nul 2>&1
-:: Enable enhanced TSC synchronization (May improve latency on multi-core systems, better timekeeping)
-bcdedit /set tscsyncpolicy Enhanced >nul 2>&1
-
-:: Hypervisor Settings
-:: Disable Hypervisor debugging
-bcdedit /set hypervisordebug off >nul 2>&1
-
-:: Drivers and System Root
-:: Disable kernel Emergency Management Services
-bcdedit /set ems Off >nul 2>&1
-
-:: Boot Settings
-:: Disables Windows graphical boot menu (May improve boot speed)
-bcdedit /set bootmenupolicy standard >nul 2>&1
-:: Disables display of boot error messages (May improve boot speed)
-bcdedit /set bootstatuspolicy ignoreallfailures >nul 2>&1
-:: Disables display of the boot progress (May improve boot speed)
-bcdedit /set quietboot on >nul 2>&1
-:: Disable display names of drivers as they load (May improve boot speed)
-bcdedit /set sos off >nul 2>&1
-:: Disable debugging during boot (May improve boot speed)
-bcdedit /set bootdebug off >nul 2>&1
-:: Disables logging during boot (May improve boot speed)
-bcdedit /set bootlog No >nul 2>&1
-:: Disables boot graphics like Logo, Image, Animation (May improve boot speed)
-bcdedit /set bootuxdisabled On >nul 2>&1
-:: Disables graphics mode and forces text (May improve boot speed)
-bcdedit /set graphicsmodedisabled On >nul 2>&1
-:: Disable boot applications using highest graphical mode (May improve boot speed)
-bcdedit /set highestmode off >nul 2>&1
-:: Disables integrity checks for drivers during boot (May improve boot speed)
-bcdedit /set nointegritychecks on >nul 2>&1
-:: Disables Early Launch Anti-Malware during boot (May improve boot speed)
-bcdedit /set disableelamdrivers Yes >nul 2>&1
-:: Disable hypervisor launch during boot (May improve boot speed)
-bcdedit /set hypervisorlaunchtype off >nul 2>&1
-:: Disable advanced input devices during boot (May improve boot speed)
-bcdedit /set extendedinput No >nul 2>&1
-:: Disable Virtual Secure Mode launch (May improve boot speed)
-bcdedit /set vsmlaunchtype off >nul 2>&1
 
 chcp 437 >nul 2>nul
 :: Disable Memory Compression
