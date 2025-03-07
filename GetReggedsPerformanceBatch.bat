@@ -2887,14 +2887,14 @@ reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >
 :: Set new accent color values for the current user
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "808080aa000000aa808080aa808080aa000000aa000000aa000000aa000000aa" /f
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "808080aa000000aa808080aa808080aa000000aa000000aa000000aa000000aa" /f >nul 2>&1
 
 :: Remove existing accent settings for the default user
 reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
 :: Set new accent color values for the default user
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
-reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "808080aa000000aa808080aa808080aa000000aa000000aa000000aa000000aa" /f
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "808080aa000000aa808080aa808080aa000000aa000000aa000000aa000000aa" /f >nul 2>&1
 
 :: Remove existing DWM settings for the current user
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
@@ -2957,7 +2957,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "DisableLogonBackgr
 
 :: Set personalization background colors
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Background" /t REG_SZ /d "#000000" /f >nul 2>&1
-reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Accent" /f
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Accent" /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreen" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
 :: Remove existing DWM policies
