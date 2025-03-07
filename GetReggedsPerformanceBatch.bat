@@ -1180,28 +1180,6 @@ curl -g -k -L -# -o "%temp%\DevManView.exe" "https://github.com/GetRegged/GetReg
 
 timeout /t 1 /nobreak >nul 2>&1
 
-:: ██████╗ ██╗███████╗██╗  ██╗
-:: ██╔══██╗██║██╔════╝██║ ██╔╝
-:: ██║  ██║██║███████╗█████╔╝ 
-:: ██║  ██║██║╚════██║██╔═██╗ 
-:: ██████╔╝██║███████║██║  ██╗
-:: ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝
-cls
-echo Optimizing System Disks
-
-:: Enable TRIM for SSD
-fsutil behavior set DisableDeleteNotify NTFS 0 >nul 2>&1
-fsutil behavior set DisableDeleteNotify ReFS 0 >nul 2>&1
-
-:: NTFS Tweaks
-fsutil behavior set disabledeletenotify 0 >nul 2>&1
-fsutil behavior set disablelastaccess 1 >nul 2>&1
-fsutil behavior set encryptpagingfile 0 >nul 2>&1
-fsutil behavior set memoryusage 2 >nul 2>&1
-fsutil behavior set mftzone 4 >nul 2>&1
-
-timeout /t 1 /nobreak >nul 2>&1
-
 :: ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗       ██╗       ██╗  ██╗███████╗██╗   ██╗██████╗  ██████╗  █████╗ ██████╗ ██████╗ 
 :: ████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝       ██║       ██║ ██╔╝██╔════╝╚██╗ ██╔╝██╔══██╗██╔═══██╗██╔══██╗██╔══██╗██╔══██╗
 :: ██╔████╔██║██║   ██║██║   ██║███████╗█████╗      ████████╗    █████╔╝ █████╗   ╚████╔╝ ██████╔╝██║   ██║███████║██████╔╝██║  ██║
