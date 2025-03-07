@@ -2882,6 +2882,9 @@ cls
 echo Applying Windows Dark Minimal Mode
 timeout /t 2 /nobreak > NUL
 
+:: Close settings app
+taskkill /im SystemSettings.exe /f >nul 2>&1
+
 :: Remove existing accent settings for the current user
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
 :: Set new accent color values for the current user
