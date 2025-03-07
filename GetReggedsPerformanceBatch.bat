@@ -1292,7 +1292,7 @@ reg add "HKCU\System\GameConfigStore" /v GameDVR_DXGIHonorFSEWindowsCompatible /
 reg add "HKCU\System\GameConfigStore" /v GameDVR_EFSEFeatureFlags /t REG_DWORD /d 0 /f >nul 2>&1
 reg add "HKCU\System\GameConfigStore" /v GameDVR_DSEBehavior /t REG_DWORD /d 0 /f >nul 2>&1
 
-:: Enable memory integrity without UEFI Lock
+:: Enable memory integrity without UEFI Lock (Needed for Valorant)
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v "RequirePlatformSecurityFeatures" /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v "Locked" /t REG_DWORD /d 0 /f >nul 2>&1
@@ -1524,19 +1524,19 @@ timeout /t 1 /nobreak >nul 2>&1
 cls
 echo Optimizing Desktop
 
-:: Close stuck apps automatically
+:: Close stuck apps without promp
 reg add "HKCU\Control Panel\Desktop" /v "AutoEndTasks" /t REG_DWORD /d "1" /f >nul 2>&1
 
-:: Sets low-level hooks timeout improving application responsiveness
-reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_DWORD /d "100" /f >nul 2>&1
+:: Set time in ms that windows waits until it ends stuck apps
+reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_DWORD /d "1000" /f >nul 2>&1
 
-:: Set App cloding at Shutdown to 1 Sec
+:: Set App closing at Shutdown to 1 Sec
 reg add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_DWORD /d "1000" /f >nul 2>&1
 
 :: Disable Menue Show Delay
-reg add "HKCU\Control Panel\Desktop" /v "MenuShowDelay" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Desktop" /v "MenuShowDelay" /t REG_DWORD /d "1" /f >nul 2>&1
 
-:: Disable Windows Lock Delay
+:: Disable Require Sign-in after Display Turns Off
 reg add "HKCU\Control Panel\Desktop" /v "DelayLockInterval" /t REG_DWORD /d "0" /f >nul 2>&1
 
 timeout /t 1 /nobreak >nul 2>&1
