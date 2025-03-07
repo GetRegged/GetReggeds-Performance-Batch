@@ -2944,6 +2944,10 @@ reg add "HKU\.DEFAULT\Control Panel\Colors" /v "HotTrackingColor" /t REG_SZ /d "
 reg add "HKU\.DEFAULT\Control Panel\Colors" /v "MenuHilight" /t REG_SZ /d "128 128 128" /f >nul 2>&1
 reg add "HKU\.DEFAULT\Control Panel\Colors" /v "ActiveBorder" /t REG_SZ /d "0 0 0" /f >nul 2>&1
 
+:: Set background solid color black
+reg add HKCU\Control Panel\Desktop /v WallPaper /t REG_SZ /d "" /f >nul 2>&1
+reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers /v BackgroundType /t REG_DWORD /d 1 /f >nul 2>&1
+
 :: Set the logon background color for the local machine
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "Background" /t REG_SZ /d "0 0 0" /f >nul 2>&1
 
@@ -3137,6 +3141,8 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCorta
 
 :: Hidden > Taskbar > Save Task View timeline history > Disabled
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed" /t REG_DWORD /d "0" /f >nul 2>&1
+
+taskkill /f /im explorer.exe & start explorer.exe >nul 2>&1
 
 cls
 echo Completed
