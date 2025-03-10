@@ -86,9 +86,9 @@ echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Optimization%t%      
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Cleaner%t%                                                                                             %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Dark Minimal Mode%t%                                                                                   %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Windows Dark Minimal Mode%t%                                                                                   %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Windows Cleaner%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
 echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Exit%t%%w%║%y%                                                     %w%║%y%
 echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
@@ -100,8 +100,8 @@ if '%choice%'=='1' goto WindowsActivation
 if '%choice%'=='2' goto WindowsPowerPlan
 if '%choice%'=='3' goto WindowsOptimization
 if '%choice%'=='4' goto WindowsUpdates
-if '%choice%'=='5' goto WindowsCleaner
-if '%choice%'=='6' goto WindowsDarkMinimalMode
+if '%choice%'=='5' goto WindowsDarkMinimalMode
+if '%choice%'=='6' goto WindowsCleaner
 if '%choice%'=='7' goto ProgramDownloader
 if '%choice%'=='8' goto ProgramUpdater
 
@@ -161,21 +161,31 @@ if '%choice%'=='2' goto deactivate
 
 :activate
 cls
+echo Activating Windows
+timeout /t 1 /nobreak >nul 2>&1
+
 cscript //B "%windir%\system32\slmgr.vbs" /ipk VK7JG-NPHTM-C97JM-9MPGT-3V66T
 cscript //B "%windir%\system32\slmgr.vbs" /skms kms8.msguides.com >nul 2>&1
+
+cls
 echo Windows activated
-timeout /t 2 /nobreak >nul 2>&1
+timeout /t 1 /nobreak >nul 2>&1
 goto menuorexit
 
 :deactivate
 cls
-cscript //B "%windir%\system32\slmgr.vbs" -upk
-cscript //B "%windir%\system32\slmgr.vbs" -cpky
-cscript //B "%windir%\system32\slmgr.vbs" -rearm
-reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" /v "BackupProductKey" /f>nul
-reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" /v "KeyManagementServiceName" /f>nul
+echo Deactivating Windows
+timeout /t 1 /nobreak >nul 2>&1
+
+cscript //B "%windir%\system32\slmgr.vbs" -upk >nul 2>&1
+cscript //B "%windir%\system32\slmgr.vbs" -cpky >nul 2>&1
+cscript //B "%windir%\system32\slmgr.vbs" -rearm >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" /v "BackupProductKey" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform" /v "KeyManagementServiceName" /f >nul 2>&1
+
+cls
 echo Windows deactivated
-timeout /t 2 /nobreak >nul 2>&1
+timeout /t 1 /nobreak >nul 2>&1
 goto menuorexit
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
@@ -190,6 +200,7 @@ goto menuorexit
 :WindowsPowerPlan
 cls
 echo Activating Bitsum Highest Performance Power Plan
+timeout /t 1 /nobreak > NUL
 
 :: Import GetReggeds Power Plan
 curl -g -k -L -# -o "%temp%\Bitsum-Highest-Performance.pow" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/Bitsum-Highest-Performance.pow" >nul 2>&1
@@ -204,7 +215,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "SleepReliabilityDetail
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "HiberbootEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Disable Sleep Study
-echo Disable Sleep Study
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "SleepStudyDisabled" /t REG_DWORD /d "1" /f >nul 2>&1
 
 cls
@@ -258,7 +268,7 @@ if '%choice%'=='2' goto menuorexit
 :DeletePlans
 cls
 echo Deleting other power plans
-timeout /t 2 /nobreak > NUL
+timeout /t 1 /nobreak > NUL
 
 :: Delete Balanced Power Plan
 powercfg -delete 381b4222-f694-41f0-9685-ff5bb260df2e >nul 2>&1
@@ -343,13 +353,15 @@ if '%choice%'=='2' goto StartWindowsOptimization
 :: Creating restore point
 cls
 echo Creating restore point
+timeout /t 1 /nobreak >nul 2>&1
+
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "SystemRestorePointCreationFrequency" /t REG_DWORD /d "0" /f
 chcp 437 >nul 2>nul
 PowerShell -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'GetReggeds Performance Batch' -RestorePointType 'MODIFY_SETTINGS'"
 
 cls
 echo Restore point created
-timeout /t 2 /nobreak >nul 2>&1
+timeout /t 1 /nobreak >nul 2>&1
 
 :StartWindowsOptimization
 :: ██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗    ███████╗███████╗████████╗████████╗██╗███╗   ██╗ ██████╗ ███████╗
@@ -360,6 +372,7 @@ timeout /t 2 /nobreak >nul 2>&1
 ::  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚══════╝    ╚══════╝╚══════╝   ╚═╝      ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
 cls
 echo Optimizing Settings App
+timeout /t 1 /nobreak >nul 2>&1
 
 :: SYSTEM TAB
 
@@ -1092,14 +1105,15 @@ reg add "HKCU\SOFTWARE\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPre
 reg add "HKCU\SOFTWARE\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps" /v "AgentActivationOnLockScreenEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Speech_OneCore\Settings\VoiceActivation\UserPreferenceForAllApps" /v "AgentActivationLastUsed" /t REG_DWORD /d "0" /f >nul 2>&1
 
-timeout /t 1 /nobreak >nul 2>&1
-
 :: ███████╗██╗  ██╗██████╗ ██╗      ██████╗ ██████╗ ███████╗██████╗ 
 :: ██╔════╝╚██╗██╔╝██╔══██╗██║     ██╔═══██╗██╔══██╗██╔════╝██╔══██╗
 :: █████╗   ╚███╔╝ ██████╔╝██║     ██║   ██║██████╔╝█████╗  ██████╔╝
 :: ██╔══╝   ██╔██╗ ██╔═══╝ ██║     ██║   ██║██╔══██╗██╔══╝  ██╔══██╗
 :: ███████╗██╔╝ ██╗██║     ███████╗╚██████╔╝██║  ██║███████╗██║  ██║
 :: ╚══════╝╚═╝  ╚═╝╚═╝     ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+cls
+echo Optimizing Explorer
+timeout /t 1 /nobreak >nul 2>&1
 
 :: Set Open File Explorer to This PC
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "LaunchTo" /t REG_DWORD /d "1" /f >nul 2>&1
@@ -1148,6 +1162,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Ribbon" /v "Min
 :: ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝ ╚═════╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
 cls
 echo Optimizing Device Manager
+timeout /t 1 /nobreak >nul 2>&1
 
 :: Get DevManView
 curl -g -k -L -# -o "%temp%\DevManView.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/DevManView.exe" >nul 2>&1
@@ -1178,8 +1193,6 @@ curl -g -k -L -# -o "%temp%\DevManView.exe" "https://github.com/GetRegged/GetReg
 %temp%\DevManView.exe /disable "WAN Miniport (PPTP)"
 %temp%\DevManView.exe /disable "WAN Miniport (SSTP)"
 
-timeout /t 1 /nobreak >nul 2>&1
-
 :: ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗       ██╗       ██╗  ██╗███████╗██╗   ██╗██████╗  ██████╗  █████╗ ██████╗ ██████╗ 
 :: ████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝       ██║       ██║ ██╔╝██╔════╝╚██╗ ██╔╝██╔══██╗██╔═══██╗██╔══██╗██╔══██╗██╔══██╗
 :: ██╔████╔██║██║   ██║██║   ██║███████╗█████╗      ████████╗    █████╔╝ █████╗   ╚████╔╝ ██████╔╝██║   ██║███████║██████╔╝██║  ██║
@@ -1188,13 +1201,14 @@ timeout /t 1 /nobreak >nul 2>&1
 :: ╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝    ╚═════╝      ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
 cls
 echo Optimizing Mouse and Keyboard
+timeout /t 1 /nobreak >nul 2>&1
 
 :: Enable 1:1 Pixel Mouse Movements
 reg add "HKCU\Control Panel\Mouse" /v "MouseSensitivity" /t REG_SZ /d "10" /f >nul 2>&1
 
 :: Disable Mouse acceleration via X and Y Curve
-reg add "HKEY_CURRENT_USER\Control Panel\Mouse" /v SmoothMouseXCurve /t REG_BINARY /d 0000000000000000C0CC0C0000000000809919000000000040662600000000000033330000000000 /f
-reg add "HKEY_CURRENT_USER\Control Panel\Mouse" /v SmoothMouseYCurve /t REG_BINARY /d 0000000000000000000038000000000000007000000000000000A800000000000000E00000000000 /f
+reg add "HKEY_CURRENT_USER\Control Panel\Mouse" /v SmoothMouseXCurve /t REG_BINARY /d 0000000000000000C0CC0C0000000000809919000000000040662600000000000033330000000000 /f >nul 2>&1
+reg add "HKEY_CURRENT_USER\Control Panel\Mouse" /v SmoothMouseYCurve /t REG_BINARY /d 0000000000000000000038000000000000007000000000000000A800000000000000E00000000000 /f >nul 2>&1
 
 :: Disable Mouse Acceleration
 reg add "HKCU\Control Panel\Mouse" /v "MouseSpeed" /t REG_SZ /d "0" /f >nul 2>&1
@@ -1233,8 +1247,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\USB" /v "DisableSelectiveSuspend
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions" /v "CpuPriorityClass" /t REG_DWORD /d "4" /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions" /v "IoPriority" /t REG_DWORD /d "3" /f >nul 2>&1
 
-timeout /t 1 /nobreak >nul 2>&1
-
 :: ██╗      █████╗ ████████╗███████╗███╗   ██╗ ██████╗██╗   ██╗
 :: ██║     ██╔══██╗╚══██╔══╝██╔════╝████╗  ██║██╔════╝╚██╗ ██╔╝
 :: ██║     ███████║   ██║   █████╗  ██╔██╗ ██║██║      ╚████╔╝ 
@@ -1243,6 +1255,7 @@ timeout /t 1 /nobreak >nul 2>&1
 :: ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═══╝ ╚═════╝   ╚═╝  
 cls
 echo Optimizing Latency
+timeout /t 1 /nobreak >nul 2>&1
 
 :: Disable HPET and enforce TSC
 :: Disable dynamictick for more consistent and frequent timer interrupts, which enhances responsiveness and latency
@@ -1513,8 +1526,6 @@ reg add "HKLM\SYSTEM\ResourcePolicyStore\ResourceSets\Policies\Importance\VeryLo
 reg add "HKLM\SYSTEM\ResourcePolicyStore\ResourceSets\Policies\Memory\NoCap" /v "CommitLimit" /t REG_DWORD /d "4294967295" /f >nul 2>&1
 reg add "HKLM\SYSTEM\ResourcePolicyStore\ResourceSets\Policies\Memory\NoCap" /v "CommitTarget" /t REG_DWORD /d "4294967295" /f >nul 2>&1
 
-timeout /t 1 /nobreak >nul 2>&1
-
 :: ██████╗ ███████╗███████╗██╗  ██╗████████╗ ██████╗ ██████╗ 
 :: ██╔══██╗██╔════╝██╔════╝██║ ██╔╝╚══██╔══╝██╔═══██╗██╔══██╗
 :: ██║  ██║█████╗  ███████╗█████╔╝    ██║   ██║   ██║██████╔╝
@@ -1523,23 +1534,25 @@ timeout /t 1 /nobreak >nul 2>&1
 :: ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     
 cls
 echo Optimizing Desktop
+timeout /t 1 /nobreak >nul 2>&1
 
-:: Close stuck apps without promp
+:: Set closing stuck apps without promp
 reg add "HKCU\Control Panel\Desktop" /v "AutoEndTasks" /t REG_DWORD /d "1" /f >nul 2>&1
 
-:: Set time in ms that windows waits until it ends stuck apps
-reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_DWORD /d "1000" /f >nul 2>&1
+:: Set time in ms that windows waits until terminating stuck apps
+reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_DWORD /d "2000" /f >nul 2>&1
 
-:: Set App closing at Shutdown to 1 Sec
-reg add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_DWORD /d "1000" /f >nul 2>&1
+:: Set time in ms that windows waits until terminating apps at Shutdown
+reg add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_DWORD /d "2000" /f >nul 2>&1
+
+:: Set time in ms that windows waits until terminating services at Shutdown
+reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_DWORD /d "2000" /f >nul 2>&1
 
 :: Disable Menue Show Delay
 reg add "HKCU\Control Panel\Desktop" /v "MenuShowDelay" /t REG_DWORD /d "1" /f >nul 2>&1
 
 :: Disable Require Sign-in after Display Turns Off
 reg add "HKCU\Control Panel\Desktop" /v "DelayLockInterval" /t REG_DWORD /d "0" /f >nul 2>&1
-
-timeout /t 1 /nobreak >nul 2>&1
 
 :: ████████╗███████╗██╗     ███████╗███╗   ███╗███████╗████████╗██████╗ ██╗   ██╗
 :: ╚══██╔══╝██╔════╝██║     ██╔════╝████╗ ████║██╔════╝╚══██╔══╝██╔══██╗╚██╗ ██╔╝
@@ -1548,7 +1561,8 @@ timeout /t 1 /nobreak >nul 2>&1
 ::    ██║   ███████╗███████╗███████╗██║ ╚═╝ ██║███████╗   ██║   ██║  ██║   ██║   
 ::    ╚═╝   ╚══════╝╚══════╝╚══════╝╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝    
 cls
-echo Disable Telemetry
+echo Disabling Telemetry
+timeout /t 1 /nobreak >nul 2>&1
 
 :: Disable Telemetry Services
 sc config DiagTrack start= disabled >nul 2>&1
@@ -2023,8 +2037,6 @@ findstr /C:"0.0.0.0 watson.telemetry.microsoft.com" %windir%\System32\drivers\et
 findstr /C:"0.0.0.0 wes.df.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 wes.df.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 www.google-analytics.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 www.google-analytics.com >> %windir%\System32\drivers\etc\hosts
 
-timeout /t 1 /nobreak >nul 2>&1
-
 :: ██████╗ ██╗      ██████╗  █████╗ ████████╗██╗    ██╗ █████╗ ██████╗ ███████╗
 :: ██╔══██╗██║     ██╔═══██╗██╔══██╗╚══██╔══╝██║    ██║██╔══██╗██╔══██╗██╔════╝
 :: ██████╔╝██║     ██║   ██║███████║   ██║   ██║ █╗ ██║███████║██████╔╝█████╗  
@@ -2032,7 +2044,8 @@ timeout /t 1 /nobreak >nul 2>&1
 :: ██████╔╝███████╗╚██████╔╝██║  ██║   ██║   ╚███╔███╔╝██║  ██║██║  ██║███████╗
 :: ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝
 cls
-echo Disable Bloatware
+echo Disabling Bloatware
+timeout /t 1 /nobreak >nul 2>&1
 
 :: Stop Windows from Reinstalling Preinstalled apps
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "ContentDeliveryAllowed" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -2042,19 +2055,12 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" 
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SilentInstalledAppsEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContentEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
-timeout /t 1 /nobreak >nul 2>&1
-
-:: ███████╗███████╗██████╗ ██╗   ██╗██╗ ██████╗███████╗███████╗
-:: ██╔════╝██╔════╝██╔══██╗██║   ██║██║██╔════╝██╔════╝██╔════╝
-:: ███████╗█████╗  ██████╔╝██║   ██║██║██║     █████╗  ███████╗
-:: ╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██║██║     ██╔══╝  ╚════██║
-:: ███████║███████╗██║  ██║ ╚████╔╝ ██║╚██████╗███████╗███████║
-:: ╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝ ╚═════╝╚══════╝╚══════╝
-cls
-echo Optimizing Services
-
-:: Decrease Service Kill Time
-reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_DWORD /d "2000" /f >nul 2>&1
+::███████╗███████╗██████╗ ██╗   ██╗██╗ ██████╗███████╗███████╗
+::██╔════╝██╔════╝██╔══██╗██║   ██║██║██╔════╝██╔════╝██╔════╝
+::███████╗█████╗  ██████╔╝██║   ██║██║██║     █████╗  ███████╗
+::╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██║██║     ██╔══╝  ╚════██║
+::███████║███████╗██║  ██║ ╚████╔╝ ██║╚██████╗███████╗███████║
+::╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝ ╚═════╝╚══════╝╚══════╝
 
 :: Optimize Service Host Split Threshold
 :SvcHostOptimization
@@ -2093,48 +2099,51 @@ echo %w%║%y%                                                                  
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝%y%
+echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
+echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Skip%t%%w%║%y%                                                     %w%║%y%
+echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
 set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
+if '%choice%'=='0' goto SkipSvcHostOptimization
 if '%choice%'=='1' goto 8GB
 if '%choice%'=='2' goto 16GB
 if '%choice%'=='3' goto 32GB
 if '%choice%'=='4' goto 64GB
-if '%choice%'=='5' goto ServiceOptimizations
 
 :8GB
 cls
-echo Optimize Service Host Split Threshold for 8GB RAM
+echo Optimizing Service Host Split Threshold for 8GB RAM
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB" /t REG_DWORD /d "8388608" /f >nul 2>&1
 timeout /t 1 /nobreak >nul 2>&1
-goto ServiceOptimizations
+goto remotesvc
 
 :16GB
 cls
-echo Optimize Service Host Split Threshold for 16GB RAM
+echo Optimizing Service Host Split Threshold for 16GB RAM
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB" /t REG_DWORD /d "16777216" /f >nul 2>&1
 timeout /t 1 /nobreak >nul 2>&1
-goto ServiceOptimizations
+goto remotesvc
 
 :32GB
 cls
-echo Optimize Service Host Split Threshold for 32GB RAM
+echo Optimizing Service Host Split Threshold for 32GB RAM
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB" /t REG_DWORD /d "33554432" /f >nul 2>&1
 timeout /t 1 /nobreak >nul 2>&1
-goto ServiceOptimizations
+goto remotesvc
 
 :64GB
 cls
-echo Optimize Service Host Split Threshold for 64GB RAM
+echo Optimizing Service Host Split Threshold for 64GB RAM
 reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB" /t REG_DWORD /d "67108864" /f >nul 2>&1
 timeout /t 1 /nobreak >nul 2>&1
-goto ServiceOptimizations
+goto remotesvc
+
+:SkipSvcHostOptimization
+goto remotesvc
 
 ::Optimize Windows Services & Tasks
-:ServiceOptimizations
+:remotesvc
 cls
 chcp 65001 >nul 2>nul
 cls
@@ -2170,13 +2179,13 @@ echo %w%║%y%                                                                  
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝%y%
+echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
+echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Skip%t%%w%║%y%                                                     %w%║%y%
+echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
 set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='0' goto Menu
+if '%choice%'=='0' goto Skipremotesvc
 if '%choice%'=='1' goto disableremote
 if '%choice%'=='2' goto printsvc
 
@@ -2184,12 +2193,15 @@ if '%choice%'=='2' goto printsvc
 :disableremote
 cls
 echo Disable Remote Services and Tasks
+timeout /t 1 /nobreak >nul 2>&1
+
 sc config RemoteRegistry start= disabled >nul 2>&1
 sc config RemoteAccess start= disabled >nul 2>&1
 sc config WinRM start= disabled >nul 2>&1
 sc config RmSvc start= disabled >nul 2>&1
 
-timeout /t 1 /nobreak >nul 2>&1
+:Skipremotesvc
+goto printsvc
 
 :printsvc
 cls
@@ -2227,13 +2239,13 @@ echo %w%║%y%                                                                  
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝%y%
+echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
+echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Skip%t%%w%║%y%                                                     %w%║%y%
+echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
 set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='0' goto Menu
+if '%choice%'=='0' goto Skipsvcprintsvc
 if '%choice%'=='1' goto disableprint
 if '%choice%'=='2' goto bluetoothsvc
 
@@ -2241,12 +2253,15 @@ if '%choice%'=='2' goto bluetoothsvc
 :disableprint
 cls
 echo Disable Printer Services and Tasks
+timeout /t 1 /nobreak >nul 2>&1
+
 sc config PrintNotify start= disabled >nul 2>&1
 sc config Spooler start= disabled >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Printing\EduPrintProv" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\Printing\PrinterCleanupTask" /Disable >nul 2>&1
 
-timeout /t 1 /nobreak >nul 2>&1
+:Skipsvcprintsvc
+goto bluetoothsvc
 
 :bluetoothsvc
 cls
@@ -2284,13 +2299,13 @@ echo %w%║%y%                                                                  
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝%y%
+echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
+echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Skip%t%%w%║%y%                                                     %w%║%y%
+echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
 set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='0' goto Menu
+if '%choice%'=='0' goto Skipbluetoothsvc
 if '%choice%'=='1' goto disablebluetooth
 if '%choice%'=='2' goto GraphicsOptimization
 
@@ -2298,10 +2313,13 @@ if '%choice%'=='2' goto GraphicsOptimization
 :disablebluetooth
 cls
 echo Disable Bluetooth Services and Tasks
+timeout /t 1 /nobreak >nul 2>&1
+
 sc config BTAGService start= disabled >nul 2>&1
 sc config bthserv start= disabled >nul 2>&1
 
-timeout /t 1 /nobreak >nul 2>&1
+:Skipbluetoothsvc
+goto GraphicsOptimization
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 ::  ██████╗ ██████╗  █████╗ ██████╗ ██╗  ██╗██╗ ██████╗███████╗     ██████╗ ██████╗ ████████╗██╗███╗   ███╗██╗███████╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗
@@ -2361,7 +2379,7 @@ echo %w%╚═══════════════════════
 set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='0' goto SkipGPU
+if '%choice%'=='0' goto SkipGraphicsOptimization
 if '%choice%'=='1' goto NVIDIA
 if '%choice%'=='2' goto AMD
 if '%choice%'=='3' goto IGPU
@@ -2369,6 +2387,7 @@ if '%choice%'=='3' goto IGPU
 :NVIDIA
 cls
 echo Applying NVIDIA Optimizations
+timeout /t 1 /nobreak >nul 2>&1
 
 :: NVIDIA Inspector Profile
 :: curl -g -k -L -# -o "%temp%\nvidiaProfileInspector.zip" "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip" >nul 2>&1 &:: Importiere Profile Inspector
@@ -2486,8 +2505,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "TdrLimitTime
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "TdrTestMode" /t REG_DWORD /d "0" /f >nul 2>&1
 
 cls
-echo Completed
-timeout /t 1 /nobreak > NUL
+echo All Optimizations Have Been Applied. Please Restart Your System.
+timeout /t 3 /nobreak > NUL
 goto menuorexit
 
 :AMD
@@ -2600,8 +2619,8 @@ for %%a in (LTRSnoopL1Latency LTRSnoopL0Latency LTRNoSnoopL1Latency LTRMaxNoSnoo
 )
 
 cls
-echo Completed
-timeout /t 1 /nobreak > NUL
+echo All Optimizations Have Been Applied. Please Restart Your System.
+timeout /t 3 /nobreak > NUL
 goto menuorexit
 
 :IGPU
@@ -2612,14 +2631,14 @@ echo Applying IGPU Optimizations
 reg add "HKLM\SOFTWARE\Intel\GMM" /v "DedicatedSegmentSize" /t REG_DWORD /d "512" /f >nul 2>&1
 
 cls
-echo Completed
-timeout /t 1 /nobreak > NUL
+echo All Optimizations Have Been Applied. Please Restart Your System.
+timeout /t 3 /nobreak > NUL
 goto menuorexit
 
-:SkipGPU
+:SkipGraphicsOptimization
 cls
-echo Completed
-timeout /t 1 /nobreak > NUL
+echo All Optimizations Have Been Applied. Please Restart Your System.
+timeout /t 3 /nobreak > NUL
 goto menuorexit
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
@@ -2678,7 +2697,7 @@ if '%choice%'=='2' goto EnableUpdates
 
 :DisableUpdates
 cls
-echo Disable Windows Update
+echo Disabling Windows Update
 
 :: Start > Settings > Update & Security > Windows Update > Get ready for Windows 11... > Dismiss notification
 reg add "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "SvDismissedState" /t REG_DWORD /d "1" /f >nul 2>&1
@@ -2776,154 +2795,17 @@ schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\USO_UxBroker" /Disabl
 schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\UpdateModelTask" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WaaSMedic\PerformRemediation" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WindowsUpdate\Scheduled Start" /Disable >nul 2>&1
-timeout /t 1 /nobreak > NUL
 
 cls
 echo Completed
-timeout /t 2 /nobreak > NUL
+timeout /t 1 /nobreak > NUL
 goto menuorexit
 
 :EnableUpdates
 cls
 echo In the making...
-timeout /t 3 /nobreak > NUL
-
-cls
-echo Completed
-timeout /t 2 /nobreak > NUL
+timeout /t 1 /nobreak > NUL
 goto menuorexit
-
-::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-:: ██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗    ██████╗██╗     ███████╗ █████╗ ███╗   ██╗███████╗██████╗ 
-:: ██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗██║    ██║██╔════╝   ██╔════╝██║     ██╔════╝██╔══██╗████╗  ██║██╔════╝██╔══██╗
-:: ██║ █╗ ██║██║██╔██╗ ██║██║  ██║██║   ██║██║ █╗ ██║███████╗   ██║     ██║     █████╗  ███████║██╔██╗ ██║█████╗  ██████╔╝
-:: ██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║███╗██║╚════██║   ██║     ██║     ██╔══╝  ██╔══██║██║╚██╗██║██╔══╝  ██╔══██╗
-:: ╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝╚███╔███╔╝███████║   ╚██████╗███████╗███████╗██║  ██║██║ ╚████║███████╗██║  ██║
-::  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚══════╝    ╚═════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
-::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-:WindowsCleaner
-cls
-chcp 65001 >nul 2>nul
-cls
-set c=[94m
-set t=[0m
-set w=[31m
-set y=[0m
-set u=[4m
-set q=[0m
-echo.
-echo.
-echo.
-echo                       %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%████████%y%%c%╗%y%    %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y% %w%██████%y%%c%╗%y%  %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%██████%y%%c%╗%y% 
-echo                      %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%c%╚══%y%%w%██%y%%c%╔══╝%y%    %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔════╝%y%%w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%  
-echo                      %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%     %w%██%y%%c%║%y%       %w%██████%y%%c%╔╝%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y% 
-echo                      %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%     %w%██%y%%c%║%y%       %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y%     
-echo                      %c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%   %w%██%y%%c%║%y%       %w%██%y%%c%║  %y%%w%██%y%%c%║%y%%w%███████%y%%c%╗%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%%w%██████%y%%c%╔╝%y%
-echo                       %c%╚═════╝%y% %c%╚══════╝%y%   %c%╚═╝%y%       %c%╚═╝  ╚═╝%y%%c%╚══════╝%y% %c%╚═════╝%y%  %c%╚═════╝%y% %c%╚══════╝%y%%c%╚═════╝%y%          
-echo                                                     %c%%u%Version: %Version%%q%%t%
-echo.
-echo.
-echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
-echo %w%║%y%          CLEANER OPTIONS                                                                                             %w%║%y%
-echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Clean Temporary Files and Folders%t%                                                                           %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Clean Empty Folders%t%                                                                                         %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
-echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Menu%t%%w%║%y%                                                     %w%║%y%
-echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
-set choice=
-set /p choice=
-if not '%choice%'=='' set choice=%choice:~0,1%
-if '%choice%'=='0' goto Menu
-if '%choice%'=='1' goto CleanTemp
-if '%choice%'=='2' goto CleanEmptyFolders
-
-:CleanTemp
-cls
-echo Cleaning Temporary Files and Folders
-
-:: Reset & Delete IP-Cache
-ipconfig /flushdns >nul 2>&1
-ipconfig /release >nul 2>&1
-ipconfig /renew >nul 2>&1
-netsh int ip reset >nul 2>&1
-netsh int ipv4 reset >nul 2>&1
-netsh int ipv6 reset >nul 2>&1
-netsh int tcp reset >nul 2>&1
-netsh winsock reset >nul 2>&1
-netsh branchcache reset >nul 2>&1
-netsh http flush logbuffer >nul 2>&1
-
-:: Delete Temporary Cache & Files
-del /s /f /q "%AppData%\discord\Code Cache" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\Explorer\*.db" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\Explorer\thumbcache_*.db" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\INetCache" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\INetCookies" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\WebCache" >nul 2>&1
-del /s /f /q "%ProgramData%\Microsoft\Windows\Installer" >nul 2>&1
-del /s /f /q "%ProgramData%\USOPrivate\UpdateStore" >nul 2>&1
-del /s /f /q "%ProgramData%\USOShared\Logs" >nul 2>&1
-del /s /f /q "%systemdrive%\$Recycle.Bin" >nul 2>&1
-del /s /f /q "%temp%" >nul 2>&1
-del /s /f /q "%windir%\Installer\$PatchCache$" >nul 2>&1
-del /s /f /q "%windir%\Logs" >nul 2>&1
-del /s /f /q "%windir%\Prefetch" >nul 2>&1
-del /s /f /q "%windir%\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization" >nul 2>&1
-del /s /f /q "%windir%\SoftwareDistribution\Download" >nul 2>&1
-del /s /f /q "%windir%\System32\LogFiles\WMI\Diagtrack-Listener.etl*" >nul 2>&1
-del /s /f /q "%windir%\System32\SleepStudy" >nul 2>&1
-del /s /f /q "%windir%\temp" >nul 2>&1
-
-:: Delete Temporary Folders
-rd /s /q "%SystemDrive%\$GetCurrent" >nul 2>&1
-rd /s /q "%SystemDrive%\$SysReset" >nul 2>&1
-rd /s /q "%SystemDrive%\$WinREAgent" >nul 2>&1
-rd /s /q "%SystemDrive%\$Windows.~BT" >nul 2>&1
-rd /s /q "%SystemDrive%\$Windows.~WS" >nul 2>&1
-rd /s /q "%SystemDrive%\Intel" >nul 2>&1
-rd /s /q "%SystemDrive%\AMD" >nul 2>&1
-rd /s /q "%SystemDrive%\OneDriveTemp" >nul 2>&1
-rd /s /q "%SystemDrive%\System Volume Information" >nul 2>&1
-
-FOR /F "tokens=1,2*" %%V IN ('bcdedit') DO SET adminTest=%%V
-IF (%adminTest%)==(Access) goto noAdmin
-for /F "tokens=*" %%G in ('wevtutil.exe el') DO (call :do_clear "%%G")
-
-:do_clear
-wevtutil.exe cl %1
-cls
-echo Completed
-timeout /t 2 /nobreak > NUL
-goto WindowsCleaner
-
-:noAdmin
-cls
-echo Completed
-timeout /t 2 /nobreak > NUL
-goto WindowsCleaner
-
-:CleanEmptyFolders
-cls
-echo Cleaning Empty Folders, this may take a few minutes...
-
-:: Find and Delete Empty Folders
-cd C:\ >nul 2>&1
-for /f "usebackq delims=" %%d in (`"dir /ad/b/s | sort /R"`) do rd "%%d" >nul 2>&1
-
-cls
-echo Completed
-timeout /t 2 /nobreak > NUL
-goto WindowsCleaner
 
 ::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 :: ██████╗ ███████╗██████╗ ███████╗ ██████╗ ███╗   ██╗ █████╗ ██╗     ██╗███████╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗
@@ -3208,9 +3090,148 @@ echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
+::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+:: ██╗    ██╗██╗███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗    ██████╗██╗     ███████╗ █████╗ ███╗   ██╗███████╗██████╗ 
+:: ██║    ██║██║████╗  ██║██╔══██╗██╔═══██╗██║    ██║██╔════╝   ██╔════╝██║     ██╔════╝██╔══██╗████╗  ██║██╔════╝██╔══██╗
+:: ██║ █╗ ██║██║██╔██╗ ██║██║  ██║██║   ██║██║ █╗ ██║███████╗   ██║     ██║     █████╗  ███████║██╔██╗ ██║█████╗  ██████╔╝
+:: ██║███╗██║██║██║╚██╗██║██║  ██║██║   ██║██║███╗██║╚════██║   ██║     ██║     ██╔══╝  ██╔══██║██║╚██╗██║██╔══╝  ██╔══██╗
+:: ╚███╔███╔╝██║██║ ╚████║██████╔╝╚██████╔╝╚███╔███╔╝███████║   ╚██████╗███████╗███████╗██║  ██║██║ ╚████║███████╗██║  ██║
+::  ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚══════╝    ╚═════╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝
+::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+:WindowsCleaner
+cls
+chcp 65001 >nul 2>nul
+cls
+set c=[94m
+set t=[0m
+set w=[31m
+set y=[0m
+set u=[4m
+set q=[0m
+echo.
+echo.
+echo.
+echo                       %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%████████%y%%c%╗%y%    %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y% %w%██████%y%%c%╗%y%  %w%██████%y%%c%╗%y% %w%███████%y%%c%╗%y%%w%██████%y%%c%╗%y% 
+echo                      %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%c%╚══%y%%w%██%y%%c%╔══╝%y%    %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔════╝%y%%w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y% %w%██%y%%c%╔════╝%y%%w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%  
+echo                      %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%     %w%██%y%%c%║%y%       %w%██████%y%%c%╔╝%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║%y%  %w%███%c%╗%y%%w%██%y%%c%║%y%  %w%███%c%╗%y%%w%█████%y%%c%╗%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y% 
+echo                      %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%     %w%██%y%%c%║%y%       %w%██%y%%c%╔══%y%%w%██%y%%c%╗%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%║%y%   %w%██%y%%c%║%y%%w%██%y%%c%╔══╝%y%  %w%██%y%%c%║  %y%%w%██%y%%c%║%y%     
+echo                      %c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%   %w%██%y%%c%║%y%       %w%██%y%%c%║  %y%%w%██%y%%c%║%y%%w%███████%y%%c%╗%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%c%╚%y%%w%██████%y%%c%╔╝%y%%w%███████%y%%c%╗%y%%w%██████%y%%c%╔╝%y%
+echo                       %c%╚═════╝%y% %c%╚══════╝%y%   %c%╚═╝%y%       %c%╚═╝  ╚═╝%y%%c%╚══════╝%y% %c%╚═════╝%y%  %c%╚═════╝%y% %c%╚══════╝%y%%c%╚═════╝%y%          
+echo                                                     %c%%u%Version: %Version%%q%%t%
+echo.
+echo.
+echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
+echo %w%║%y%          CLEANER OPTIONS                                                                                             %w%║%y%
+echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Clean Temporary Files and Folders%t%                                                                           %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Clean Empty Folders%t%                                                                                         %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
+echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Menu%t%%w%║%y%                                                     %w%║%y%
+echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
+set choice=
+set /p choice=
+if not '%choice%'=='' set choice=%choice:~0,1%
+if '%choice%'=='0' goto Menu
+if '%choice%'=='1' goto CleanTemp
+if '%choice%'=='2' goto CleanEmptyFolders
+
+:CleanTemp
+cls
+echo Cleaning Temporary Files and Folders
+
+:: Reset & Delete IP-Cache
+ipconfig /flushdns >nul 2>&1
+ipconfig /release >nul 2>&1
+ipconfig /renew >nul 2>&1
+netsh int ip reset >nul 2>&1
+netsh int ipv4 reset >nul 2>&1
+netsh int ipv6 reset >nul 2>&1
+netsh int tcp reset >nul 2>&1
+netsh winsock reset >nul 2>&1
+netsh branchcache reset >nul 2>&1
+netsh http flush logbuffer >nul 2>&1
+
+:: Delete Temporary Cache & Files
+del /s /f /q "%AppData%\discord\Code Cache" >nul 2>&1
+del /s /f /q "%LocalAppData%\Microsoft\Windows\Explorer\*.db" >nul 2>&1
+del /s /f /q "%LocalAppData%\Microsoft\Windows\Explorer\thumbcache_*.db" >nul 2>&1
+del /s /f /q "%LocalAppData%\Microsoft\Windows\INetCache" >nul 2>&1
+del /s /f /q "%LocalAppData%\Microsoft\Windows\INetCookies" >nul 2>&1
+del /s /f /q "%LocalAppData%\Microsoft\Windows\WebCache" >nul 2>&1
+del /s /f /q "%ProgramData%\Microsoft\Windows\Installer" >nul 2>&1
+del /s /f /q "%ProgramData%\USOPrivate\UpdateStore" >nul 2>&1
+del /s /f /q "%ProgramData%\USOShared\Logs" >nul 2>&1
+del /s /f /q "%systemdrive%\$Recycle.Bin" >nul 2>&1
+del /s /f /q "%temp%" >nul 2>&1
+del /s /f /q "%windir%\Installer\$PatchCache$" >nul 2>&1
+del /s /f /q "%windir%\Logs" >nul 2>&1
+del /s /f /q "%windir%\Prefetch" >nul 2>&1
+del /s /f /q "%windir%\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization" >nul 2>&1
+del /s /f /q "%windir%\SoftwareDistribution\Download" >nul 2>&1
+del /s /f /q "%windir%\System32\LogFiles\WMI\Diagtrack-Listener.etl*" >nul 2>&1
+del /s /f /q "%windir%\System32\SleepStudy" >nul 2>&1
+del /s /f /q "%windir%\temp" >nul 2>&1
+
+:: Delete Temporary Folders
+rd /s /q "%SystemDrive%\$GetCurrent" >nul 2>&1
+rd /s /q "%SystemDrive%\$SysReset" >nul 2>&1
+rd /s /q "%SystemDrive%\$WinREAgent" >nul 2>&1
+rd /s /q "%SystemDrive%\$Windows.~BT" >nul 2>&1
+rd /s /q "%SystemDrive%\$Windows.~WS" >nul 2>&1
+rd /s /q "%SystemDrive%\Intel" >nul 2>&1
+rd /s /q "%SystemDrive%\AMD" >nul 2>&1
+rd /s /q "%SystemDrive%\OneDriveTemp" >nul 2>&1
+rd /s /q "%SystemDrive%\System Volume Information" >nul 2>&1
+
+FOR /F "tokens=1,2*" %%V IN ('bcdedit') DO SET adminTest=%%V
+IF (%adminTest%)==(Access) goto noAdmin
+for /F "tokens=*" %%G in ('wevtutil.exe el') DO (call :do_clear "%%G")
+
+:do_clear
+wevtutil.exe cl %1
+cls
+echo Completed
+timeout /t 2 /nobreak > NUL
+goto WindowsCleaner
+
+:noAdmin
+cls
+echo Completed
+timeout /t 2 /nobreak > NUL
+goto WindowsCleaner
+
+:CleanEmptyFolders
+cls
+echo Cleaning Empty Folders, this may take a few minutes...
+
+:: Find and Delete Empty Folders
+cd C:\ >nul 2>&1
+for /f "usebackq delims=" %%d in (`"dir /ad/b/s | sort /R"`) do rd "%%d" >nul 2>&1
+
+cls
+echo Completed
+timeout /t 2 /nobreak > NUL
+goto WindowsCleaner
+
+::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+::██████╗  ██████╗ ██╗    ██╗███╗   ██╗██╗      ██████╗  █████╗ ██████╗ ███████╗██████╗ 
+::██╔══██╗██╔═══██╗██║    ██║████╗  ██║██║     ██╔═══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
+::██║  ██║██║   ██║██║ █╗ ██║██╔██╗ ██║██║     ██║   ██║███████║██║  ██║█████╗  ██████╔╝
+::██║  ██║██║   ██║██║███╗██║██║╚██╗██║██║     ██║   ██║██╔══██║██║  ██║██╔══╝  ██╔══██╗
+::██████╔╝╚██████╔╝╚███╔███╔╝██║ ╚████║███████╗╚██████╔╝██║  ██║██████╔╝███████╗██║  ██║
+::╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝
+::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 :ProgramDownloader
 cls
-
 :: Test if Aria2 can be downloaded
 curl -g -k -L -# -o "%temp%\aria2c.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/aria2c.exe" >nul 2>&1
 
@@ -3326,6 +3347,14 @@ echo Compleated
 timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
+::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+::██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗██████╗ 
+::██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔══██╗
+::██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ██████╔╝
+::██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ██╔══██╗
+::╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗██║  ██║
+:: ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
+::════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════                                                          
 :ProgramUpdater
 cls
 :: Test if Aria2 can be downloaded
