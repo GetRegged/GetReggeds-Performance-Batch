@@ -4,7 +4,7 @@
 
 </div>
 
-## 👏 About
+## 📜 About
 GetRegged's Performance Batch is an open source tweaking tool designed to significantly enhance your computer's performance by minimizing both input and system latency. Whether you're a gamer or simply looking for a faster and more responsive experience, this tool empowers you to optimize your Windows operating system with ease.
 
 <p align="center">
