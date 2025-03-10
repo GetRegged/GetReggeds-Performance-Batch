@@ -12,15 +12,15 @@ GetRegged's Performance Batch is an open source tweaking tool designed to signif
 </p>
 
 ## ⚙️ Features
-- **Windows Activation**
+- **Windows Activator**
 
   Say goodbye to spending money and typing in license keys! One click, and you’re done!
 
-- **Windows Power Plan**
+- **Windows Energizer**
   
   Experience higher frame rates and enhanced responsiveness with Bitsum Highest Performance Power Plan!
 
-- **Windows Optimization**
+- **Windows Optimizer**
 
   Gain maximum performance and reduce latency by modifying your windows operating system!
   
@@ -28,11 +28,11 @@ GetRegged's Performance Batch is an open source tweaking tool designed to signif
 
   No more unexpected restarts, forced updates, or disruptions while you're in the middle of important tasks!
 
-- **Windows Dark Minimal Mode**
+- **Windows Themer**
 
   Applie a pure dark theme across your entire system and simplify the interface by hiding unnecessary elements!
   
-- **Windows Temp Cleaner**
+- **Windows Cleaner**
   
   Free up valuable storage space and enhance system efficiency by removing unnecessary temporary files!
 
