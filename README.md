@@ -11,7 +11,7 @@ GetRegged's Performance Batch is an open source tweaking tool designed to signif
 <img src="https://github.com/GetRegged/GetReggeds-Performance-Batch/blob/main/image/preview-v1.0-beta.png" width="1080">
 </p>
 
-## 🔑 Features
+## ⚙️ Features
 - **Windows Activation**
 
   Say goodbye to spending money and typing in license keys! One click, and you’re done!
