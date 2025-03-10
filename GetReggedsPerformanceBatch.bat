@@ -2653,7 +2653,7 @@ echo                                                     %c%%u%Version: %Version
 echo.
 echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
-echo %w%║%y%          DO YOU WANT TO DISABLE OR ENABLE WINDOWS UPDATES PERMANENTLY                                                %w%║%y%
+echo %w%║%y%          WINDOWS UPDATE OPTIONS                                                                                      %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Disable%t%                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
