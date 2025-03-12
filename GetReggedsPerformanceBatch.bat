@@ -203,8 +203,8 @@ echo Activating Bitsum Highest Performance Power Plan
 timeout /t 1 /nobreak > NUL
 
 :: Import GetReggeds Power Plan
-curl -g -k -L -# -o "%temp%\Bitsum-Highest-Performance.pow" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/Bitsum-Highest-Performance.pow" >nul 2>&1
-powercfg -import "%temp%\Bitsum-Highest-Performance.pow" 11111111-1111-1111-1111-111111111111 >nul 2>&1
+curl -g -k -L -# -o "%temp%\GetRegged-Highest-Performance.pow" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/GetRegged-Highest-Performance.pow" >nul 2>&1
+powercfg -import "%temp%\GetRegged-Highest-Performance.pow" 11111111-1111-1111-1111-111111111111 >nul 2>&1
 powercfg -setactive 11111111-1111-1111-1111-111111111111 >nul 2>&1
 
 :: Disable Hibernation/Fast Startup
