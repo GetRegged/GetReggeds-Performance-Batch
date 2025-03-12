@@ -199,7 +199,7 @@ goto menuorexit
 ::Power Plan Optimizatons
 :WindowsEnergizer
 cls
-echo Activating Bitsum Highest Performance Power Plan
+echo Activating GetRegged Highest Performance Power Plan
 timeout /t 1 /nobreak > NUL
 
 :: Import GetReggeds Power Plan
