@@ -165,7 +165,7 @@ echo Activating Windows
 timeout /t 1 /nobreak >nul 2>&1
 
 cscript //B "%windir%\system32\slmgr.vbs" /ipk VK7JG-NPHTM-C97JM-9MPGT-3V66T
-cscript //B "%windir%\system32\slmgr.vbs" /skms kms8.msguides.com >nul 2>&1
+cscript //B "%windir%\system32\slmgr.vbs" /skms kms8.msguides.com
 
 cls
 echo Windows activated
