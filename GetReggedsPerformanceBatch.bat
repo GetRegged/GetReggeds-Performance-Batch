@@ -1318,10 +1318,10 @@ for /f %%i in ('wmic path Win32_VideoController get PNPDeviceID^| findstr /L "PC
 )        
 
 :: Delete Microcode
-del "C:\Windows\System32\mcupdate_AuthenticAMD.dll" /s /f /q >nul 2>&1
-del "C:\Windows\System32\mcupdate_GenuineIntel.dll" /s /f /q >nul 2>&1
 takeown /f "C:\Windows\System32\mcupdate_AuthenticAMD.dll" /r /d y >nul 2>&1
 takeown /f "C:\Windows\System32\mcupdate_GenuineIntel.dll" /r /d y >nul 2>&1
+del "C:\Windows\System32\mcupdate_AuthenticAMD.dll" /s /f /q >nul 2>&1
+del "C:\Windows\System32\mcupdate_GenuineIntel.dll" /s /f /q >nul 2>&1
 
 :: Disable Mitigations
 PowerShell "ForEach($v in (Get-Command -Name \"Set-ProcessMitigation\").Parameters[\"Disable\"].Attributes.ValidValues){Set-ProcessMitigation -System -Disable $v.ToString() -ErrorAction SilentlyContinue}" >nul 2>&1
