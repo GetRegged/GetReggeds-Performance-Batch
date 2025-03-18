@@ -1259,13 +1259,21 @@ cls
 echo Optimizing Latency
 timeout /t 1 /nobreak >nul 2>&1
 
-:: Disable HPET and enforce TSC
+:: Disable HPET and enforce TSC (Tested and approved)
 :: Disable dynamictick for more consistent and frequent timer interrupts, which enhances responsiveness and latency
 bcdedit /set disabledynamictick yes >nul 2>&1
 :: Disables use of HPET forcing the system to use TSC (HUGE FPS BOOST)
 bcdedit /set useplatformclock no >nul 2>&1
 :: Disables use of HPET forcing the system to use TSC
 bcdedit /set useplatformtick no >nul 2>&1
+
+:: Enable FSO (Better than FSE cause same FPS and better 1% lows) (Tested and approved)
+reg add "HKCU\System\GameConfigStore" /v GameDVR_Enabled /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKCU\System\GameConfigStore" /v GameDVR_FSEBehaviorMode /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKCU\System\GameConfigStore" /v GameDVR_HonorUserFSEBehaviorMode /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKCU\System\GameConfigStore" /v GameDVR_DXGIHonorFSEWindowsCompatible /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKCU\System\GameConfigStore" /v GameDVR_EFSEFeatureFlags /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKCU\System\GameConfigStore" /v GameDVR_DSEBehavior /t REG_DWORD /d 0 /f >nul 2>&1
 
 chcp 437 >nul 2>nul
 :: Disable Memory Compression
@@ -1292,14 +1300,6 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Reliability" /v "IoPrior
 
 :: Enable Distribute Timers
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v "DistributeTimers" /t REG_DWORD /d "1" /f >nul 2>&1
-
-:: Enable FSO (Better than FSE cause same FPS and better 1% lows)
-reg add "HKCU\System\GameConfigStore" /v GameDVR_Enabled /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKCU\System\GameConfigStore" /v GameDVR_FSEBehaviorMode /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKCU\System\GameConfigStore" /v GameDVR_HonorUserFSEBehaviorMode /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKCU\System\GameConfigStore" /v GameDVR_DXGIHonorFSEWindowsCompatible /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKCU\System\GameConfigStore" /v GameDVR_EFSEFeatureFlags /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKCU\System\GameConfigStore" /v GameDVR_DSEBehavior /t REG_DWORD /d 0 /f >nul 2>&1
 
 :: Enable Hypervisor-Protected Code Integrity (HVCI) without UEFI Lock (Needed for Valorant Vanguard)
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /t REG_DWORD /d 1 /f >nul 2>&1
