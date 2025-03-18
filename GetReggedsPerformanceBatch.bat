@@ -584,6 +584,8 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "EnableAeroPeek" /t REG_DWORD /
 
 :: Start > Settings > System > About > Advanced system settings > Advanced > Performance (Settings) > Advanced > Virtual memory > Off (Disables Pagingfile)
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "PagingFiles" /t REG_MULTI_SZ /d 00,00,00,00 /f >nul 2>&1
+:: Disable Paging Executive (not in Windows Settings App Included)
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "DisablePagingExecutive" /t REG_DWORD /d "1" /f >nul 2>&1
 
 :: Start > Settings > System > About > Advanced system settings > Advanced > Startup and Recovery (Settings) > Automatically restart > Off
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\CrashControl" /v "AutoReboot" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -1271,12 +1273,6 @@ PowerShell -Command "Disable-MMAgent -MemoryCompression" >nul 2>&1
 
 :: Disable Page Combining
 PowerShell -Command "Disable-MMAgent -PageCombining" >nul 2>&1
-
-:: Disable Large System Cache
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Disable Paging Executive
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "DisablePagingExecutive" /t REG_DWORD /d "1" /f >nul 2>&1
 
 :: Disable Fault Tolerant Heap
 reg add "HKLM\SOFTWARE\Microsoft\FTH" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
