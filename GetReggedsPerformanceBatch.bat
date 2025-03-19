@@ -2834,13 +2834,13 @@ echo                                                     %c%%u%Version: %Version
 echo.
 echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
-echo %w%║%y%          WINDOWS THEMES                                                                                              %w%║%y%
+echo %w%║%y%          WINDOWS THEMES (ONLY DARK CAUSE LIGHT THEMES SUCK)                                                          %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Pitch Black%t%                                                                                                 %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Violet Black%t%                                                                                                %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Mallow Violet Black%t%                                                                                         %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Salmon Red%t%                                                                                                  %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Salmon Red Black%t%                                                                                            %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -2855,8 +2855,8 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='0' goto menu
 if '%choice%'=='1' goto PitchBlack
-if '%choice%'=='2' goto VioletBlack
-if '%choice%'=='3' goto SalmonRed
+if '%choice%'=='2' goto MallowVioletBlack
+if '%choice%'=='3' goto SalmonRedBlack
 
 :PitchBlack
 cls
@@ -2959,7 +2959,7 @@ echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
-:VioletBlack
+:MallowVioletBlack
 cls
 echo Applying Violet Black Theme
 timeout /t 2 /nobreak > NUL
@@ -3011,7 +3011,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
 :: Remove existing theme settings for the default user
 reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
@@ -3020,7 +3020,7 @@ reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personali
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
-reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
 :: Remove existing color settings for the current user
 reg delete "HKCU\Control Panel\Colors" /f >nul 2>&1
@@ -3065,9 +3065,9 @@ echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
-:SalmonRed
+:SalmonRedBlack
 cls
-echo Applying Salmon Red Theme
+echo Applying Salmon Red Black Theme
 timeout /t 2 /nobreak > NUL
 
 :: Close settings app
@@ -3117,7 +3117,7 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
 :: Remove existing theme settings for the default user
 reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
@@ -3126,7 +3126,7 @@ reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personali
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
-reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
 :: Remove existing color settings for the current user
 reg delete "HKCU\Control Panel\Colors" /f >nul 2>&1
