@@ -2836,11 +2836,11 @@ echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
 echo %w%║%y%          WINDOWS THEMES                                                                                              %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Black Minimal%t%                                                                                               %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Pitch Black%t%                                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Violet Black%t%                                                                                              %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Salmon Red%t%                                                                                                %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -2854,15 +2854,21 @@ set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='0' goto menu
-if '%choice%'=='1' goto BlackMinimal
+if '%choice%'=='1' goto PitchBlack
+if '%choice%'=='2' goto VioletBlack
+if '%choice%'=='3' goto SalmonRed
 
-:BlackMinimal
+:PitchBlack
 cls
-echo Applying Windows Dark Minimal Mode
+echo Applying Pitch Black Theme
 timeout /t 2 /nobreak > NUL
 
 :: Close settings app
 taskkill /im SystemSettings.exe /f >nul 2>&1
+
+:: Pitch Black Theme solid preset by AveYo, AccentPalette idea by /u/Egg-Tricky
+:: for Ctrl+Alt+Del, Logon, Taskbar, Start Menu, Action Center (10 & 11)
+:: no transparency, no highlight active taskbar button, solid color logon
 
 :: Remove existing accent settings for the current user
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
@@ -2945,185 +2951,219 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScr
 :: Remove existing DWM policies
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DWM" /f >nul 2>&1
 
-:: Disbale First Logon Animation
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "EnableFirstLogonAnimation" /t REG_DWORD /d "0" /f >nul 2>&1
+:: Restart explorer to show theme
+taskkill /f /im explorer.exe & start explorer.exe >nul 2>&1
 
-:: Small Desktop Icons
-reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage\TrayButtonClicked" /v "ShowDesktopButton" /t REG_DWORD /d "0000005e" /f >nul 2>&1
+cls
+echo Completed
+timeout /t 1 /nobreak > NUL
+goto menuorexit
 
-:: Start > Settings > Personalization > Background > Choose a fit > Center
-reg add "HKCU\Control Panel\Desktop" /v "WallpaperStyle" /t REG_SZ /d "10" /f >nul 2>&1
+:VioletBlack
+cls
+echo Applying Violet Black Theme
+timeout /t 2 /nobreak > NUL
 
-:: Start > Settings > Personalization > Lock screen > Background > Picture
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "RotatingLockScreenEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+:: Close settings app
+taskkill /im SystemSettings.exe /f >nul 2>&1
 
-:: Start > Settings > Personalization > Lock screen > Get fun facts, tips, and more from Windows and Cortana on your lock screen > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "RotatingLockScreenOverlayEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338387Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+:: Violet Black Theme preset by AveYo, AccentPalette idea by /u/Egg-Tricky
+:: for Ctrl+Alt+Del, Logon, Taskbar, Start Menu, Action Center (10 & 11)
+:: no transparency, show active taskbar button in accent color
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes" /ve /d ".None" /f >nul 2>&1
+:: Remove existing accent settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
+:: Set new accent color values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "b566ffaa6c3a98aa8a2cddaa9d5cd6aa000000aa000000aa000000aa000000aa" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\.Default\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing accent settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
+:: Set new accent color values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "b566ffaa6c3a98aa8a2cddaa9d5cd6aa000000aa000000aa000000aa000000aa" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\CriticalBatteryAlarm\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing DWM settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Set new DWM values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "ColorPrevalence" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColor" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColorInactive" /t REG_DWORD /d "aa202020" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\DeviceConnect\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing DWM settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Set new DWM values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "ColorPrevalence" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColor" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColorInactive" /t REG_DWORD /d "aa202020" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\DeviceDisconnect\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing DWM settings for the local machine
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Dark Start and Taskbar while Transparency is on - needed for highlight active button
+reg add "HKLM\SOFTWARE\Microsoft\Windows\DWM" /v "ForceEffectMode" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\DeviceFail\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing theme settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
+:: Set new theme values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "ColorPrevalence" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000000" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\FaxBeep\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing theme settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
+:: Set new theme values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "ColorPrevalence" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000000" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\LowBatteryAlarm\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing color settings for the current user
+reg delete "HKCU\Control Panel\Colors" /f >nul 2>&1
+:: Set new color values for the current user
+reg add "HKCU\Control Panel\Colors" /v "Hilight" /t REG_SZ /d "181 102 255" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "HotTrackingColor" /t REG_SZ /d "181 102 255" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "MenuHilight" /t REG_SZ /d "181 102 255" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "ActiveBorder" /t REG_SZ /d "0 0 0" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\MailBeep\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing color settings for the default user
+reg delete "HKU\.DEFAULT\Control Panel\Colors" /f >nul 2>&1
+:: Set new color values for the default user
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "Hilight" /t REG_SZ /d "181 102 255" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "HotTrackingColor" /t REG_SZ /d "181 102 255" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "MenuHilight" /t REG_SZ /d "181 102 255" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "ActiveBorder" /t REG_SZ /d "0 0 0" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\MessageNudge\.Current" /ve /d "" /f >nul 2>&1
+:: Set background solid color black
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers" /v "BackgroundType" /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKCU\Control Panel\Desktop" /v "WallPaper" /t REG_SZ /d "" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.Default\.Current" /ve /d "" /f >nul 2>&1
+:: Set the logon background color for the local machine
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "Background" /t REG_SZ /d "0 0 0" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.IM\.Current" /ve /d "" /f >nul 2>&1
+:: Set policies for logon background settings
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "DisableAcrylicBackgroundOnLogon" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "DisableLogonBackgroundImage" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.Mail\.Current" /ve /d "" /f >nul 2>&1
+:: Set personalization background colors
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Background" /t REG_SZ /d "#000000" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Accent" /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreen" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.Proximity\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing DWM policies
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DWM" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.Reminder\.Current" /ve /d "" /f >nul 2>&1
+:: Restart explorer to show theme
+taskkill /f /im explorer.exe & start explorer.exe >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.SMS\.Current" /ve /d "" /f >nul 2>&1
+cls
+echo Completed
+timeout /t 1 /nobreak > NUL
+goto menuorexit
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\ProximityConnection\.Current" /ve /d "" /f >nul 2>&1
+:SalmonRed
+cls
+echo Applying Salmon Red Theme
+timeout /t 2 /nobreak > NUL
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\SystemAsterisk\.Current" /ve /d "" /f >nul 2>&1
+:: Close settings app
+taskkill /im SystemSettings.exe /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\SystemExclamation\.Current" /ve /d "" /f >nul 2>&1
+:: Salmon Red Not Theme preset by AveYo, AccentPalette idea by /u/Egg-Tricky
+:: for Ctrl+Alt+Del, Logon, Taskbar, Start Menu, Action Center (10 & 11)
+:: no transparency, show active taskbar button in accent color
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\SystemHand\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing accent settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
+:: Set new accent color values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ff0000aaff0000aaff0000aaff0000aa000000aa000000aa000000aa000000aa" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\SystemNotification\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing accent settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
+:: Set new accent color values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ff0000aaff0000aaff0000aaff0000aa000000aa000000aa000000aa000000aa" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\.Default\WindowsUAC\.Current" /ve /d "" /f >nul 2>&1
+:: Remove existing DWM settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Set new DWM values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "ColorPrevalence" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColor" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColorInactive" /t REG_DWORD /d "aa202020" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\DisNumbersSound\.current" /ve /d "" /f >nul 2>&1
+:: Remove existing DWM settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Set new DWM values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "ColorPrevalence" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColor" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColorInactive" /t REG_DWORD /d "aa202020" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\HubOffSound\.current" /ve /d "" /f >nul 2>&1
+:: Remove existing DWM settings for the local machine
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Dark Start and Taskbar while Transparency is on - needed for highlight active button
+reg add "HKLM\SOFTWARE\Microsoft\Windows\DWM" /v "ForceEffectMode" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\HubOnSound\.current" /ve /d "" /f >nul 2>&1
+:: Remove existing theme settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
+:: Set new theme values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "ColorPrevalence" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000000" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\HubSleepSound\.current" /ve /d "" /f >nul 2>&1
+:: Remove existing theme settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
+:: Set new theme values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "ColorPrevalence" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000000" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\MisrecoSound\.current" /ve /d "" /f >nul 2>&1
+:: Remove existing color settings for the current user
+reg delete "HKCU\Control Panel\Colors" /f >nul 2>&1
+:: Set new color values for the current user
+reg add "HKCU\Control Panel\Colors" /v "Hilight" /t REG_SZ /d "255 0 0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "HotTrackingColor" /t REG_SZ /d "255 0 0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "MenuHilight" /t REG_SZ /d "255 0 0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "ActiveBorder" /t REG_SZ /d "0 0 0" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Themes > Sounds > No Sounds
-reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\PanelSound\.current" /ve /d "" /f >nul 2>&1
+:: Remove existing color settings for the default user
+reg delete "HKU\.DEFAULT\Control Panel\Colors" /f >nul 2>&1
+:: Set new color values for the default user
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "Hilight" /t REG_SZ /d "255 0 0" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "HotTrackingColor" /t REG_SZ /d "255 0 0" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "MenuHilight" /t REG_SZ /d "255 0 0" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "ActiveBorder" /t REG_SZ /d "0 0 0" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Start > Show recently added apps > Disabled
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v "HideRecentlyAddedApps" /t REG_DWORD /d "1" /f >nul 2>&1
+:: Set background solid color black
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers" /v "BackgroundType" /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKCU\Control Panel\Desktop" /v "WallPaper" /t REG_SZ /d "" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Start > Show suggestions occasionally in Start > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338388Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SystemPaneSuggestionsEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+:: Set the logon background color for the local machine
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "Background" /t REG_SZ /d "0 0 0" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Start > Show account-related notifications. When off, required notifications are still shown. > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_AccountNotifications" /t REG_DWORD /d "0" /f >nul 2>&1
+:: Set policies for logon background settings
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "DisableAcrylicBackgroundOnLogon" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "DisableLogonBackgroundImage" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Start > Show recently opened items in Jump Lists... > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackDocs" /t REG_DWORD /d "0" /f >nul 2>&1
+:: Set personalization background colors
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Background" /t REG_SZ /d "#000000" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Accent" /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreen" /t REG_DWORD /d "00000001" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Start > Show recent documents > Off
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoStartMenuMorePrograms" /t REG_DWORD /d "1" /f >nul 2>&1
+:: Remove existing DWM policies
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DWM" /f >nul 2>&1
 
-:: Start > Settings > Personalization > Taskbar > Replace Command Prompt with Windows PowerShell... > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DontUsePowerShellOnWinX" /t REG_DWORD /d "1" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Show badges on taskbar buttons > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarBadges" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Combine taskbar buttons > Always
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarGlomLevel" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Select which icons appear on the taskbar > Always show all icons in the notification area > On
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "EnableAutoTray" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Lock taskbar > On
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarSizeMove" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Taskbar small icons > On
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarSmallIcons" /t REG_DWORD /d "1" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Hide taskbar in tablet mode > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "MMTaskbarEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Show searchbar in taskbar > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "TraySearchBoxVisible" /t REG_DWORD /d "0" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "TraySearchBoxVisibleOnAnyMonitor" /t REG_DWORD /d "0" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "SearchboxTaskbarMode" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Show task view button in taskbar > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowTaskViewButton" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Show onscreen keyboard in taskbar > Off
-reg add "HKCU\SOFTWARE\Microsoft\TabletTip\1.7" /v "TipbandDesiredVisibility" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Show notification center in taskbar > Off
-reg add "HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v "DisableNotificationCenter" /t REG_DWORD /d "1" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Show meet now in taskbar > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "HideSCAMeetNow" /t REG_DWORD /d "1" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Show bluetooth icon in taskbar > Off
-reg add "HKCU\Control Panel\Bluetooth" /v "INSERT HERE" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Start > Settings > Personalization > Taskbar > Show Microsoft news in taskbar > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v "HeadlinesOnboardingComplete" /t REG_DWORD /d "1" /f >nul 2>&1
-
-:: Taskbar > Action Center > Turn on Windows Security Center service > Turn off all notifications for Security and Maintenance
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Taskbar > News and interests > Disabled
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v "EnableFeeds" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Taskbar > News and interests > Reduce taskbar updates > On
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarContentUpdateMode" /t REG_DWORD /d "1" /f >nul 2>&1
-
-:: Taskbar > News and interests > Open on hover > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarOpenOnHover" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Taskbar > Show Cortana button > Off
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowCortanaButton" /t REG_DWORD /d "0" /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f >nul 2>&1
-
-:: Hidden > Taskbar > Save Task View timeline history > Disabled
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed" /t REG_DWORD /d "0" /f >nul 2>&1
-
+:: Restart explorer to show theme
 taskkill /f /im explorer.exe & start explorer.exe >nul 2>&1
 
 cls
