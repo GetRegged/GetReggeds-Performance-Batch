@@ -2842,7 +2842,7 @@ echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Mallow Violet Black%t%       
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Salmon Red Black%t%                                                                                            %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Magenta Black%t%                                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -2865,10 +2865,6 @@ timeout /t 2 /nobreak > NUL
 
 :: Close settings app
 taskkill /im SystemSettings.exe /f >nul 2>&1
-
-:: Pitch Black Theme solid preset by AveYo, AccentPalette idea by /u/Egg-Tricky
-:: for Ctrl+Alt+Del, Logon, Taskbar, Start Menu, Action Center (10 & 11)
-:: no transparency, no highlight active taskbar button, solid color logon
 
 :: Remove existing accent settings for the current user
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
@@ -3073,10 +3069,6 @@ timeout /t 2 /nobreak > NUL
 :: Close settings app
 taskkill /im SystemSettings.exe /f >nul 2>&1
 
-:: Salmon Red Not Theme preset by AveYo, AccentPalette idea by /u/Egg-Tricky
-:: for Ctrl+Alt+Del, Logon, Taskbar, Start Menu, Action Center (10 & 11)
-:: no transparency, show active taskbar button in accent color
-
 :: Remove existing accent settings for the current user
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
 :: Set new accent color values for the current user
@@ -3143,6 +3135,108 @@ reg add "HKU\.DEFAULT\Control Panel\Colors" /v "Hilight" /t REG_SZ /d "255 0 0" 
 reg add "HKU\.DEFAULT\Control Panel\Colors" /v "HotTrackingColor" /t REG_SZ /d "255 0 0" /f >nul 2>&1
 reg add "HKU\.DEFAULT\Control Panel\Colors" /v "MenuHilight" /t REG_SZ /d "255 0 0" /f >nul 2>&1
 reg add "HKU\.DEFAULT\Control Panel\Colors" /v "ActiveBorder" /t REG_SZ /d "0 0 0" /f >nul 2>&1
+
+:: Set background solid color black
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers" /v "BackgroundType" /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKCU\Control Panel\Desktop" /v "WallPaper" /t REG_SZ /d "" /f >nul 2>&1
+
+:: Set the logon background color for the local machine
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "Background" /t REG_SZ /d "0 0 0" /f >nul 2>&1
+
+:: Set policies for logon background settings
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "DisableAcrylicBackgroundOnLogon" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "DisableLogonBackgroundImage" /t REG_DWORD /d "00000001" /f >nul 2>&1
+
+:: Set personalization background colors
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Background" /t REG_SZ /d "#000000" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "PersonalColors_Accent" /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreen" /t REG_DWORD /d "00000001" /f >nul 2>&1
+
+:: Remove existing DWM policies
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DWM" /f >nul 2>&1
+
+:: Restart explorer to show theme
+taskkill /f /im explorer.exe & start explorer.exe >nul 2>&1
+
+cls
+echo Completed
+timeout /t 1 /nobreak > NUL
+goto menuorexit
+
+:SalmonRedBlack
+cls
+echo Applying Magenta Black Theme
+timeout /t 2 /nobreak > NUL
+
+:: Close settings app
+taskkill /im SystemSettings.exe /f >nul 2>&1
+
+:: Remove existing accent settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
+:: Set new accent color values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ff00ffaaff00ffaaff00ffaaff00ffaa000000aa000000aa000000aa000000aa" /f >nul 2>&1
+
+:: Remove existing accent settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
+:: Set new accent color values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ff00ffaaff00ffaaff00ffaaff00ffaa000000aa000000aa000000aa000000aa" /f >nul 2>&1
+
+:: Remove existing DWM settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Set new DWM values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "ColorPrevalence" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColor" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColorInactive" /t REG_DWORD /d "aa202020" /f >nul 2>&1
+
+:: Remove existing DWM settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Set new DWM values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "ColorPrevalence" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColor" /t REG_DWORD /d "aa000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /v "AccentColorInactive" /t REG_DWORD /d "aa202020" /f >nul 2>&1
+
+:: Remove existing DWM settings for the local machine
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+:: Dark Start and Taskbar while Transparency is on - needed for highlight active button
+reg add "HKLM\SOFTWARE\Microsoft\Windows\DWM" /v "ForceEffectMode" /t REG_DWORD /d "00000001" /f >nul 2>&1
+
+:: Remove existing theme settings for the current user
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
+:: Set new theme values for the current user
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "ColorPrevalence" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000001" /f >nul 2>&1
+
+:: Remove existing theme settings for the default user
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
+:: Set new theme values for the default user
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "ColorPrevalence" /t REG_DWORD /d "00000001" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "AppsUseLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "SystemUsesLightTheme" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnabledBlurBehind" /t REG_DWORD /d "00000000" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /v "EnableTransparency" /t REG_DWORD /d "00000001" /f >nul 2>&1
+
+:: Remove existing color settings for the current user
+reg delete "HKCU\Control Panel\Colors" /f >nul 2>&1
+:: Set new color values for the current user
+reg add "HKCU\Control Panel\Colors" /v "Hilight" /t REG_SZ /d "255 0 255" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "HotTrackingColor" /t REG_SZ /d "255 0 255" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "MenuHilight" /t REG_SZ /d "255 0 255" /f >nul 2>&1
+reg add "HKCU\Control Panel\Colors" /v "ActiveBorder" /t REG_SZ /d "255 0 255" /f >nul 2>&1
+
+:: Remove existing color settings for the default user
+reg delete "HKU\.DEFAULT\Control Panel\Colors" /f >nul 2>&1
+:: Set new color values for the default user
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "Hilight" /t REG_SZ /d "255 0 255" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "HotTrackingColor" /t REG_SZ /d "255 0 255" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "MenuHilight" /t REG_SZ /d "255 0 255" /f >nul 2>&1
+reg add "HKU\.DEFAULT\Control Panel\Colors" /v "ActiveBorder" /t REG_SZ /d "255 0 255" /f >nul 2>&1
 
 :: Set background solid color black
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Wallpapers" /v "BackgroundType" /t REG_DWORD /d 1 /f >nul 2>&1
