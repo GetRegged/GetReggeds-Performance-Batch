@@ -2838,9 +2838,9 @@ echo %w%║%y%          WINDOWS THEMES (ONLY DARK CAUSE LIGHT THEMES SUCK)      
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Pitch Black%t%                                                                                                 %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Mallow Violet Black%t%                                                                                         %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Violet Black%t%                                                                                                %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Salmon Red Black%t%                                                                                            %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Red Black%t%                                                                                                   %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Magenta Black%t%                                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -2855,8 +2855,8 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='0' goto menu
 if '%choice%'=='1' goto PitchBlack
-if '%choice%'=='2' goto MallowVioletBlack
-if '%choice%'=='3' goto SalmonRedBlack
+if '%choice%'=='2' goto VioletBlack
+if '%choice%'=='3' goto RedBlack
 if '%choice%'=='4' goto MagentaBlack
 
 :PitchBlack
@@ -2956,7 +2956,7 @@ echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
-:MallowVioletBlack
+:VioletBlack
 cls
 echo Applying Violet Black Theme
 timeout /t 2 /nobreak > NUL
@@ -3062,7 +3062,7 @@ echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
-:SalmonRedBlack
+:RedBlack
 cls
 echo Applying Salmon Red Black Theme
 timeout /t 2 /nobreak > NUL
@@ -3177,14 +3177,14 @@ reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >
 :: Set new accent color values for the current user
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ff00ffaaff00ffaaff00ffaaff00ffaa000000aa000000aa000000aa000000aa" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ff00ffaaff00ffaaff00ffaaff00ffaaff00ffaaff00ffaaff00ffaaff00ffaa" /f >nul 2>&1
 
 :: Remove existing accent settings for the default user
 reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
 :: Set new accent color values for the default user
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
-reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ff00ffaaff00ffaaff00ffaaff00ffaa000000aa000000aa000000aa000000aa" /f >nul 2>&1
+reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ff00ffaaff00ffaaff00ffaaff00ffaaff00ffaaff00ffaaff00ffaaff00ffaa" /f >nul 2>&1
 
 :: Remove existing DWM settings for the current user
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
