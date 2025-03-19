@@ -2857,6 +2857,7 @@ if '%choice%'=='0' goto menu
 if '%choice%'=='1' goto PitchBlack
 if '%choice%'=='2' goto MallowVioletBlack
 if '%choice%'=='3' goto SalmonRedBlack
+if '%choice%'=='4' goto MagentaBlack
 
 :PitchBlack
 cls
@@ -3163,7 +3164,7 @@ echo Completed
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
-:SalmonRedBlack
+:MagentaBlack
 cls
 echo Applying Magenta Black Theme
 timeout /t 2 /nobreak > NUL
