@@ -2836,11 +2836,11 @@ echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
 echo %w%║%y%          WINDOWS THEMES                                                                                              %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Pitch Black%t%                                                                                               %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Pitch Black%t%                                                                                                 %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Violet Black%t%                                                                                              %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Violet Black%t%                                                                                                %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Salmon Red%t%                                                                                                %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Salmon Red%t%                                                                                                  %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
