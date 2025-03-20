@@ -2879,7 +2879,7 @@ reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Acce
 :: Set new accent color values for the default user
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentColorMenu" /t REG_DWORD /d "aa000000" /f >nul 2>&1
 reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "StartColorMenu" /t REG_DWORD /d "aa202020" /f >nul 2>&1
-reg add "HKEY_USERS\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ffffffffffffffffffffffff808080ff000000ff000000ff000000ff000000ff" /f >nul 2>&1
+reg add "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /v "AccentPalette" /t REG_BINARY /d "ffffffffffffffffffffffff808080ff000000ff000000ff000000ff000000ff" /f >nul 2>&1
 
 :: Remove existing DWM settings for the current user
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
