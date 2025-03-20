@@ -2836,7 +2836,7 @@ echo.
 echo %w%╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗%y%
 echo %w%║%y%          WINDOWS THEMES                                                                                              %w%║%y%
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Black%t%                                                                                                       %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Minimal Black%t%                                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -2947,6 +2947,181 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScr
 
 :: Remove existing DWM policies
 reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DWM" /f >nul 2>&1
+
+:: Minimalization stuff
+
+:: Start > Settings > Personalization > Lock screen > Background > Picture
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "RotatingLockScreenEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Lock screen > Get fun facts, tips, and more from Windows and Cortana on your lock screen > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "RotatingLockScreenOverlayEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338387Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes" /ve /d ".None" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\.Default\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\CriticalBatteryAlarm\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\DeviceConnect\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\DeviceDisconnect\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\DeviceFail\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\FaxBeep\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\LowBatteryAlarm\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\MailBeep\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\MessageNudge\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.Default\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.IM\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.Mail\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.Proximity\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.Reminder\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\Notification.SMS\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\ProximityConnection\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\SystemAsterisk\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\SystemExclamation\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\SystemHand\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\SystemNotification\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\.Default\WindowsUAC\.Current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\DisNumbersSound\.current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\HubOffSound\.current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\HubOnSound\.current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\HubSleepSound\.current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\MisrecoSound\.current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Themes > Sounds > No Sounds
+reg add "HKCU\AppEvents\Schemes\Apps\sapisvr\PanelSound\.current" /ve /d "" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Start > Show recently added apps > Disabled
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v "HideRecentlyAddedApps" /t REG_DWORD /d "1" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Start > Show suggestions occasionally in Start > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338388Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SystemPaneSuggestionsEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Start > Show account-related notifications. When off, required notifications are still shown. > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_AccountNotifications" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Start > Show recently opened items in Jump Lists... > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackDocs" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Start > Show recent documents > Off
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoStartMenuMorePrograms" /t REG_DWORD /d "1" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Replace Command Prompt with Windows PowerShell... > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "DontUsePowerShellOnWinX" /t REG_DWORD /d "1" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Show badges on taskbar buttons > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarBadges" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Combine taskbar buttons > Always
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarGlomLevel" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Select which icons appear on the taskbar > Always show all icons in the notification area > On
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "EnableAutoTray" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Lock taskbar > On
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarSizeMove" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Taskbar small icons > On
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarSmallIcons" /t REG_DWORD /d "1" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Hide taskbar in tablet mode > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "MMTaskbarEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Show searchbar in taskbar > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "TraySearchBoxVisible" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "TraySearchBoxVisibleOnAnyMonitor" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v "SearchboxTaskbarMode" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Show task view button in taskbar > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowTaskViewButton" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Show onscreen keyboard in taskbar > Off
+reg add "HKCU\SOFTWARE\Microsoft\TabletTip\1.7" /v "TipbandDesiredVisibility" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Show notification center in taskbar > Off
+reg add "HKCU\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v "DisableNotificationCenter" /t REG_DWORD /d "1" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Show meet now in taskbar > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "HideSCAMeetNow" /t REG_DWORD /d "1" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Show bluetooth icon in taskbar > Off
+reg add "HKCU\Control Panel\Bluetooth" /v "INSERT HERE" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Personalization > Taskbar > Show Microsoft news in taskbar > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v "HeadlinesOnboardingComplete" /t REG_DWORD /d "1" /f >nul 2>&1
+
+:: Taskbar > Action Center > Turn on Windows Security Center service > Turn off all notifications for Security and Maintenance
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Taskbar > News and interests > Disabled
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Feeds" /v "EnableFeeds" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Taskbar > News and interests > Reduce taskbar updates > On
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarContentUpdateMode" /t REG_DWORD /d "1" /f >nul 2>&1
+
+:: Taskbar > News and interests > Open on hover > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds" /v "ShellFeedsTaskbarOpenOnHover" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Taskbar > Show Cortana button > Off
+reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowCortanaButton" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Hidden > Taskbar > Save Task View timeline history > Disabled
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Small Desktop Icons
+reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage\TrayButtonClicked" /v "ShowDesktopButton" /t REG_DWORD /d "0000005e" /f >nul 2>&1
 
 :: Restart explorer to show theme
 taskkill /f /im explorer.exe & start explorer.exe >nul 2>&1
