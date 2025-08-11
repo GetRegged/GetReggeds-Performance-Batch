@@ -2838,7 +2838,7 @@ echo %w%║%y%          WINDOWS THEMES                                          
 echo %w%╟──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╢%y%
 echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Minimal Black%t%                                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Reset Theme%t%                                                                                                 %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
@@ -2855,9 +2855,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='0' goto menu
 if '%choice%'=='1' goto PitchBlack
-if '%choice%'=='2' goto VioletBlack
-if '%choice%'=='3' goto RedBlack
-if '%choice%'=='4' goto MagentaBlack
+if '%choice%'=='2' goto ResetTheme
 
 :PitchBlack
 cls
@@ -3122,6 +3120,31 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v "EnableActivityFeed
 
 :: Small Desktop Icons
 reg add "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage\TrayButtonClicked" /v "ShowDesktopButton" /t REG_DWORD /d "0000005e" /f >nul 2>&1
+
+:: Restart explorer to show theme
+taskkill /f /im explorer.exe & start explorer.exe >nul 2>&1
+
+cls
+echo Completed
+timeout /t 1 /nobreak > NUL
+goto menuorexit
+
+:ResetTheme
+cls
+echo Applying Pitch Black Theme
+timeout /t 2 /nobreak > NUL
+
+:: Close settings app
+taskkill /im SystemSettings.exe /f >nul 2>&1
+
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Accent" /f >nul 2>&1
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\DWM" /f >nul 2>&1
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
+reg delete "HKU\.DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize" /f >nul 2>&1
+reg delete "HKCU\Control Panel\Colors" /f >nul 2>&1
+reg delete "HKU\.DEFAULT\Control Panel\Colors" /f >nul 2>&1
 
 :: Restart explorer to show theme
 taskkill /f /im explorer.exe & start explorer.exe >nul 2>&1
@@ -3528,3 +3551,4 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
