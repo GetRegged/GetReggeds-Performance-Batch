@@ -3488,7 +3488,7 @@ if %errorlevel%==0 (
     set /p choice=
     if not '%choice%'=='' set choice=%choice:~0,1%
     if '%choice%'=='1' goto UpgradePrograms
-    if '%choice%'=='2' goto menu
+    if '%choice%'=='2' goto DontUpgradePrograms
 )
 
 :UpgradePrograms
@@ -3496,6 +3496,16 @@ cls
 winget upgrade --all >nul 2>nul
 echo Completed
 del /s /f /q "%temp%\winget_output.txt" >nul 2>&1
+powershell -Command "Get-AppxPackage -AllUsers Microsoft.DesktopAppInstaller | Remove-AppxPackage -AllUsers" >nul 2>&1
+powershell -Command "Get-AppxPackage -AllUsers Microsoft.Winget.Source | Remove-AppxPackage -AllUsers" >nul 2>&1
+timeout /t 1 /nobreak > NUL
+goto menuorexit
+
+:DontUpgradePrograms
+cls
+del /s /f /q "%temp%\winget_output.txt" >nul 2>&1
+powershell -Command "Get-AppxPackage -AllUsers Microsoft.DesktopAppInstaller | Remove-AppxPackage -AllUsers" >nul 2>&1
+powershell -Command "Get-AppxPackage -AllUsers Microsoft.Winget.Source | Remove-AppxPackage -AllUsers" >nul 2>&1
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
@@ -3551,4 +3561,5 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
