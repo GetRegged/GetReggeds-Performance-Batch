@@ -3424,11 +3424,11 @@ cls
 :: Test if Aria2 can be downloaded
 curl -g -k -L -# -o "%temp%\aria2c.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/aria2c.exe" >nul 2>&1
 
-IF %ERRORLEVEL% NEQ 0 (
+if %errorlevel% neq 0 (
     echo No network connection available. Please connect to a network and try again...
     timeout /t 3 /nobreak >nul 2>&1
     goto menuorexit
-) ELSE (
+) else (
     goto GetWinget
 )
 
@@ -3475,25 +3475,25 @@ if %errorlevel%==0 (
     del "%temp%\winget_output.txt"
     timeout /t 3 /nobreak > NUL
     goto menuorexit
-) else (
-    cls
-    type "%temp%\winget_output.txt"
-    echo.
-    echo Do you want to upgrade all outdated programs?
-    echo.
-    echo %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%
-    echo. 
-    echo %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%No%t%
-    set choice=
-    set /p choice=
-    if not '%choice%'=='' set choice=%choice:~0,1%
-    if '%choice%'=='1' goto UpgradePrograms
-    if '%choice%'=='2' goto DontUpgrade
 )
 
-:UpgradePrograms
 cls
-echo upgrading
+type "%temp%\winget_output.txt"
+echo.
+echo Do you want to upgrade all outdated programs?
+echo.
+echo %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Yes%t%
+echo. 
+echo %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%No%t%
+set choice=
+set /p choice=
+if not "%choice%"=="" set choice=%choice:~0,1%
+if "%choice%"=="1" goto UpdatePrograms
+if "%choice%"=="2" goto DontUpdate
+
+:UpdatePrograms
+cls
+echo Updating outdated programs... this might take a while, please wait.
 winget upgrade --all >nul 2>nul
 echo Completed
 del /s /f /q "%temp%\winget_output.txt" >nul 2>&1
@@ -3502,9 +3502,8 @@ powershell -Command "Get-AppxPackage -AllUsers Microsoft.Winget.Source | Remove-
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
-:DontUpgrade
+:DontUpdate
 cls
-echo canceling upgrade
 del /s /f /q "%temp%\winget_output.txt" >nul 2>&1
 powershell -Command "Get-AppxPackage -AllUsers Microsoft.DesktopAppInstaller | Remove-AppxPackage -AllUsers" >nul 2>&1
 powershell -Command "Get-AppxPackage -AllUsers Microsoft.Winget.Source | Remove-AppxPackage -AllUsers" >nul 2>&1
@@ -3563,6 +3562,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
 
 
