@@ -3277,9 +3277,8 @@ goto WindowsCleaner
 cls
 echo Cleaning Empty Folders, this may take a few minutes...
 
-:: Find and Delete Empty Folders
-cd C:\ >nul 2>&1
-for /f "usebackq delims=" %%d in (`"dir /ad/b/s | sort /R"`) do rd "%%d" >nul 2>&1
+:: Find and Delete Empty Folders in C drive and all subfolders
+for /f "usebackq delims=" %%d in (`dir "C:\" /ad/b/s ^| sort /R`) do rd "%%d" >nul 2>&1
 
 cls
 echo Completed
@@ -3562,6 +3561,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
 
 
