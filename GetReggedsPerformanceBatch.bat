@@ -3436,6 +3436,12 @@ if %errorlevel% neq 0 (
 cls
 echo Program Updater is getting ready... this might take a while, please wait.
 mkdir "%temp%\winget" >nul 2>&1
+if not exist "%temp%\winget\WindowsAppRuntimeInstall-x64.exe" (
+    %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://aka.ms/windowsappsdk/1.8/1.8.251003001/windowsappruntimeinstall-x64.exe" --out=WindowsAppRuntimeInstall-x64.exe --console-log-level=error
+)
+if not exist "%temp%\winget\WindowsAppRuntimeInstall-x86.exe" (
+    %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://aka.ms/windowsappsdk/1.8/1.8.251003001/windowsappruntimeinstall-x86.exe" --out=WindowsAppRuntimeInstall-x86.exe --console-log-level=error
+)
 if not exist "%temp%\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" (
     %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%\winget" "https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx" --out=Microsoft.VCLibs.x64.14.00.Desktop.appx --console-log-level=error
 )
@@ -3448,6 +3454,14 @@ if not exist "%temp%\winget\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbund
 
 :: Install dependencies
 chcp 437 >nul 2>nul
+if exist "%temp%\winget\WindowsAppRuntimeInstall-x64.exe" (
+    %temp%\winget\WindowsAppRuntimeInstall-x64.exe >nul 2>&1
+    del /s /f /q "%temp%\winget\WindowsAppRuntimeInstall-x64.exe" >nul 2>nul
+)
+if exist "%temp%\winget\WindowsAppRuntimeInstall-x86.exe" (
+    %temp%\winget\WindowsAppRuntimeInstall-x86.exe >nul 2>&1
+    del /s /f /q "%temp%\winget\WindowsAppRuntimeInstall-x86.exe" >nul 2>nul
+)
 if exist "%temp%\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" (
     powershell -Command Add-AppxPackage -Path "$env:TEMP\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" >nul 2>nul
     del /s /f /q "%temp%\winget\Microsoft.VCLibs.x64.14.00.Desktop.appx" >nul 2>nul
@@ -3561,6 +3575,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
 
 
