@@ -3386,6 +3386,21 @@ echo Installing Discord
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64" --out=DiscordSetup.exe --console-log-level=error >nul 2>&1
 %temp%\DiscordSetup.exe >nul 2>&1
 
+:: Wait to ensure installer finishes and Discord auto-launches
+timeout /t 3 /nobreak >nul
+
+:: Kill auto-started Discord instance (prevents background CPU/RAM usage)
+taskkill /im Discord.exe /f >nul 2>&1
+
+:: Remove Discord from Windows startup
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v Discord /f >nul 2>&1
+
+:: Ensure Update.exe exists before creating shortcut
+if not exist "%LOCALAPPDATA%\Discord\Update.exe" timeout /t 3 /nobreak >nul
+
+:: Create Desktop shortcut with Electron performance runtime flags
+powershell -Command "$s=(New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop')+'\Discord.lnk'); $s.TargetPath=$env:LOCALAPPDATA+'\Discord\Update.exe'; $s.Arguments='--processStart Discord.exe --disable-background-timer-throttling --disable-renderer-backgrounding --enable-gpu-rasterization --enable-zero-copy --ignore-gpu-blocklist'; $s.WorkingDirectory=$env:LOCALAPPDATA+'\Discord'; $s.Save()"
+
 cls
 echo Compleated
 timeout /t 1 /nobreak > NUL
@@ -3611,6 +3626,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
 
 
