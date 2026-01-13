@@ -3361,6 +3361,20 @@ echo Installing Google Chrome
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "http://dl.google.com/chrome/install/chrome_installer.exe" --out=ChromeSetup.exe --console-log-level=error >nul 2>&1
 %temp%\ChromeSetup.exe >nul 2>&1
 
+:: Optimize Chrome performance
+reg add "HKLM\Software\Policies\Google\Chrome" /v MetricsReportingEnabled /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Google\Chrome" /v BackgroundModeEnabled /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Google\Chrome" /v HardwareAccelerationModeEnabled /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Google\Chrome" /v ProcessPerSite /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Google\Chrome" /v GpuRasterizationEnabled /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Google\Chrome" /v ZeroCopyRasterEnabled /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Google\Chrome" /v NetworkPredictionEnabled /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Google\Chrome" /v EnableLazyImageLoading /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Google\Chrome" /v AutomaticTabDiscardingEnabled /t REG_DWORD /d 0 /f >nul 2>&1
+
+:: Create Desktop shortcut with runtime flags
+powershell -Command "$s=(New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop')+'\Google Chrome.lnk'); $s.TargetPath='C:\Program Files\Google\Chrome\Application\chrome.exe'; $s.Arguments='--disable-background-timer-throttling --disable-renderer-backgrounding --enable-features=BackForwardCache'; $s.Save()"
+
 cls
 echo Compleated
 timeout /t 1 /nobreak > NUL
@@ -3575,6 +3589,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
 
 
