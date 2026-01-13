@@ -3397,6 +3397,28 @@ echo Installing Steam
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://cdn.fastly.steamstatic.com/client/installer/SteamSetup.exe" --out=SteamSetup.exe --console-log-level=error >nul 2>&1
 %temp%\SteamSetup.exe >nul 2>&1
 
+:: Wait for post-install auto-launch
+timeout /t 3 /nobreak >nul
+
+:: Kill auto-started Steam instance
+taskkill /im steam.exe /f >nul 2>&1
+taskkill /im steamwebhelper.exe /f >nul 2>&1
+
+:: Disable Steam auto-start
+reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v Steam /f >nul 2>&1
+
+:: Disable Steam Client Bootstrapper auto-start
+reg add "HKCU\Software\Valve\Steam" /v AutoRun /t REG_DWORD /d 0 /f >nul 2>&1
+
+:: Limit the number of Steam Web Helper spawned
+reg add "HKCU\Software\Valve\Steam" /v MaxWebHelperProcesses /t REG_DWORD /d 2 /f
+
+:: Create optimized Steam shortcut with runtime flags
+powershell -Command "$s=(New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop')+'\Steam.lnk'); $s.TargetPath='C:\Program Files (x86)\Steam\Steam.exe'; $s.Arguments='+open steam://open/library -skipbeta -autologon'; $s.WorkingDirectory='C:\Program Files (x86)\Steam'; $s.Save()"
+
+:: Start Steam with the optimized flags immediately
+start "" "C:\Program Files (x86)\Steam\Steam.exe" +open steam://open/library -skipbeta -autologon
+
 cls
 echo Compleated
 timeout /t 1 /nobreak > NUL
@@ -3589,6 +3611,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
 
 
