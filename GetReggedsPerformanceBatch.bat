@@ -3369,7 +3369,6 @@ reg add "HKLM\Software\Policies\Google\Chrome" /v ProcessPerSite /t REG_DWORD /d
 reg add "HKLM\Software\Policies\Google\Chrome" /v GpuRasterizationEnabled /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\Software\Policies\Google\Chrome" /v ZeroCopyRasterEnabled /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\Software\Policies\Google\Chrome" /v NetworkPredictionEnabled /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\Software\Policies\Google\Chrome" /v EnableLazyImageLoading /t REG_DWORD /d 1 /f >nul 2>&1
 reg add "HKLM\Software\Policies\Google\Chrome" /v AutomaticTabDiscardingEnabled /t REG_DWORD /d 0 /f >nul 2>&1
 
 :: Create Desktop shortcut with runtime flags
@@ -3626,6 +3625,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
 
 
