@@ -3361,21 +3361,8 @@ echo Installing Google Chrome
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "http://dl.google.com/chrome/install/chrome_installer.exe" --out=ChromeSetup.exe --console-log-level=error >nul 2>&1
 %temp%\ChromeSetup.exe >nul 2>&1
 
-:: Optimize Chrome performance
-reg add "HKLM\Software\Policies\Google\Chrome" /v MetricsReportingEnabled /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\Software\Policies\Google\Chrome" /v BackgroundModeEnabled /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\Software\Policies\Google\Chrome" /v HardwareAccelerationModeEnabled /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKLM\Software\Policies\Google\Chrome" /v ProcessPerSite /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKLM\Software\Policies\Google\Chrome" /v GpuRasterizationEnabled /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKLM\Software\Policies\Google\Chrome" /v ZeroCopyRasterEnabled /t REG_DWORD /d 1 /f >nul 2>&1
-reg add "HKLM\Software\Policies\Google\Chrome" /v NetworkPredictionEnabled /t REG_DWORD /d 0 /f >nul 2>&1
-reg add "HKLM\Software\Policies\Google\Chrome" /v AutomaticTabDiscardingEnabled /t REG_DWORD /d 0 /f >nul 2>&1
-
-:: Create Desktop shortcut with runtime flags
-powershell -Command "$s=(New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop')+'\Google Chrome.lnk'); $s.TargetPath='C:\Program Files\Google\Chrome\Application\chrome.exe'; $s.Arguments='--disable-background-timer-throttling --disable-renderer-backgrounding --enable-features=BackForwardCache'; $s.Save()"
-
 cls
-echo Compleated
+echo Completed
 timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
@@ -3385,23 +3372,8 @@ echo Installing Discord
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64" --out=DiscordSetup.exe --console-log-level=error >nul 2>&1
 %temp%\DiscordSetup.exe >nul 2>&1
 
-:: Wait to ensure installer finishes and Discord auto-launches
-timeout /t 3 /nobreak >nul
-
-:: Kill auto-started Discord instance (prevents background CPU/RAM usage)
-taskkill /im Discord.exe /f >nul 2>&1
-
-:: Remove Discord from Windows startup
-reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v Discord /f >nul 2>&1
-
-:: Ensure Update.exe exists before creating shortcut
-if not exist "%LOCALAPPDATA%\Discord\Update.exe" timeout /t 3 /nobreak >nul
-
-:: Create Desktop shortcut with Electron performance runtime flags
-powershell -Command "$s=(New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop')+'\Discord.lnk'); $s.TargetPath=$env:LOCALAPPDATA+'\Discord\Update.exe'; $s.Arguments='--processStart Discord.exe --disable-background-timer-throttling --disable-renderer-backgrounding --enable-gpu-rasterization --enable-zero-copy --ignore-gpu-blocklist'; $s.WorkingDirectory=$env:LOCALAPPDATA+'\Discord'; $s.Save()"
-
 cls
-echo Compleated
+echo Completed
 timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
@@ -3411,30 +3383,8 @@ echo Installing Steam
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://cdn.fastly.steamstatic.com/client/installer/SteamSetup.exe" --out=SteamSetup.exe --console-log-level=error >nul 2>&1
 %temp%\SteamSetup.exe >nul 2>&1
 
-:: Wait for post-install auto-launch
-timeout /t 3 /nobreak >nul
-
-:: Kill auto-started Steam instance
-taskkill /im steam.exe /f >nul 2>&1
-taskkill /im steamwebhelper.exe /f >nul 2>&1
-
-:: Disable Steam auto-start
-reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Run" /v Steam /f >nul 2>&1
-
-:: Disable Steam Client Bootstrapper auto-start
-reg add "HKCU\Software\Valve\Steam" /v AutoRun /t REG_DWORD /d 0 /f >nul 2>&1
-
-:: Limit the number of Steam Web Helper spawned
-reg add "HKCU\Software\Valve\Steam" /v MaxWebHelperProcesses /t REG_DWORD /d 2 /f
-
-:: Create optimized Steam shortcut with runtime flags
-powershell -Command "$s=(New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('Desktop')+'\Steam.lnk'); $s.TargetPath='C:\Program Files (x86)\Steam\Steam.exe'; $s.Arguments='+open steam://open/library -skipbeta -autologon'; $s.WorkingDirectory='C:\Program Files (x86)\Steam'; $s.Save()"
-
-:: Start Steam with the optimized flags immediately
-start "" "C:\Program Files (x86)\Steam\Steam.exe" +open steam://open/library -skipbeta -autologon
-
 cls
-echo Compleated
+echo Completed
 timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
@@ -3445,7 +3395,7 @@ echo Installing Valorant
 %temp%\valorant.exe >nul 2>&1
 
 cls
-echo Compleated
+echo Completed
 timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
@@ -3456,7 +3406,7 @@ echo Installing VLC
 %temp%\vlc-3.0.21-win64.exe >nul 2>&1
 
 cls
-echo Compleated
+echo Completed
 timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
@@ -3625,6 +3575,7 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
+
 
 
 
