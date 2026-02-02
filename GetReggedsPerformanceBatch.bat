@@ -3575,15 +3575,3 @@ set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='1' goto Menu
 if '%choice%'=='2' exit
-
-
-
-
-
-
-
-
-
-
-
-
