@@ -1156,6 +1156,11 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "H
 :: Enable Show Toolbar in Explorer
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Ribbon" /v "MinimizedStateTabletModeOff" /t REG_DWORD /d "0" /f >nul 2>&1
 
+:: Enable Permanent Delete Context Menu
+reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "ExplorerCommandHandler" /t REG_SZ /d "{E9571AB2-AD92-4EC6-8924-4E5AD33790F5}" /f
+reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "Icon" /t REG_SZ /d "%%windir%%\\System32\\shell32.dll,-240" /f
+reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "Position" /t REG_SZ /d "Bottom" /f
+
 :: ██████╗ ███████╗██╗   ██╗██╗ ██████╗███████╗    ███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗ 
 :: ██╔══██╗██╔════╝██║   ██║██║██╔════╝██╔════╝    ████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗
 :: ██║  ██║█████╗  ██║   ██║██║██║     █████╗      ██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝
