@@ -3407,8 +3407,8 @@ goto DownloadOptions
 :PotPlayerInstall
 cls
 echo Installing VLC
-%temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://t1.kakaocdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe" --out=vlc-3.0.21-win64.exe --console-log-level=error >nul 2>&1
-%temp%\vlc-3.0.21-win64.exe >nul 2>&1
+%temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://t1.kakaocdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe" --out=potplayer.exe --console-log-level=error >nul 2>&1
+%temp%\potplayer.exe >nul 2>&1
 
 cls
 echo Completed
