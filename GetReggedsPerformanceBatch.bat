@@ -3344,7 +3344,7 @@ echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Steam%t%			                  
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Valorant%t%			                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%VLC%t%			                                                                                       %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%PotPlayer%t%			                                                                                 %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
@@ -3358,7 +3358,7 @@ if '%choice%'=='1' goto ChromeInstall
 if '%choice%'=='2' goto DiscordInstall
 if '%choice%'=='3' goto SteamInstall
 if '%choice%'=='4' goto ValorantInstall
-if '%choice%'=='5' goto VLCInstall
+if '%choice%'=='5' goto PotPlayerInstall
 
 :ChromeInstall
 cls
@@ -3404,10 +3404,10 @@ echo Completed
 timeout /t 1 /nobreak > NUL
 goto DownloadOptions
 
-:VLCInstall
+:PotPlayerInstall
 cls
 echo Installing VLC
-%temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://get.videolan.org/vlc/3.0.21/win64/vlc-3.0.21-win64.exe" --out=vlc-3.0.21-win64.exe --console-log-level=error >nul 2>&1
+%temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://t1.kakaocdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe" --out=vlc-3.0.21-win64.exe --console-log-level=error >nul 2>&1
 %temp%\vlc-3.0.21-win64.exe >nul 2>&1
 
 cls
