@@ -3217,40 +3217,11 @@ if '%choice%'=='2' goto CleanEmptyFolders
 cls
 echo Cleaning Temporary Files and Folders
 
-:: Reset & Delete IP-Cache
-ipconfig /flushdns >nul 2>&1
-ipconfig /release >nul 2>&1
-ipconfig /renew >nul 2>&1
-netsh int ip reset >nul 2>&1
-netsh int ipv4 reset >nul 2>&1
-netsh int ipv6 reset >nul 2>&1
-netsh int tcp reset >nul 2>&1
-netsh winsock reset >nul 2>&1
-netsh branchcache reset >nul 2>&1
-netsh http flush logbuffer >nul 2>&1
-
-:: Delete Temporary Cache & Files
-del /s /f /q "%AppData%\discord\Code Cache" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\Explorer\*.db" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\Explorer\thumbcache_*.db" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\INetCache" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\INetCookies" >nul 2>&1
-del /s /f /q "%LocalAppData%\Microsoft\Windows\WebCache" >nul 2>&1
-del /s /f /q "%ProgramData%\Microsoft\Windows\Installer" >nul 2>&1
-del /s /f /q "%ProgramData%\USOPrivate\UpdateStore" >nul 2>&1
-del /s /f /q "%ProgramData%\USOShared\Logs" >nul 2>&1
-del /s /f /q "%systemdrive%\$Recycle.Bin" >nul 2>&1
+:: Delete Temporary Files
 del /s /f /q "%temp%" >nul 2>&1
-del /s /f /q "%windir%\Installer\$PatchCache$" >nul 2>&1
-del /s /f /q "%windir%\Logs" >nul 2>&1
-del /s /f /q "%windir%\Prefetch" >nul 2>&1
-del /s /f /q "%windir%\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization" >nul 2>&1
-del /s /f /q "%windir%\SoftwareDistribution\Download" >nul 2>&1
-del /s /f /q "%windir%\System32\LogFiles\WMI\Diagtrack-Listener.etl*" >nul 2>&1
-del /s /f /q "%windir%\System32\SleepStudy" >nul 2>&1
 del /s /f /q "%windir%\temp" >nul 2>&1
 
-:: Delete Temporary Folders
+:: Delete Temp & Vendor Folders
 rd /s /q "%SystemDrive%\$GetCurrent" >nul 2>&1
 rd /s /q "%SystemDrive%\$SysReset" >nul 2>&1
 rd /s /q "%SystemDrive%\$WinREAgent" >nul 2>&1
@@ -3259,14 +3230,7 @@ rd /s /q "%SystemDrive%\$Windows.~WS" >nul 2>&1
 rd /s /q "%SystemDrive%\Intel" >nul 2>&1
 rd /s /q "%SystemDrive%\AMD" >nul 2>&1
 rd /s /q "%SystemDrive%\OneDriveTemp" >nul 2>&1
-rd /s /q "%SystemDrive%\System Volume Information" >nul 2>&1
 
-FOR /F "tokens=1,2*" %%V IN ('bcdedit') DO SET adminTest=%%V
-IF (%adminTest%)==(Access) goto noAdmin
-for /F "tokens=*" %%G in ('wevtutil.exe el') DO (call :do_clear "%%G")
-
-:do_clear
-wevtutil.exe cl %1
 cls
 echo Completed
 timeout /t 2 /nobreak > NUL
@@ -3284,6 +3248,9 @@ echo Cleaning Empty Folders, this may take a few minutes...
 
 :: Find and Delete Empty Folders in C drive and all subfolders
 for /f "usebackq delims=" %%d in (`dir "C:\" /ad/b/s ^| sort /R`) do rd "%%d" >nul 2>&1
+
+::  Recreate crucial folder
+mkdir "%ProgramData%\Microsoft\Windows\Installer" >nul 2>&1
 
 cls
 echo Completed
