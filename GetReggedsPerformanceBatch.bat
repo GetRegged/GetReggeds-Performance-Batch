@@ -3311,7 +3311,7 @@ echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Steam%t%			                  
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Valorant%t%			                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%PotPlayer%t%			                                                                                 %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%PotPlayer%t%			                                                                               %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
@@ -3373,7 +3373,7 @@ goto DownloadOptions
 
 :PotPlayerInstall
 cls
-echo Installing VLC
+echo Installing PotPlayer
 %temp%\aria2c.exe --allow-overwrite=true --max-connection-per-server=4 --min-split-size=10M --split=4 --download-result=full --file-allocation=none --summary-interval=0 --disable-ipv6 -x10 --dir "%temp%" "https://t1.kakaocdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe" --out=potplayer.exe --console-log-level=error >nul 2>&1
 %temp%\potplayer.exe >nul 2>&1
 
