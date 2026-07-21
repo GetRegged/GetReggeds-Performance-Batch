@@ -78,17 +78,17 @@ echo.
 echo %w%╔═══════════════════════════════════════╤═══════════════════════════════════════╤══════════════════════════════════════╗%y%
 echo %w%║%y%             WINDOWS TOOLS             %w%│%y%            ESSENTIAL TOOLS            %w%│%y%                                      %w%║%y%
 echo %w%╟───────────────────────────────────────┴───────────────────────────────────────┴──────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%1%q%%t% %w%]%y% %c%Windows Activator%t%                %w%[%y% %c%%u%7%q%%t% %w%]%y% %c%Program Downloader%t%                                                   %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Energizer%t%                %w%[%y% %c%%u%7%q%%t% %w%]%y% %c%Program Downloader%t%                                                   %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Energizer%t%                %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Optimizer%t%                %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Optimizer%t%                                                                                           %w%║%y%
-echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Updates%t%                                                                                           %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Themer%t%                                                                                              %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Windows Cleaner%t%                                                                                             %w%║%y%
+echo %w%║%y%                                                                                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Empty Option---%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
 echo %w%║%y%						      %w%║%y%%w%[%y% %c%%u%0%q%%t% %w%]%y% %c%Exit%t%%w%║%y%                                                     %w%║%y%
 echo %w%╚═════════════════════════════════════════════════════╩══════════╩═════════════════════════════════════════════════════╝%y%
@@ -96,12 +96,12 @@ set choice=
 set /p choice=
 if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='0' goto Exit
-if '%choice%'=='1' goto WindowsActivator
-if '%choice%'=='2' goto WindowsEnergizer
-if '%choice%'=='3' goto WindowsOptimizer
-if '%choice%'=='4' goto WindowsUpdates
-if '%choice%'=='5' goto WindowsThemer
-if '%choice%'=='6' goto WindowsCleaner
+if '%choice%'=='1' goto WindowsEnergizer
+if '%choice%'=='2' goto WindowsOptimizer
+if '%choice%'=='3' goto WindowsUpdates
+if '%choice%'=='4' goto WindowsThemer
+if '%choice%'=='5' goto WindowsCleaner
+if '%choice%'=='6' goto -
 if '%choice%'=='7' goto ProgramDownloader
 if '%choice%'=='8' goto ProgramUpdater
 
