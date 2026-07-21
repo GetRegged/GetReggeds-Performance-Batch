@@ -78,15 +78,15 @@ echo.
 echo %w%╔═══════════════════════════════════════╤═══════════════════════════════════════╤══════════════════════════════════════╗%y%
 echo %w%║%y%             WINDOWS TOOLS             %w%│%y%            ESSENTIAL TOOLS            %w%│%y%                                      %w%║%y%
 echo %w%╟───────────────────────────────────────┴───────────────────────────────────────┴──────────────────────────────────────╢%y%
-echo %w%║%y%    %w%[%y% %c%%u%2%q% %t%%w%]%y% %c%Windows Energizer%t%                %w%[%y% %c%%u%7%q%%t% %w%]%y% %c%Program Downloader%t%                                                   %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%1%q% %t%%w%]%y% %c%Windows Energizer%t%                %w%[%y% %c%%u%7%q%%t% %w%]%y% %c%Program Downloader%t%                                                   %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%3%q%%t% %w%]%y% %c%Windows Optimizer%t%                %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                      %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%2%q%%t% %w%]%y% %c%Windows Optimizer%t%                %w%[%y% %c%%u%8%q%%t% %w%]%y% %c%Program Updater%t%                                                      %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%4%q% %t%%w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%3%q% %t%%w%]%y% %c%Windows Updates%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Themer%t%                                                                                              %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%4%q%%t% %w%]%y% %c%Windows Themer%t%                                                                                              %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
-echo %w%║%y%    %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Windows Cleaner%t%                                                                                             %w%║%y%
+echo %w%║%y%    %w%[%y% %c%%u%5%q%%t% %w%]%y% %c%Windows Cleaner%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                                                                                      %w%║%y%
 echo %w%║%y%    %w%[%y% %c%%u%6%q%%t% %w%]%y% %c%Empty Option---%t%                                                                                             %w%║%y%
 echo %w%║%y%                                                     %w%╔══════════╗%y%                                                     %w%║%y%
