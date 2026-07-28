@@ -2679,6 +2679,9 @@ schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\UpdateModelTask" /Dis
 schtasks /Change /TN "Microsoft\Windows\WaaSMedic\PerformRemediation" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\WindowsUpdate\Scheduled Start" /Disable >nul 2>&1
 
+:: Hide Windows Updates Tab
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v SettingsPageVisibility /t REG_SZ /d "hide:windowsupdate" /f >nul 2>&1
+
 cls
 echo Completed
 timeout /t 1 /nobreak > NUL
@@ -2686,7 +2689,110 @@ goto menuorexit
 
 :EnableUpdates
 cls
-echo In the making...
+echo Enabling Windows Update
+
+:: Start > Settings > Update & Security > Windows Update > Get ready for Windows 11... > Dismiss notification
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "SvDismissedState" /f >nul 2>&1
+
+:: Start > Settings > Update & Security > Windows Update > Advanced options > Pause updates > Activate pause update feature
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UpdatePolicy\Settings" /v "PausedFeatureStatus" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UpdatePolicy\Settings" /v "PausedQualityStatus" /f >nul 2>&1
+
+:: Start > Settings > Update & Security > Windows Update > Advanced options > Pause updates > Enable Converged Update Stack
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX" /v "IsConvergedUpdateStackEnabled" /f >nul 2>&1
+
+:: Start > Settings > Update & Security > Windows Update > Advanced options > Pause updates > Until January 1st, 2069
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "ActiveHoursEnd" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "ActiveHoursStart" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "AllowAutoWindowsUpdateDownloadOverMeteredNetwork" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "DeferFeatureUpdatesPeriodInDays" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "DeferQualityUpdatesPeriodInDays" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "ExcludeWUDriversInQualityUpdate" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "FlightCommitted" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "LastToastAction" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "UxOption" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "InsiderProgramEnabled" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "PendingRebootStartTime" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "PauseFeatureUpdatesStartTime" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "PauseFeatureUpdatesEndTime" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "PauseQualityUpdatesStartTime" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "PauseQualityUpdatesEndTime" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "PauseUpdatesExpiryTime" /f >nul 2>&1
+
+:: Start > Settings > Update & Security > Windows Update > Automatically download drivers > Off
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching" /v "SearchOrderConfig" /f >nul 2>&1
+
+:: Start > Settings > Update & Security > Delivery Optimization > Allow downloads from other PCs > Disabled
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /v "DODownloadMode" /f >nul 2>&1
+
+:: Start > Settings > Update & Security > Troubleshoot > Off
+reg delete "HKLM\SOFTWARE\Microsoft\WindowsMitigation" /v "UserPreference" /f >nul 2>&1
+
+:: Start > Settings > Update & Security > Find my device > Off
+reg delete "HKLM\SOFTWARE\Microsoft\MdmCommon\SettingValues" /v "ILocationSyncEnabled" /f >nul 2>&1
+
+:: Disable Auto Install Minor Updates (not in Windows Settings App Included)
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "AutoInstallMinorUpdates" /f >nul 2>&1
+
+:: Disable Windows Remediation (not in Windows Settings App Included)
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "RemediationRequired" /f >nul 2>&1
+
+:: Disable Automatic Maintenance (not in Windows Settings App Included)
+reg delete "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance" /v "MaintenanceDisabled" /f >nul 2>&1
+
+:: Disable Windows Insider Experiments (not in Windows Settings App Included)
+reg delete "HKLM\SOFTWARE\Microsoft\PolicyManager\default\System\AllowExperimentation" /v "value" /f >nul 2>&1
+
+:: Disable Windows Update And Store Services And Tasks (not in Windows Settings App Included)
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /f >nul 2>&1
+reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DisableWindowsUpdateAccess" /f >nul 2>&1
+sc start BITS >nul 2>&1
+sc start ClipSVC >nul 2>&1
+sc start InstallService >nul 2>&1
+sc start LanmanServer >nul 2>&1
+sc start PushToInstall >nul 2>&1
+sc start UsoSvc >nul 2>&1
+sc start uhssvc >nul 2>&1
+sc start upfc >nul 2>&1
+sc start wuauserv >nul 2>&1
+sc config BITS start= demand >nul 2>&1
+sc config ClipSVC start= demand >nul 2>&1
+sc config InstallService start= demand >nul 2>&1
+sc config LanmanServer start= auto >nul 2>&1
+sc config PushToInstall start= demand >nul 2>&1
+sc config UsoSvc start= demand >nul 2>&1
+sc config uhssvc start= demand >nul 2>&1
+sc config upfc start= demand >nul 2>&1
+sc config wuauserv start= demand >nul 2>&1
+
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\BITS" /v Start /f >nul 2>&1
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\DoSvc" /v Start /f >nul 2>&1
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\InstallService" /v Start /f >nul 2>&1
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc" /v Start /f >nul 2>&1
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v Start /f >nul 2>&1
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\ossrs" /v Start /f >nul 2>&1
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\uhssvc" /v Start /f >nul 2>&1
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\upfc" /v Start /f >nul 2>&1
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v Start /f >nul 2>&1
+
+schtasks /Change /TN "Microsoft\Windows\InstallService\ScanForUpdates" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\ScanForUpdatesAsUser" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\SmartRetry" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\WakeUpAndContinueUpdates" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\InstallService\WakeUpAndScanForUpdates" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Report policies" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Schedule Scan" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\USO_UxBroker" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\UpdateModelTask" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\WaaSMedic\PerformRemediation" /Enable >nul 2>&1
+schtasks /Change /TN "Microsoft\Windows\WindowsUpdate\Scheduled Start" /Enable >nul 2>&1
+
+:: Hide Windows Updates Tab
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v SettingsPageVisibility /f >nul 2>&1
+
 timeout /t 1 /nobreak > NUL
 goto menuorexit
 
