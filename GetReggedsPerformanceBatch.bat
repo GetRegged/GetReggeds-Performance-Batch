@@ -690,7 +690,7 @@ reg add "HKCU\SOFTWARE\Microsoft\GameBar" /v "AllowAutoGameMode" /t REG_DWORD /d
 ::Disable GameDVR (not in Windows Settings App Included)
 reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\ApplicationManagement\AllowGameDVR" /v "value" /t REG_DWORD /d "0" /f >nul 2>&1
 
-:: EASE OF ACCESS TAB
+:: EASE OF ACCESS TAB (ACESSIBILITY TAB IN WIN 11)
 
 :: Start > Settings > Ease of Access > Display > Automatically hide scroll bars in Windows > Off
 reg add "HKCU\Control Panel\Accessibility" /v "DynamicScrollbars" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -698,6 +698,14 @@ reg add "HKCU\Control Panel\Accessibility" /v "DynamicScrollbars" /t REG_DWORD /
 :: Start > Settings > Ease of Access > Mouse pointer > Show visual feedback around the touch points when I touch the screen > Off
 reg add "HKCU\Control Panel\Cursors" /v "ContactVisualization" /t REG_DWORD /d "0" /f >nul 2>&1
 reg add "HKCU\Control Panel\Cursors" /v "GestureVisualization" /t REG_DWORD /d "0" /f >nul 2>&1
+
+:: Start > Settings > Ease of Access > Contrast Themes
+:: Keyboard shortcut for contrast themes
+reg add "HKCU\Control Panel\Accessibility\HighContrast" /v Flags /t REG_SZ /d 4128 /f >nul 2>&1
+:: Notify me when I turn on contrast theme from the keyboard
+reg add "HKCU\Control Panel\Accessibility" /v "Sound on Activation" /t REG_DWORD /d 0 /f >nul 2>&1
+:: Play a sound when I turn contrast theme on or off from the keybaord
+reg add "HKCU\Control Panel\Accessibility" /v "Warning Sounds" /t REG_DWORD /d 0 /f >nul 2>&1
 
 :: Start > Settings > Ease of Access > Narrator > Allow the shortcut key to start Narrator > Off
 reg add "HKCU\SOFTWARE\Microsoft\Narrator\NoRoam" /v "WinEnterLaunchEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -2924,6 +2932,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Explorer" /v "HideRecentlyAdde
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SubscribedContent-338388Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SystemPaneSuggestionsEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
+:: Start > Settings > Personalization > Start > Show recommendations for tips, shortcuts, new apps, and more > Off
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Start_IrisRecommendations /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Start > Settings > Personalization > Start > Show account-related notifications. When off, required notifications are still shown. > Off
