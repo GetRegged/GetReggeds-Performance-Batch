@@ -679,6 +679,7 @@ reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /
 
 :: Start > Settings > Gaming > Xbox Game Bar > Open Xbox Game Bar using this button... > Off
 reg add "HKCU\SOFTWARE\Microsoft\GameBar" /v "UseNexusForGameBarEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
+reg add "HKCU\SOFTWARE\Microsoft\GameBar" /v "GamepadNexusChordEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Start > Settings > Gaming > Captures > Maximum recording length > 30 minutes
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR" /v "MaximumRecordLength" /t REG_BINARY /d 0034E23004000000 /f >nul 2>&1
