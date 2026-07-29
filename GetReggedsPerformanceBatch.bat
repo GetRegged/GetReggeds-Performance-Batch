@@ -4,7 +4,7 @@
 title GetRegged's Performance Batch
 
 :: Set Release Version #
-Set Version=1.0-beta
+Set Version=1.0-alpha
 
 :: Enable Delayed Expansion
 setlocal enabledelayedexpansion >nul 2>&1
