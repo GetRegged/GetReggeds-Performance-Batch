@@ -1095,38 +1095,38 @@ reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "Position" /t REG_S
 :: ██║  ██║██╔══╝  ╚██╗ ██╔╝██║██║     ██╔══╝      ██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗
 :: ██████╔╝███████╗ ╚████╔╝ ██║╚██████╗███████╗    ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║
 :: ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝ ╚═════╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
-:: cls
-:: echo Optimizing Device Manager
-:: timeout /t 1 /nobreak >nul 2>&1
+cls
+echo Optimizing Device Manager
+timeout /t 1 /nobreak >nul 2>&1
 
 :: Get DevManView
-:: curl -g -k -L -# -o "%temp%\DevManView.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/DevManView.exe" >nul 2>&1
+curl -g -k -L -# -o "%temp%\DevManView.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/DevManView.exe" >nul 2>&1
 
 :: Disable Devices through DevManView
-:: %temp%\DevManView.exe /disable "AMD PSP"
-:: %temp%\DevManView.exe /disable "Amdlog"
-:: %temp%\DevManView.exe /disable "Composite Bus Enumerator"
-:: %temp%\DevManView.exe /disable "High Precision Event Timer"
-:: %temp%\DevManView.exe /disable "Intel Management Engine Interface"
-:: %temp%\DevManView.exe /disable "Intel Management Engine"
-:: %temp%\DevManView.exe /disable "Intel SMBus"
-:: %temp%\DevManView.exe /disable "Microsoft GS Wavetable Synth"
-:: %temp%\DevManView.exe /disable "Microsoft Hyper-V Virtualization Infrastructure Driver"
-:: %temp%\DevManView.exe /disable "Microsoft RRAS Root Enumerator"
-:: %temp%\DevManView.exe /disable "Microsoft Virtual Drive Enumerator"
-:: %temp%\DevManView.exe /disable "NDIS Virtual Network Adapter Enumerator"
-:: %temp%\DevManView.exe /disable "Remote Desktop Device Redirector Bus"
-:: %temp%\DevManView.exe /disable "SM Bus Controller"
-:: %temp%\DevManView.exe /disable "System Speaker"
-:: %temp%\DevManView.exe /disable "UMBus Root Bus Enumerator"
-:: %temp%\DevManView.exe /disable "WAN Miniport (IKEv2)"
-:: %temp%\DevManView.exe /disable "WAN Miniport (IP)"
-:: %temp%\DevManView.exe /disable "WAN Miniport (IPv6)"
-:: %temp%\DevManView.exe /disable "WAN Miniport (L2TP)"
-:: %temp%\DevManView.exe /disable "WAN Miniport (Network Monitor)"
-:: %temp%\DevManView.exe /disable "WAN Miniport (PPPOE)"
-:: %temp%\DevManView.exe /disable "WAN Miniport (PPTP)"
-:: %temp%\DevManView.exe /disable "WAN Miniport (SSTP)"
+%temp%\DevManView.exe /disable "AMD PSP"
+%temp%\DevManView.exe /disable "Amdlog"
+%temp%\DevManView.exe /disable "Composite Bus Enumerator"
+%temp%\DevManView.exe /disable "High Precision Event Timer"
+%temp%\DevManView.exe /disable "Intel Management Engine Interface"
+%temp%\DevManView.exe /disable "Intel Management Engine"
+%temp%\DevManView.exe /disable "Intel SMBus"
+%temp%\DevManView.exe /disable "Microsoft GS Wavetable Synth"
+%temp%\DevManView.exe /disable "Microsoft Hyper-V Virtualization Infrastructure Driver"
+%temp%\DevManView.exe /disable "Microsoft RRAS Root Enumerator"
+%temp%\DevManView.exe /disable "Microsoft Virtual Drive Enumerator"
+%temp%\DevManView.exe /disable "NDIS Virtual Network Adapter Enumerator"
+%temp%\DevManView.exe /disable "Remote Desktop Device Redirector Bus"
+%temp%\DevManView.exe /disable "SM Bus Controller"
+%temp%\DevManView.exe /disable "System Speaker"
+%temp%\DevManView.exe /disable "UMBus Root Bus Enumerator"
+%temp%\DevManView.exe /disable "WAN Miniport (IKEv2)"
+%temp%\DevManView.exe /disable "WAN Miniport (IP)"
+%temp%\DevManView.exe /disable "WAN Miniport (IPv6)"
+%temp%\DevManView.exe /disable "WAN Miniport (L2TP)"
+%temp%\DevManView.exe /disable "WAN Miniport (Network Monitor)"
+%temp%\DevManView.exe /disable "WAN Miniport (PPPOE)"
+%temp%\DevManView.exe /disable "WAN Miniport (PPTP)"
+%temp%\DevManView.exe /disable "WAN Miniport (SSTP)"
 
 :: ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗
 :: ████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝
@@ -1134,17 +1134,17 @@ reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "Position" /t REG_S
 :: ██║╚██╔╝██║██║   ██║██║   ██║╚════██║██╔══╝
 :: ██║ ╚═╝ ██║╚██████╔╝╚██████╔╝███████║███████╗
 :: ╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
-:: cls
-:: echo Optimizing Mouse
-:: timeout /t 1 /nobreak >nul 2>&1
+cls
+echo Optimizing Mouse
+timeout /t 1 /nobreak >nul 2>&1
 
 :: Enable 1:1 Pixel Mouse Movements
-:: reg add "HKCU\Control Panel\Mouse" /v "MouseSensitivity" /t REG_SZ /d "10" /f >nul 2>&1
+reg add "HKCU\Control Panel\Mouse" /v "MouseSensitivity" /t REG_SZ /d "10" /f >nul 2>&1
 
 :: Disable Mouse Acceleration
-:: reg add "HKCU\Control Panel\Mouse" /v "MouseSpeed" /t REG_SZ /d "0" /f >nul 2>&1
-:: reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold1" /t REG_SZ /d "0" /f >nul 2>&1
-:: reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold2" /t REG_SZ /d "0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Mouse" /v "MouseSpeed" /t REG_SZ /d "0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold1" /t REG_SZ /d "0" /f >nul 2>&1
+reg add "HKCU\Control Panel\Mouse" /v "MouseThreshold2" /t REG_SZ /d "0" /f >nul 2>&1
 
 :: ██╗      █████╗ ████████╗███████╗███╗   ██╗ ██████╗██╗   ██╗
 :: ██║     ██╔══██╗╚══██╔══╝██╔════╝████╗  ██║██╔════╝╚██╗ ██╔╝
