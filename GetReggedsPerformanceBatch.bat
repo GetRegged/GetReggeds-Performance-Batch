@@ -1831,94 +1831,22 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\WinPhoneCritical" 
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\iclsClient" /v "Start" /t REG_DWORD /d "0" /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\iclsProxy" /v "Start" /t REG_DWORD /d "0" /f >nul 2>&1
 
-:: Disable MS-Office Telemetry
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "accesssolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "olksolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "onenotesolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "pptsolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "projectsolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "publishersolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "visiosolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "wdsolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedapplications" /v "xlsolution" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedsolutiontypes" /v "agave" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedsolutiontypes" /v "appaddins" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedsolutiontypes" /v "comaddins" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedsolutiontypes" /v "documentfiles" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKCU\SOFTWARE\Policies\microsoft\office\16.0\osm\preventedsolutiontypes" /v "templatefiles" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Office\Common\ClientTelemetry" /v "DisableTelemetry" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Software\Policies\Microsoft\Office\16.0\osm" /v "EnableUpload" /t REG_DWORD /d "0" /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Microsoft\Software\Policies\Microsoft\Office\16.0\osm" /v "Enablelogging" /t REG_DWORD /d "0" /f >nul 2>&1
-
 :: Check and add telemetry blocking entries in hosts file if not already present
-findstr /C:"0.0.0.0 a-0001.a-msedge.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 a-0001.a-msedge.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 db5-eap.settings-win.data.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 db5-eap.settings-win.data.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 a-0002.a-msedge.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 a-0002.a-msedge.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 a.ads1.msn.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 a.ads1.msn.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 alpha.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 alpha.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 a.ads2.msn.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 a.ads2.msn.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 ad.doubleclick.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 ad.doubleclick.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 ads.msn.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 ads.msn.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 rad.msn.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 rad.msn.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 ads1.msads.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 ads1.msads.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 ads1.msn.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 ads1.msn.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 fe2.update.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 fe2.update.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 asimov-win.settings.data.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 asimov-win.settings.data.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 db5.vortex.data.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 db5.vortex.data.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 b-0003.a-msedge.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 b-0003.a-msedge.net >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 browser.pipe.aria.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 browser.pipe.aria.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 c-0004.a-msedge.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 c-0004.a-msedge.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 choice.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 choice.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 choice.microsoft.com.nsatc.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 choice.microsoft.com.nsatc.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 compatexchange.cloudapp.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 compatexchange.cloudapp.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 corp.sts.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 corp.sts.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 eu.vortex-win.data.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 eu.vortex-win.data.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 corpext.msitadfs.glbdns2.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 corpext.msitadfs.glbdns2.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 cs1.wpc.v0cdn.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 cs1.wpc.v0cdn.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 feedback.windows.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 feedback.windows.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 data-dev.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 data-dev.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 d-0005.a-msedge.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 d-0005.a-msedge.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 geo.vortex.data.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 geo.vortex.data.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 sqm.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 sqm.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 diagnostics.office.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 diagnostics.office.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 diagnostics.support.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 diagnostics.support.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 i.s-microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 i.s-microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 v10-win.vortex.data.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 v10-win.vortex.data.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 feedback.microsoft-hohm.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 feedback.microsoft-hohm.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 geo.settings-win.data.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 geo.settings-win.data.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 feedback.search.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 feedback.search.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 msedge.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 msedge.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 oca.telemetry.microsoft.com.nsatc.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 oca.telemetry.microsoft.com.nsatc.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 oca.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 oca.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 i.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 i.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 i1.services.social.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 i1.services.social.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 i.wpc.v0cdn.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 i.wpc.v0cdn.net >> %windir%\System32\drivers\etc\hosts
+findstr /C:"0.0.0.0 eu.vortex-win.data.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 eu.vortex-win.data.microsoft.com >> %windir%\System32\drivers\etc\hosts
+findstr /C:"0.0.0.0 feedback.windows.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 feedback.windows.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 mobile.pipe.aria.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 mobile.pipe.aria.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 nexus.officeapps.live.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 nexus.officeapps.live.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 pre.footprintpredict.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 pre.footprintpredict.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 statsfe2.update.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 statsfe2.update.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 preview.msn.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 preview.msn.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 redir.metaservices.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 redir.metaservices.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 reports.wes.df.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 reports.wes.df.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 r4.res.office365.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 r4.res.office365.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 services.wes.df.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 services.wes.df.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 settings-win.data.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 settings-win.data.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 ssw.live.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 ssw.live.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 ssl.google-analytics.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 ssl.google-analytics.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 statsfe1.update.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 statsfe1.update.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 statsfe2.update.microsoft.com.akadns.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 statsfe2.update.microsoft.com.akadns.net >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 statsfe2.ws.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 statsfe2.ws.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 telecommand.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 telecommand.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 telecommand.telemetry.microsoft.com.nsatc.net" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 telecommand.telemetry.microsoft.com.nsatc.net >> %windir%\System32\drivers\etc\hosts
+findstr /C:"0.0.0.0 sqm.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 sqm.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 us.vortex-win.data.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 us.vortex-win.data.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 vortex-sandbox.data.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 vortex-sandbox.data.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 vortex-win.data.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 vortex-win.data.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 watson.ppe.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 watson.ppe.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 vortex.data.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 vortex.data.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 watson.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 watson.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
 findstr /C:"0.0.0.0 wes.df.telemetry.microsoft.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 wes.df.telemetry.microsoft.com >> %windir%\System32\drivers\etc\hosts
-findstr /C:"0.0.0.0 www.google-analytics.com" %windir%\System32\drivers\etc\hosts >nul || echo 0.0.0.0 www.google-analytics.com >> %windir%\System32\drivers\etc\hosts
 
 :: ██████╗ ██╗      ██████╗  █████╗ ████████╗██╗    ██╗ █████╗ ██████╗ ███████╗
 :: ██╔══██╗██║     ██╔═══██╗██╔══██╗╚══██╔══╝██║    ██║██╔══██╗██╔══██╗██╔════╝
