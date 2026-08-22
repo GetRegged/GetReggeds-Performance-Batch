@@ -1420,19 +1420,22 @@ echo Optimizing Desktop
 timeout /t 1 /nobreak >nul 2>&1
 
 :: Set closing stuck apps without promp
-reg add "HKCU\Control Panel\Desktop" /v "AutoEndTasks" /t REG_DWORD /d "1" /f >nul 2>&1
+reg add "HKCU\Control Panel\Desktop" /v "AutoEndTasks" /t REG_SZ  /d "1" /f >nul 2>&1
 
-:: Set time in ms that windows waits until terminating stuck apps
-reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_DWORD /d "2000" /f >nul 2>&1
+:: Set time in ms that Windows waits for low-level keyboard/mouse hooks to respond
+reg add "HKCU\Control Panel\Desktop" /v "LowLevelHooksTimeout" /t REG_DWORD /d "300" /f >nul 2>&1
 
-:: Set time in ms that windows waits until terminating apps at Shutdown
-reg add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_DWORD /d "2000" /f >nul 2>&1
+:: Set time in ms windows waits to decide that an application is hung/unresponsive
+reg add "HKCU\Control Panel\Desktop" /v "HungAppTimeout" /t REG_SZ /d "2000" /f >nul 2>&1
 
-:: Set time in ms that windows waits until terminating services at Shutdown
-reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_DWORD /d "2000" /f >nul 2>&1
+:: Set time in ms Windows waits for apps to close during shutdown
+reg add "HKCU\Control Panel\Desktop" /v "WaitToKillAppTimeout" /t REG_SZ /d "2000" /f >nul 2>&1
 
-:: Disable Menue Show Delay
-reg add "HKCU\Control Panel\Desktop" /v "MenuShowDelay" /t REG_DWORD /d "1" /f >nul 2>&1
+:: Set time in ms Windows waits for services to stop during shutdown
+reg add "HKLM\SYSTEM\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t REG_SZ /d "2000" /f >nul 2>&1
+
+:: Reduce Menu Show Delay
+reg add "HKCU\Control Panel\Desktop" /v "MenuShowDelay" /t REG_SZ /d "1" /f >nul 2>&1
 
 :: Disable Require Sign-in after Display Turns Off
 reg add "HKCU\Control Panel\Desktop" /v "DelayLockInterval" /t REG_DWORD /d "0" /f >nul 2>&1
