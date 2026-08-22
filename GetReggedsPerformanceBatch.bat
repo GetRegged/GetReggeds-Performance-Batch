@@ -1089,45 +1089,6 @@ reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "ExplorerCommandHan
 reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "Icon" /t REG_SZ /d "%%windir%%\\System32\\shell32.dll,-240" /f >nul 2>&1
 reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "Position" /t REG_SZ /d "Bottom" /f >nul 2>&1
 
-:: ██████╗ ███████╗██╗   ██╗██╗ ██████╗███████╗    ███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗ 
-:: ██╔══██╗██╔════╝██║   ██║██║██╔════╝██╔════╝    ████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗
-:: ██║  ██║█████╗  ██║   ██║██║██║     █████╗      ██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝
-:: ██║  ██║██╔══╝  ╚██╗ ██╔╝██║██║     ██╔══╝      ██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗
-:: ██████╔╝███████╗ ╚████╔╝ ██║╚██████╗███████╗    ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║
-:: ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝ ╚═════╝╚══════╝    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
-cls
-echo Optimizing Device Manager
-timeout /t 1 /nobreak >nul 2>&1
-
-:: Get DevManView
-curl -g -k -L -# -o "%temp%\DevManView.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/DevManView.exe" >nul 2>&1
-
-:: Disable Devices through DevManView
-%temp%\DevManView.exe /disable "AMD PSP"
-%temp%\DevManView.exe /disable "Amdlog"
-%temp%\DevManView.exe /disable "Composite Bus Enumerator"
-%temp%\DevManView.exe /disable "High Precision Event Timer"
-%temp%\DevManView.exe /disable "Intel Management Engine Interface"
-%temp%\DevManView.exe /disable "Intel Management Engine"
-%temp%\DevManView.exe /disable "Intel SMBus"
-%temp%\DevManView.exe /disable "Microsoft GS Wavetable Synth"
-%temp%\DevManView.exe /disable "Microsoft Hyper-V Virtualization Infrastructure Driver"
-%temp%\DevManView.exe /disable "Microsoft RRAS Root Enumerator"
-%temp%\DevManView.exe /disable "Microsoft Virtual Drive Enumerator"
-%temp%\DevManView.exe /disable "NDIS Virtual Network Adapter Enumerator"
-%temp%\DevManView.exe /disable "Remote Desktop Device Redirector Bus"
-%temp%\DevManView.exe /disable "SM Bus Controller"
-%temp%\DevManView.exe /disable "System Speaker"
-%temp%\DevManView.exe /disable "UMBus Root Bus Enumerator"
-%temp%\DevManView.exe /disable "WAN Miniport (IKEv2)"
-%temp%\DevManView.exe /disable "WAN Miniport (IP)"
-%temp%\DevManView.exe /disable "WAN Miniport (IPv6)"
-%temp%\DevManView.exe /disable "WAN Miniport (L2TP)"
-%temp%\DevManView.exe /disable "WAN Miniport (Network Monitor)"
-%temp%\DevManView.exe /disable "WAN Miniport (PPPOE)"
-%temp%\DevManView.exe /disable "WAN Miniport (PPTP)"
-%temp%\DevManView.exe /disable "WAN Miniport (SSTP)"
-
 :: ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗
 :: ████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝
 :: ██╔████╔██║██║   ██║██║   ██║███████╗█████╗
@@ -1163,6 +1124,9 @@ bcdedit /set disabledynamictick yes >nul 2>&1
 bcdedit /set useplatformclock no >nul 2>&1
 :: Disables use of HPET forcing the system to use TSC
 bcdedit /set useplatformtick no >nul 2>&1
+:: Get DevManView & Disable HPET in DeviceManager
+curl -g -k -L -# -o "%temp%\DevManView.exe" "https://github.com/GetRegged/GetReggeds-Performance-Batch/raw/main/bin/DevManView.exe" >nul 2>&1
+%temp%\DevManView.exe /disable "High Precision Event Timer"
 
 :: Enable FSO (Better than FSE cause same FPS and better 1% lows) (Tested and approved)
 reg add "HKCU\System\GameConfigStore" /v GameDVR_Enabled /t REG_DWORD /d 0 /f >nul 2>&1
