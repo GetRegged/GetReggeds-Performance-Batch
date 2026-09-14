@@ -1098,6 +1098,11 @@ reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "ExplorerCommandHan
 reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "Icon" /t REG_SZ /d "%%windir%%\\System32\\shell32.dll,-240" /f >nul 2>&1
 reg add "HKCR\AllFilesystemObjects\shell\PermanentDelete" /v "Position" /t REG_SZ /d "Bottom" /f >nul 2>&1
 
+:: Enable Drag-n-Drop to File Explorer Address Bar
+curl -g -k -L -# -o "%temp%\ViVeTool-v0.3.4-IntelAmd.zip" "https://github.com/thebookisclosed/ViVe/releases/download/v0.3.4/ViVeTool-v0.3.4-IntelAmd.zip" >nul 2>&1
+PowerShell -NoProfile Expand-Archive '%temp%\ViVeTool-v0.3.4-IntelAmd.zip' -DestinationPath '%temp%\ViVeTool-v0.3.4-IntelAmd\' >nul 2>&1
+%temp%\ViVeTool-v0.3.4-IntelAmd\vivetool.exe /enable /id:48433719,47664723 >nul 2>&1
+
 :: ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗
 :: ████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝
 :: ██╔████╔██║██║   ██║██║   ██║███████╗█████╗
