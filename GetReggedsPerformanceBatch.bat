@@ -3036,7 +3036,7 @@ goto menuorexit
 
 :ResetTheme
 cls
-echo Applying Pitch Black Theme
+echo Resetting Theme
 timeout /t 2 /nobreak > NUL
 
 :: Close settings app
