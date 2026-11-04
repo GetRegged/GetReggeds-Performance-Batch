@@ -2491,8 +2491,6 @@ if '%choice%'=='2' goto EnableUpdates
 cls
 echo Disabling Windows Update
 
-echo Disabling Windows Update
-
 :: Start > Settings > Update & Security > Windows Update > Get ready for Windows 11... > Dismiss notification
 reg add "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "SvDismissedState" /t REG_DWORD /d "1" /f >nul 2>&1
 
