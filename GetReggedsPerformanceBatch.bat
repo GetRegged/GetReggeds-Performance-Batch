@@ -98,7 +98,7 @@ if not '%choice%'=='' set choice=%choice:~0,1%
 if '%choice%'=='0' goto Exit
 if '%choice%'=='1' goto WindowsEnergizer
 if '%choice%'=='2' goto WindowsOptimizer
-if '%choice%'=='3' goto WindowsUpdates
+if '%choice%'=='3' goto 
 if '%choice%'=='4' goto WindowsThemer
 if '%choice%'=='5' goto WindowsCleaner
 if '%choice%'=='6' goto ProgramDownloader
@@ -2491,6 +2491,8 @@ if '%choice%'=='2' goto EnableUpdates
 cls
 echo Disabling Windows Update
 
+echo Disabling Windows Update
+
 :: Start > Settings > Update & Security > Windows Update > Get ready for Windows 11... > Dismiss notification
 reg add "HKLM\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings" /v "SvDismissedState" /t REG_DWORD /d "1" /f >nul 2>&1
 
@@ -2529,7 +2531,7 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /v "DODo
 reg add "HKLM\SOFTWARE\Microsoft\WindowsMitigation" /v "UserPreference" /t REG_DWORD /d "1" /f >nul 2>&1
 
 :: Start > Settings > Update & Security > Find my device > Off
-reg add "HKLM\SOFTWARE\Microsoft\MdmCommon\SettingValues" /v "ILocationSyncEnabled" /t REG_DWORD /d "0" /f >nul 2>&1   
+reg add "HKLM\SOFTWARE\Microsoft\MdmCommon\SettingValues" /v "ILocationSyncEnabled" /t REG_DWORD /d "0" /f >nul 2>&1
 
 :: Disable Auto Install Minor Updates (not in Windows Settings App Included)
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "AutoInstallMinorUpdates" /t REG_DWORD /d "0" /f >nul 2>&1
@@ -2547,39 +2549,22 @@ reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\default\System\AllowExperimentati
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /t REG_DWORD /d "1" /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /t REG_DWORD /d "1" /f >nul 2>&1
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /t REG_DWORD /d "1" /f >nul 2>&1
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DisableWindowsUpdateAccess" /t REG_DWORD /d "1" /f >nul 2>&1
-sc stop BITS >nul 2>&1
-sc stop ClipSVC >nul 2>&1
-sc stop InstallService >nul 2>&1
+
 sc stop LanmanServer >nul 2>&1
 sc stop PushToInstall >nul 2>&1
-sc stop UsoSvc >nul 2>&1
 sc stop uhssvc >nul 2>&1
 sc stop upfc >nul 2>&1
-sc stop wuauserv >nul 2>&1
-sc config BITS start= disabled >nul 2>&1
-sc config ClipSVC start= disabled >nul 2>&1
-sc config InstallService start= disabled >nul 2>&1
+
 sc config LanmanServer start= disabled >nul 2>&1
 sc config PushToInstall start= disabled >nul 2>&1
-sc config UsoSvc start= disabled >nul 2>&1
 sc config uhssvc start= disabled >nul 2>&1
 sc config upfc start= disabled >nul 2>&1
-sc config wuauserv start= disabled >nul 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\BITS" /v Start /t reg_dword /d 4 /f >nul 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DoSvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\InstallService" /v Start /t reg_dword /d 4 /f >nul 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\UsoSvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
+
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\ossrs" /v Start /t reg_dword /d 4 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\uhssvc" /v Start /t reg_dword /d 4 /f >nul 2>&1
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\upfc" /v Start /t reg_dword /d 4 /f >nul 2>&1
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v Start /t reg_dword /d 4 /f >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\InstallService\ScanForUpdates" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\InstallService\ScanForUpdatesAsUser" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\InstallService\SmartRetry" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\InstallService\WakeUpAndContinueUpdates" /Disable >nul 2>&1
-schtasks /Change /TN "Microsoft\Windows\InstallService\WakeUpAndScanForUpdates" /Disable >nul 2>&1
+
 schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Report policies" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task" /Disable >nul 2>&1
 schtasks /Change /TN "Microsoft\Windows\UpdateOrchestrator\Schedule Scan" /Disable >nul 2>&1
